@@ -97,6 +97,7 @@ See [`docs/06_TEAM_RESPONSIBILITIES.md`](docs/06_TEAM_RESPONSIBILITIES.md).
 | Sandbox core (`adnn.sandbox`, `python -m adnn.demo`) | Implemented and audited; 355 tests pass, ruff clean (`docs/10`, `docs/11`) |
 | Shared prompt builder (`adnn.dataset.prompting`, v1.0.0) | Implemented (`docs/12`) |
 | Pilot dataset (210 sandbox examples, regenerable, not in git) | Generated and validated (`docs/13`, `docs/14`); pipeline development only |
+| Consumer API + team handoff (`adnn.dataset.api`, `docs/15`) | Implemented; integration tests regenerate the pilot from scratch |
 | Final dataset, ScienceWorld labelling | Not started |
 | Extraction, probes | Not started |
 | Stated knowledge, agent loop, evaluation | Not started |

@@ -4,6 +4,8 @@ This is a *future implementation plan*. Nothing here is implemented yet. Require
 
 ## 0. Available now (2026-10-30): actual APIs
 
+> **Since the team handoff (`docs/15_TEAM_HANDOFF.md`), prefer `adnn.dataset.api.load_dataset`.** It verifies checksums, splits by family, rebuilds hash-checked prompts and keeps labels in `eval_metadata`. The snippet below still works but does no integrity checks.
+
 The sandbox (`docs/10`), the shared prompt builder (`docs/12`) and the pilot dataset (`docs/13`) exist. Where they differ from the planned sketches below, they take precedence.
 
 **RQ3 agent loop skeleton** (the model call and JSON parser are yours):

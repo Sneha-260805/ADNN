@@ -4,6 +4,8 @@ This is a *future implementation plan*. Nothing here is implemented yet. Require
 
 ## 0. Available now (2026-10-30): actual APIs
 
+> **Since the team handoff (`docs/15_TEAM_HANDOFF.md`), prefer `adnn.dataset.api.load_dataset`.** It verifies checksums, splits by family, rebuilds hash-checked prompts and keeps labels in `eval_metadata`. The snippet below still works but does no integrity checks.
+
 The pilot dataset and the shared prompt builder exist (`docs/12`, `docs/13`, `docs/14`). They replace the *planned* C3 signature in §2. Build the pilot locally (it is not in git):
 
 ```powershell

@@ -75,7 +75,8 @@ The spec requires an individual contribution log with one paragraph per member i
 |---|---|---|---|
 | 2026-10-30 | Sneha (M1) | Repository scaffold and initial documentation (requirements traceability, methodology, protocol, dataset spec, architecture, guides). Drafted with AI assistance (Claude Code); **pending Sneha's review** | 0016c9c |
 | 2026-10-30 | Sneha (M1) | Deterministic sandbox core (state model, 13 tools, restoration judge, design table, demo), scientific-correctness audit (4 defects fixed), 346 new tests, docs 10–11. Drafted with AI assistance (Claude Code); **pending Sneha's review** | 2bd3fe9 |
-| 2026-10-30 | Sneha (M1) | Phase 04B: shared versioned prompt builder (RQ1/RQ2/RQ3), state rendering styles, 210-example pilot dataset generator with provenance, dataset validator with fault-injection tests, docs 12–14. Drafted with AI assistance (Claude Code); **pending Sneha's review** | — (uncommitted, `m1/sandbox-core`) |
+| 2026-10-30 | Sneha (M1) | Phase 04B: shared versioned prompt builder (RQ1/RQ2/RQ3), state rendering styles, 210-example pilot dataset generator with provenance, dataset validator with fault-injection tests, docs 12–14. Drafted with AI assistance (Claude Code); **pending Sneha's review** | 6b6a3e4 |
+| 2026-10-30 | Sneha (M1) | Team handoff: read-only consumer API (`adnn.dataset.api`), consumer integration smoke tests on a from-scratch pilot, docs 15. Drafted with AI assistance (Claude Code); **pending Sneha's review** | — (uncommitted, `m1/sandbox-core`) |
 
 ### Final paragraphs (to be written at the end)
 
