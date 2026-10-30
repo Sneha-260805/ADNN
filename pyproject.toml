@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adnn-irreversibility"
+version = "0.0.1"
+description = "Do AI Agents Know Which Actions Cannot Be Undone? Probing, stated knowledge and behaviour of open-weight LLM agents with respect to action reversibility."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "ADNN Irreversibility Team" }]
+# Licence for code and dataset is an open question (see docs/OPEN_QUESTIONS.md, OQ-15).
+
+# NOTE ON PINNING (REQ-SW-02): the ranges below only declare *what* we depend on.
+# Exact versions used for reported results are recorded in lock files under
+# requirements/ generated from the real execution environments (see
+# docs/07_REPRODUCIBILITY.md). No lock file exists yet because no environment
+# has been built yet.
+dependencies = []
+
+[project.optional-dependencies]
+# Core data handling for dataset building, splits and analysis (CPU).
+data = ["numpy", "pyyaml", "jsonschema"]
+# Linear probes and statistics (CPU).
+probes = ["numpy", "scikit-learn", "scipy", "matplotlib"]
+# Hidden-state extraction, agent runs and steering (GPU; Colab/Kaggle).
+models = ["torch", "transformers", "accelerate"]
+# Second testbed. Requires Java >= 1.8 (per the project specification).
+scienceworld = ["scienceworld"]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+adnn = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "SIM", "RUF", "ANN"]
+ignore = ["ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]

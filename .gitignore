@@ -1,0 +1,71 @@
+# --- Python / virtual environments ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# --- Tooling caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# --- Secrets (HF tokens, Kaggle API keys, etc. must never be committed) ---
+.env
+.env.*
+*.token
+*.key
+*.pem
+kaggle.json
+hf_token*
+credentials*.json
+secrets*.json
+
+# --- Model weights and caches (never in git) ---
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.onnx
+hf_cache/
+.cache/
+models_cache/
+
+# --- Generated data: ignored by default ---
+# Only the directory README is tracked. A frozen dataset release
+# (docs/05_DATASET_SPECIFICATION.md) is added deliberately at its release tag
+# with `git add -f <file>` after a licence check (REQ-ENV-09).
+data/*
+!data/README.md
+
+# --- Experimental results: ignored by default ---
+# Large artifacts (hidden states) live outside git and are referenced by SHA-256
+# in run manifests (docs/03_SYSTEM_ARCHITECTURE.md §6). Small result files needed
+# for the submission are added deliberately with `git add -f`.
+results/*
+!results/README.md
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+# --- Course material without redistribution permission ---
+# The professor's project specification is kept locally only (see references/README.md).
+references/*.docx
+references/*.pdf
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

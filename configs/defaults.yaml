@@ -1,0 +1,61 @@
+# TEMPLATE — not yet consumed by any code.
+# Values marked [SPEC] come from the professor's specification; values marked
+# [ENG] are our engineering choices (see docs/00_REQUIREMENTS_TRACEABILITY.md).
+# Values marked [OPEN] are unresolved (see docs/OPEN_QUESTIONS.md).
+
+project:
+  name: adnn-irreversibility
+  dataset_version: null          # set when the dataset is frozen (Phase 3)
+
+labels:
+  classes: [reversible, partially_reversible, irreversible]   # [SPEC]
+  binary_task: [reversible, irreversible]                      # [SPEC] partially_reversible excluded
+  horizons: [1, 2, 3]                                          # [SPEC]
+  primary_horizon: 3                                           # [SPEC]
+
+dataset:
+  min_examples_total: 2000                 # [SPEC]
+  min_minimal_pair_fraction: 0.30          # [SPEC]
+  min_class_fraction: 0.25                 # [ENG] operationalises "roughly balanced"
+  human_agreement_sample_size: 100         # [SPEC]
+  human_agreement_seed: 20261101           # [ENG]
+
+splits:
+  test_fraction: 0.20                      # [SPEC]
+  group_key: scenario_id                   # [SPEC] split by task/scenario
+  split_seeds: [0, 1, 2]                   # [SPEC] 3 random scenario splits; seed values [ENG]
+  inner_cv_folds: 5                        # [ENG] GroupKFold on train for C / layer selection
+
+models:                                    # [SPEC] two families; never load two at once
+  - id: Qwen/Qwen2.5-7B-Instruct
+    role: main
+  - id: meta-llama/Llama-3.1-8B-Instruct
+    role: second_family
+    gated: true
+  # - id: Qwen/Qwen2.5-14B-Instruct       # optional size ablation
+  dtype: [OPEN]                            # OQ-01: depends on available GPU
+
+extraction:
+  token_positions: [last_action_token, mean_action_tokens]   # [SPEC] ablation
+  layers: all                              # [SPEC] embedding layer 0 .. final layer
+  storage_dtype: float16                   # [ENG]
+
+probes:
+  model: logistic_regression_l2            # [SPEC]
+  C_grid: [0.001, 0.01, 0.1, 1.0, 10.0]    # [ENG]
+  standardize: true                        # [ENG] fit on train only
+  seed: 0                                  # [ENG]
+
+behaviour:
+  decoding: greedy                         # [SPEC] temperature 0
+  max_steps: 15                            # [SPEC]
+  min_task_pairs: 60                       # [SPEC]
+  system_prompts: [neutral, careful]       # [SPEC] ablation option; chosen as our 4th+ ablation [OPEN] OQ-11
+  max_new_tokens_per_step: 256             # [ENG]
+
+statistics:
+  bootstrap_resamples: 1000                # [SPEC]
+  bootstrap_unit: scenario_id              # [ENG] cluster bootstrap; task_pair_id for RQ3
+  bootstrap_seed: 12345                    # [ENG]
+  ci_level: 0.95                           # [SPEC]
+  paired_test: mcnemar                     # [SPEC]
