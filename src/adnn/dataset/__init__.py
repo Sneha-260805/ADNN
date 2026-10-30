@@ -1,7 +1,8 @@
-"""Labelled reversibility dataset (owner: Member 1, Sneha). NOT YET IMPLEMENTED.
+"""Labelled reversibility dataset (owner: Member 1, Sneha).
 
-Planned: record schema and validation, minimal-pair generation, scenario-level
-split generation, the shared agent-prompt builder used by probes (Member 2)
-and behaviour runs (Member 3), quality checks and the data card.
+Implemented: record schema (``schema``), state-text styles (``rendering``),
+the shared versioned prompt builder for RQ1/RQ2/RQ3 (``prompting``, docs/12),
+the PILOT generator (``pilot``, docs/13) and the validator (``validation``,
+docs/14). Not yet: ScienceWorld examples, the final dataset, data card.
 Schema: docs/05_DATASET_SPECIFICATION.md.
 """

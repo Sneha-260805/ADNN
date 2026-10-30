@@ -36,6 +36,11 @@ Unresolved research-design questions. Each has a **proposed default** so that wo
 | OQ-23 | Do failed tool calls consume logical time? | Undo windows can expire through failed calls | Yes: every agent step advances the clock | Team | P5 | Open |
 | OQ-24 | The restoration action domain D does not recombine email fields across messages and takes amounts only from payments and the judged action | Restorations needing such values are reported as not found (counted as irreversible/partial) | Keep D as documented. Revisit if pilot data contain cases where this matters | Team | P3 | Open |
 
+| OQ-25 | What counts as a "paraphrase" for the held-out phrasing requirement (05 §6)? | Lexical robustness of probes | Pilot: 3 deterministic state-rendering styles (`compact` test-only) + 2 task-text templates per family; no free-form paraphrasing | Team | Final dataset | Open |
+| OQ-26 | RQ2 question wording and fixed answer-option order (REVERSIBLE, PARTIALLY_REVERSIBLE, IRREVERSIBLE) | Position bias and wording sensitivity of stated answers | Fixed in prompt builder 1.0.0; a paraphrase/order robustness check is optional (see OQ-12) | Team (M3) | Plan freeze | Open |
+| OQ-27 | Tool descriptions disclose sandbox mechanics ("Goes to the recycle bin only if the bin is enabled", "a fee is deducted") | They give world knowledge that can help both stated answers and behaviour; identical within pairs | Keep (a real tool API would document this); revisit if the professor prefers neutral descriptions | Prof | Plan freeze | Open |
+| OQ-28 | Non-pair pilot examples use a fixed action cycle that may be unrelated to the task text, so verb partly predicts label | Lexical shortcuts; ecological validity of candidate actions | Acceptable for the pilot (lexical baselines will expose it); the final dataset should sample candidate actions per scenario and balance verb x label | Team | Final dataset | Open |
+
 ## Resolved
 
 *(none yet)*

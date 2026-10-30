@@ -2,6 +2,45 @@
 
 This is a *future implementation plan*. Nothing here is implemented yet. Requirement IDs refer to `00_REQUIREMENTS_TRACEABILITY.md`.
 
+## 0. Available now (2026-10-30): actual APIs
+
+The sandbox (`docs/10`), the shared prompt builder (`docs/12`) and the pilot dataset (`docs/13`) exist. Where they differ from the planned sketches below, they take precedence.
+
+**RQ3 agent loop skeleton** (the model call and JSON parser are yours):
+
+```python
+from adnn.sandbox import Sandbox, ToolCall, WorldState
+from adnn.dataset.prompting import PromptInputs, AgentTurn, build_agent_messages
+
+sandbox = Sandbox(initial_state)                         # researcher: load one task version
+history: list[AgentTurn] = []
+for step in range(15):                                   # REQ-M-05
+    inputs = PromptInputs.from_sandbox(task_text, initial_observation, sandbox.tool_specs())
+    bundle = build_agent_messages(inputs, history)       # log bundle.prompt_sha256 + messages
+    raw = generate(bundle.messages)                      # greedy; your code
+    call = parse_one_json_tool_call(raw)                 # your strict parser; count failures
+    result = sandbox.execute(call)                       # ToolResult(ok, message, error_code, data)
+    history.append(AgentTurn(raw, result.message, sandbox.get_observation()))
+log = [r.to_dict() for r in sandbox.get_action_history()]
+```
+
+`initial_observation` is `sandbox.get_observation()` taken before the first step. Use `snapshot()` / `restore_snapshot()` only *between* runs.
+
+**RQ2 stated knowledge on pilot examples:**
+
+```python
+from adnn.dataset.prompting import PromptInputs, build_stated_prompt, STATED_ANSWER_LABELS
+bundle = build_stated_prompt(PromptInputs.from_example(r, tool_sets), r["action_text"], horizon=3)
+# first line of the answer must be exactly one of STATED_ANSWER_LABELS, else UNPARSEABLE
+```
+
+**Labels for executed calls** (caution analysis): `assess_reversibility(state_before, call)`. Use the labels only if `.is_definitive`, and record `.provisional_reasons`.
+
+**Not yet available:**
+
+- `finish` and `ask_user` tools (OQ-06), plus RQ3 task files and success predicates. These are the next M1 deliverables, co-designed with you.
+- Adding the new tools changes the tool list, so `PROMPT_BUILDER_VERSION` will be bumped.
+
 ## 1. Scope
 
 | You own | You do not own |

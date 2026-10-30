@@ -301,6 +301,7 @@ def assess_reversibility(
     horizon: int = 3,
     max_nodes: int = 200_000,
     on_budget_exhausted: str = "raise",
+    extra_contents: tuple[str, ...] = (),
 ) -> RestorationAssessment:
     """Compute exact and approximate restoration depths of ``action`` in ``state``.
 
@@ -310,6 +311,10 @@ def assess_reversibility(
     (``on_budget_exhausted="raise"``, default) or return an assessment with
     ``status=BUDGET_EXHAUSTED`` whose labels are determined only up to
     ``complete_through_depth`` (``"return"``).
+
+    ``extra_contents`` adds free-text values to the argument pool. It exists only
+    for sensitivity analysis of the information rule (OQ-21), e.g. "the agent
+    remembers the old text"; the default empty tuple is the documented rule.
 
     ``pending_timers_before`` flags states in which undo/cancel windows that
     pre-date the action may expire during the search; such states change over
@@ -324,6 +329,9 @@ def assess_reversibility(
     s1, result = step(state, call)
     target_exact, target_core = canonical_hash(state), core_hash(state)
     pool = argument_pool(s1, call)
+    if extra_contents:
+        merged = tuple(sorted(set(pool.contents) | set(extra_contents)))
+        pool = ArgumentPool(merged, pool.emails, pool.amounts)
 
     exact: tuple[int, tuple[ToolCall, ...]] | None = None
     approx: tuple[int, tuple[ToolCall, ...]] | None = None

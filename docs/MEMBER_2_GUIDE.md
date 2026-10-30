@@ -2,6 +2,49 @@
 
 This is a *future implementation plan*. Nothing here is implemented yet. Requirement IDs refer to `00_REQUIREMENTS_TRACEABILITY.md`.
 
+## 0. Available now (2026-10-30): actual APIs
+
+The pilot dataset and the shared prompt builder exist (`docs/12`, `docs/13`, `docs/14`). They replace the *planned* C3 signature in §2. Build the pilot locally (it is not in git):
+
+```powershell
+.\.venv\Scripts\python.exe -m adnn.dataset.pilot --out data/pilot
+.\.venv\Scripts\python.exe -m adnn.dataset.validation data/pilot      # must print "ok": true
+```
+
+Loading examples and building probe prompts:
+
+```python
+import json
+from pathlib import Path
+from adnn.dataset.schema import read_jsonl
+from adnn.dataset.prompting import PromptInputs, build_probe_prompt, locate_action
+
+d = Path("data/pilot")
+records   = read_jsonl(d / "pilot_v0.1.jsonl")                       # 210 dicts (schema: docs/05 §2)
+split     = json.loads((d / "pilot_split.json").read_text())         # train/test FAMILIES and scenarios
+tool_sets = json.loads((d / "tool_sets.json").read_text())
+
+test_families = set(split["test_families"])                         # split on template_id, never on rows
+for r in records:
+    bundle = build_probe_prompt(PromptInputs.from_example(r, tool_sets), r["action_text"])
+    msgs = bundle.messages                     # [system, user, assistant(action_text)]
+    # rendered = tokenizer.apply_chat_template(msgs, tokenize=False, ...)   # check current docs
+    # start, end = locate_action(rendered, r["action_text"])               # raises unless exactly once
+    # -> map [start, end) to token indices with return_offsets_mapping=True
+    is_test = r["template_id"] in test_families
+```
+
+Fields you need:
+
+- `label` / `labels_by_horizon` (h=1,2,3);
+- `pair_id` (minimal pairs, ablation A2);
+- `action_verb` (control task);
+- `template_id` (split unit);
+- `label_provisional` (filter for anything that might later be reported);
+- `meta.probe_prompt_sha256`: log it next to every extracted vector. If your rebuilt prompt hash differs, stop: the prompt builder version changed.
+
+**Pilot caveat.** Pilot results must never be reported (`docs/13`). The pilot has one family-level split (3 test families, 45 examples). The three split seeds come with the final dataset.
+
 ## 1. Scope
 
 | You own | You do not own |
@@ -20,7 +63,7 @@ Spec: `05_DATASET_SPECIFICATION.md`.
 
 **C2 — splits.** `data/splits/split_seed{0,1,2}.json`. These contain train/test scenario lists and 5 inner folds. Always check that `dataset_sha256` matches the dataset file you load.
 
-**C3 — prompt builder** (planned signature, to be finalised with M1):
+**C3 — prompt builder** (original plan; **superseded by §0 and docs/12**, which implement it as `PromptBundle` with `messages`, `action_text`, `prompt_sha256`):
 
 ```python
 @dataclass(frozen=True)

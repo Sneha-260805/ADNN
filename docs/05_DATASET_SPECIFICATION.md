@@ -50,6 +50,8 @@ File: `data/processed/reversibility_vMAJOR.MINOR.jsonl` (UTF-8, one JSON object 
 | `meta` | object | Environment-specific provenance: ScienceWorld `task_name`, `variation_idx`, `action_history`, BFS stats (nodes expanded, pruning mode); ToolEmu `case_index`; generator seed. |
 | `dataset_version` | string | e.g. `1.0`. |
 
+> **Update 2026-10-30 (pilot, `docs/13`):** three fields were added to the record schema: `render_style` (`kv`/`prose`/`compact`, `docs/12` §4), `label_provisional` (bool) and `provisional_reasons` (list). `template_id` is the **scenario family** and is the split unit for the pilot. The authoritative field list is `adnn.dataset.schema.ALL_FIELDS`; the validator rejects unknown fields.
+
 ### 2.3 Illustrative records (NOT data — format illustration only)
 
 ```json
