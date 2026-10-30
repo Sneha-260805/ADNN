@@ -8,7 +8,7 @@ after it are cited as "§9 (MPR)" and "§9 (Safety)".
 
 - **M/O:** `M` = mandatory, `O` = optional (bonus/recommended), `C` = conditionally mandatory (mandatory only if the related optional work is attempted).
 - **Owner:** M1 = Sneha (Member 1), M2 = Member 2, M3 = Member 3, ALL = whole team. Names of Members 2 and 3 are not yet known. Owners of optional work and shared deliverables are **proposals** for the team to confirm (OQ-17).
-- **Status at 2026-10-30:** `Not started`, `Documented` (planned in docs, no code), `Done`. Nothing is implemented yet; no experiment has been run.
+- **Status at 2026-10-30:** `Not started`, `Documented` (planned in docs, no code), `Implemented` (code + passing tests), `Done`. Only the sandbox core is implemented (branch `m1/sandbox-core`); no experiment has been run.
 
 Professor requirements (REQ-*) are listed in §A. Our own engineering choices (ENG-*) are listed separately in §B so they are never confused with the professor's requirements.
 
@@ -42,9 +42,9 @@ Professor requirements (REQ-*) are listed in §A. Our own engineering choices (E
 
 | ID | Exact meaning | Source | M/O | Owner | Planned module | Validation / acceptance test | Status |
 |---|---|---|---|---|---|---|---|
-| REQ-ENV-01 | Build a small Python tool sandbox simulating a file system, email outbox and wallet, with tools such as `read_file`, `edit_file`, `delete_file`, `send_email`, `transfer_money`. It is the main testbed for RQ1–RQ4 | §4.1, §6 Step 1 | M | M1 | `adnn.sandbox` | Unit tests for every tool and its state effects | Documented |
-| REQ-ENV-02 | The sandbox is a small Python class holding the full state (files, outbox, wallet balance) and can save and restore it | §6 Step 1 | M | M1 | `adnn.sandbox` | Property test: `restore(snapshot())` gives a state equal to the original after any tool sequence | Documented |
-| REQ-ENV-03 | Every sandbox tool has a known reversibility | §6 Step 1 | M | M1 | `adnn.sandbox` | A test checks that each tool's declared label matches a brute-force restore search inside the sandbox | Documented |
+| REQ-ENV-01 | Build a small Python tool sandbox simulating a file system, email outbox and wallet, with tools such as `read_file`, `edit_file`, `delete_file`, `send_email`, `transfer_money`. It is the main testbed for RQ1–RQ4 | §4.1, §6 Step 1 | M | M1 | `adnn.sandbox` | Unit tests for every tool and its state effects | Implemented (sandbox core; tests pass, `docs/11`) |
+| REQ-ENV-02 | The sandbox is a small Python class holding the full state (files, outbox, wallet balance) and can save and restore it | §6 Step 1 | M | M1 | `adnn.sandbox` | Property test: `restore(snapshot())` gives a state equal to the original after any tool sequence | Implemented (sandbox core; tests pass, `docs/11`) |
+| REQ-ENV-03 | Every sandbox tool has a known reversibility | §6 Step 1 | M | M1 | `adnn.sandbox` | A test checks that each tool's declared label matches a brute-force restore search inside the sandbox | Implemented (sandbox core; tests pass, `docs/11`) |
 | REQ-ENV-04 | Use ScienceWorld as the second testbed (physical actions), to show that findings are not specific to our sandbox | §4.1 | M | M1 | `adnn.scienceworld` | ScienceWorld examples are present in the dataset and used in RQ1 and the cross-environment ablation | Documented |
 | REQ-ENV-05 | Check the current ScienceWorld docs for save/restore. If there is none, reset the same task variation and replay the action history. Search on a sample of states | §4.1 | M | M1 | `adnn.scienceworld` | Test: replay reproduces the canonical state exactly on N sampled trajectories | Documented |
 | REQ-ENV-06 | ToolEmu: use only the 144 curated cases in `assets/all_cases.json`, add our own reversibility labels, run them in our own sandbox with our models. Do NOT run the ToolEmu emulator | §4.1 | O (recommended) | M1 | `adnn.dataset` | If used, cases are labelled with `source=toolemu_manual` and no GPT-4 call exists | Not started |
@@ -57,7 +57,7 @@ Professor requirements (REQ-*) are listed in §A. Our own engineering choices (E
 | ID | Exact meaning | Source | M/O | Owner | Planned module | Validation / acceptance test | Status |
 |---|---|---|---|---|---|---|---|
 | REQ-LBL-01 | Three labels. **Reversible:** the exact previous state can be restored within 3 further actions. **Partially reversible:** restorable only approximately or at a cost. **Irreversible:** no sequence of ≤3 actions restores it | §4.2 | M | M1 | `adnn.dataset` | Schema validator accepts only these three values | Documented |
-| REQ-LBL-02 | In the sandbox, the label comes from our design | §4.2 | M | M1 | `adnn.sandbox` | Same test as REQ-ENV-03 | Documented |
+| REQ-LBL-02 | In the sandbox, the label comes from our design | §4.2 | M | M1 | `adnn.sandbox` | Same test as REQ-ENV-03 | Implemented (sandbox core; tests pass, `docs/11`) |
 | REQ-LBL-03 | In ScienceWorld, compute labels automatically: save state, apply action, BFS over action sequences of length ≤3, check whether the saved state is reached | §4.2 | M | M1 | `adnn.scienceworld` | Unit tests on hand-built cases with known restore depth | Documented |
 | REQ-LBL-04 | Treat the horizon (3) as a parameter and **report results for horizons 1, 2 and 3** | §4.2 (also §7.3) | M | M1 (labels at each horizon), M2 (results) | `adnn.dataset`, `adnn.probes` | Every example stores labels at h=1,2,3. The probe results table has rows for each horizon | Documented |
 | REQ-LBL-05 | Two team members hand-label the same random sample of 100 pairs without seeing the automatic label. Report κ between the two humans and between human and automatic labels | §4.2 | M | M1 (organises + annotator 1), M2 or M3 (annotator 2) | `data/annotation/`, `adnn.evaluation` | Two κ values with CIs in the data card | Documented |
@@ -175,7 +175,7 @@ Professor requirements (REQ-*) are listed in §A. Our own engineering choices (E
 | REQ-RISK-06 | Steering breaks output: reduce strength; report task success alongside caution | §9 | C | Proposed M2 + M3 | — | — | Not started |
 | REQ-RISK-07 | A new paper with the same experiment appears: tell the professor at once; focus may shift | §9 | M | ALL | — | — | Documented |
 | REQ-MPR-01 | Minimum publishable result: probes with all controls on two models and two testbeds, the stated-answer comparison, the blindness gap on 60 paired tasks, and the released labelled dataset, finished well before the deadline. Bonus work comes after | §9 (MPR) | M (planning) | ALL | — | Roadmap Phase 6 gate | Documented |
-| REQ-SAFE-01 | All irreversible actions happen only inside the simulated sandbox. Never connect the agent to real email, real files outside the sandbox, or any real account | §9 (Safety) | M | M1 (enforces in sandbox), ALL | `adnn.sandbox` | Test: sandbox modules import no `os`/`shutil`/`smtplib`/`socket`/`requests` side-effecting APIs (static check) | Documented |
+| REQ-SAFE-01 | All irreversible actions happen only inside the simulated sandbox. Never connect the agent to real email, real files outside the sandbox, or any real account | §9 (Safety) | M | M1 (enforces in sandbox), ALL | `adnn.sandbox` | Test: sandbox modules import no `os`/`shutil`/`smtplib`/`socket`/`requests` side-effecting APIs (static check) | Implemented (sandbox core; tests pass, `docs/11`) |
 | REQ-SAFE-02 | No paid APIs for any reported result. Everything runs on "our GPUs" with open-weight models | §9 (Safety), §4.1 | M | ALL | — | Dependency check: no `openai`/`anthropic` SDK in the project dependencies | Documented (see OQ-01 regarding "our GPUs") |
 
 ---
@@ -197,6 +197,8 @@ Professor requirements (REQ-*) are listed in §A. Our own engineering choices (E
 | ENG-11 | Deterministic, rule-based caution detection from logs (no LLM judge) | No paid APIs; reproducible | `MEMBER_3_GUIDE.md` |
 | ENG-12 | Large artifacts (hidden states) outside git, referenced by SHA-256 | Size | `03` §6 |
 | ENG-13 | Restoration horizons 1, 2, 3 stored per example in all testbeds, including the sandbox | Enables REQ-LBL-04 everywhere | `05` §5 |
+| ENG-15 | Sandbox *approximate* restoration = equality of a core projection (contents, messages, fee-adjusted balances, open payments); refunds are never exact | Makes "partially reversible" decidable in the sandbox; compensation ≠ exact | `10_SANDBOX_DESIGN.md` §5.1 |
+| ENG-16 | Restoration may use only information present in the post-action state plus the judged action's arguments | Our reading of spec §4.2's "old text still in the history" | `10` §5.3, OQ-21 |
 | ENG-14 | "Roughly balanced" operationalised as every class ≥ 25% of the examples | Measurable acceptance test | `05` §7 |
 
 ---

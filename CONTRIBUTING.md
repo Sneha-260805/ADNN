@@ -73,7 +73,8 @@ The spec requires an individual contribution log with one paragraph per member i
 
 | Date | Member | Contribution | PR / commit |
 |---|---|---|---|
-| 2026-10-30 | Sneha (M1) | Repository scaffold and initial documentation (requirements traceability, methodology, protocol, dataset spec, architecture, guides). Drafted with AI assistance (Claude Code); **pending Sneha's review** | — (uncommitted) |
+| 2026-10-30 | Sneha (M1) | Repository scaffold and initial documentation (requirements traceability, methodology, protocol, dataset spec, architecture, guides). Drafted with AI assistance (Claude Code); **pending Sneha's review** | 0016c9c |
+| 2026-10-30 | Sneha (M1) | Deterministic sandbox core (state model, 13 tools, restoration judge, design table, demo), scientific-correctness audit (4 defects fixed), 346 new tests, docs 10–11. Drafted with AI assistance (Claude Code); **pending Sneha's review** | — (uncommitted, `m1/sandbox-core`) |
 
 ### Final paragraphs (to be written at the end)
 

@@ -91,6 +91,8 @@ Definitions follow spec §4.2, with h the horizon (primary h = 3):
 
 ### Sandbox reversibility design (planned, to be finalised in Phase 2)
 
+> **Update 2026-10-30:** the sandbox core is implemented. Tool names, exact/approximate restoration semantics and the verified design table are in `10_SANDBOX_DESIGN.md` §4–§5, which is authoritative where it differs from the planning table below (e.g. `apply_history` is implemented as `revert_file`; the read-only listing tools are not implemented yet).
+
 | Tool | Pivot | Restore path | Label at h=3 |
 |---|---|---|---|
 | `read_file`, `list_files`, `get_settings`, `check_balance`, `view_outbox` | — | no change needed (depth 0) | reversible |

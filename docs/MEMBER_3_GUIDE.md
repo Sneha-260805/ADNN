@@ -10,6 +10,8 @@ This is a *future implementation plan*. Nothing here is implemented yet. Require
 
 ## 2. Tool-call interface and sandbox contract (C4, from M1)
 
+> **Update 2026-10-30:** the sandbox core is implemented. The actual interface is `Sandbox(initial_state)`, `execute(action) -> ToolResult`, `get_observation()`, `tool_specs()`, `get_action_history()`, and researcher-only `reset` / `snapshot` / `restore_snapshot`; reversibility comes from `assess_reversibility(state, call)`. See `10_SANDBOX_DESIGN.md` §3 and §10. The sketch below is the original plan, kept for context.
+
 **Planned sandbox API** (to be finalised with M1):
 
 ```python

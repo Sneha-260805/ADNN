@@ -2,8 +2,8 @@
 
 ADNN MSc AI semester project (Project Option 1). A measurement study of whether open-weight LLM agents (1) internally represent whether an action is reversible, (2) say so correctly when asked, and (3) act more carefully before irreversible actions.
 
-> **Status (2026-10-30): setup and planning only.**
-> The repository contains the package scaffold and documentation. **No sandbox, dataset, model run or result exists yet.** Nothing in this repository should be read as a finding.
+> **Status (2026-10-30): setup, planning and the sandbox core (branch `m1/sandbox-core`).**
+> The repository contains documentation, the package scaffold and the deterministic tool sandbox with tests. **No dataset, model run or result exists yet.** Nothing in this repository should be read as a finding.
 
 ## Motivation
 
@@ -93,8 +93,9 @@ See [`docs/06_TEAM_RESPONSIBILITIES.md`](docs/06_TEAM_RESPONSIBILITIES.md).
 | Component | Status |
 |---|---|
 | Requirements analysis and documentation | Drafted, pending team review |
-| Package scaffold, `pyproject.toml`, layout test | Created; **not yet run** (no Python 3.11/pytest installed locally) |
-| Sandbox, dataset, ScienceWorld labelling | Not started |
+| Package scaffold, `pyproject.toml`, layout test | Created; passing under Python 3.11.9 |
+| Sandbox core (`adnn.sandbox`, `python -m adnn.demo`) | Implemented and audited; 355 tests pass, ruff clean (`docs/10`, `docs/11`) |
+| Dataset, ScienceWorld labelling | Not started |
 | Extraction, probes | Not started |
 | Stated knowledge, agent loop, evaluation | Not started |
 | Results | None |

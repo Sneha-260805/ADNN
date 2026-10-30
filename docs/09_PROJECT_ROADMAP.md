@@ -149,12 +149,12 @@ gantt
 
 **Phase 2**
 
-- [ ] Sandbox state model + canonical state + `state_hash`
-- [ ] Tools with declared reversibility (table in `05` §3)
-- [ ] Simulated clock + undo window
+- [x] Sandbox state model + canonical state + `state_hash`
+- [x] Tools with declared reversibility (table in `05` §3)
+- [x] Simulated clock + undo window
 - [ ] `ask_user` with scripted replies
-- [ ] Brute-force restore verifier (depth ≤ 3)
-- [ ] Safety test (forbidden imports/side effects)
+- [x] Brute-force restore verifier (depth ≤ 3)
+- [x] Safety test (forbidden imports/side effects)
 - [ ] Prompt builder (C3) + review by M2/M3
 - [ ] Sandbox example generator: templates, pivots, phrasing variants, distractors
 - [ ] Pilot dataset D3 released to M2/M3
