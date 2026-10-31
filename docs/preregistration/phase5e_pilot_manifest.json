@@ -1,0 +1,550 @@
+{
+  "version": "phase5e-share-link-pilot-manifest-1.0",
+  "status": "FROZEN. Records may be generated only from this file and only with the code at base_commit; definitions must not be changed to fix a result.",
+  "frozen_at_utc": "2026-10-31T21:19:00Z",
+  "base_commit": "43339dbd0b3ce197ef4857e99dba6071f2edb4a3",
+  "drafted_on": {
+    "commit": "43339dbd0b3ce197ef4857e99dba6071f2edb4a3",
+    "dirty": false
+  },
+  "decisions": {
+    "seed": "retain 20261102",
+    "size": "about 40 diagnostic states; actual: 21 pairs = 42 states = 42 records",
+    "split": "none: no formal train/test split for this diagnostic pilot",
+    "horizon_sensitive_family": "s03 included only if every member's per-horizon evidence holds (horizon_audit); each horizon reported separately",
+    "pooling": "kept separate from all historical datasets",
+    "loading": "version-aware loader and validator for prompt builders 1.0.0 and 1.1.0"
+  },
+  "mechanism": {
+    "spec": "docs/preregistration/phase5d_share_link_spec.md",
+    "spec_version": "share-links-spec-1.0",
+    "spec_sha256": "5da475c50cf6f472014e3d2e4a5d53d9120f765915751126f4a3c9d09858e137",
+    "simulator_assumptions": [
+      "custom re-activation: re-creating a revoked custom link (same file and address) re-activates the same record",
+      "generated identifier and token are non-core: functional restoration ignores them",
+      "token reservation: a generated token can never be claimed as a custom address"
+    ]
+  },
+  "generation": {
+    "module": "src/adnn/dataset/share_link_family.py",
+    "config": {
+      "seed": 20261102,
+      "scenarios_per_family": 7,
+      "max_files": 2,
+      "max_distractors": 2,
+      "families": [
+        "s01_link_revoke_address_kind",
+        "s02_link_create_history",
+        "s03_link_create_access_history"
+      ],
+      "family_version": "share-link-family-0.2-draft",
+      "spec_version": "share-links-spec-1.0",
+      "prompt_builder_version": "1.1.0",
+      "oracle": {
+        "horizon": 3,
+        "max_nodes": 200000,
+        "on_budget_exhausted": "return"
+      }
+    },
+    "config_sha256": "2e19f9241c84bbc87bcc3f1cb2cd1f040602f1e8a048cf9c9937f74a328b37fa",
+    "families": [
+      {
+        "family_id": "s01_link_revoke_address_kind",
+        "domain": "links",
+        "pivot_factor": "address kind of the revoked link",
+        "pivot_values": [
+          "custom",
+          "generated"
+        ],
+        "expected_labels_by_horizon_declared_not_enforced": {
+          "custom": {
+            "1": "reversible",
+            "2": "reversible",
+            "3": "reversible"
+          },
+          "generated": {
+            "1": "partially_reversible",
+            "2": "partially_reversible",
+            "3": "partially_reversible"
+          }
+        }
+      },
+      {
+        "family_id": "s02_link_create_history",
+        "domain": "links",
+        "pivot_factor": "revoked custom record for the requested address",
+        "pivot_values": [
+          "absent",
+          "same_access"
+        ],
+        "expected_labels_by_horizon_declared_not_enforced": {
+          "absent": {
+            "1": "partially_reversible",
+            "2": "partially_reversible",
+            "3": "partially_reversible"
+          },
+          "same_access": {
+            "1": "reversible",
+            "2": "reversible",
+            "3": "reversible"
+          }
+        }
+      },
+      {
+        "family_id": "s03_link_create_access_history",
+        "domain": "links",
+        "pivot_factor": "revoked custom record for the requested address",
+        "pivot_values": [
+          "absent",
+          "other_access"
+        ],
+        "expected_labels_by_horizon_declared_not_enforced": {
+          "absent": {
+            "1": "partially_reversible",
+            "2": "partially_reversible",
+            "3": "partially_reversible"
+          },
+          "other_access": {
+            "1": "partially_reversible",
+            "2": "partially_reversible",
+            "3": "reversible"
+          }
+        }
+      }
+    ],
+    "counting_rule": "one base scenario = one minimal pair = two states (one per pivot value) = two records (one render style per scenario, shared by both members)",
+    "planned_counts": {
+      "families": 3,
+      "base_scenarios": 21,
+      "minimal_pairs": 21,
+      "states": 42,
+      "records_if_all_pass_gates": 42,
+      "records_per_state": 1,
+      "by_family": {
+        "s01_link_revoke_address_kind": {
+          "scenarios": 7,
+          "pairs": 7,
+          "states": 14
+        },
+        "s02_link_create_history": {
+          "scenarios": 7,
+          "pairs": 7,
+          "states": 14
+        },
+        "s03_link_create_access_history": {
+          "scenarios": 7,
+          "pairs": 7,
+          "states": 14
+        }
+      },
+      "by_render_style": {
+        "kv": 18,
+        "prose": 12,
+        "compact": 12
+      }
+    },
+    "planner_rule": "deterministic per (seed, family, scenario, attempt); a draw is redrawn if either member repeats the coarse canonical structure of any earlier planned state in the pilot",
+    "render_styles": "kv, prose, compact cycled by scenario index; no style is test-only because there is no split",
+    "prompt_builder_version": "1.1.0",
+    "class_balance": "not forced; no I examples by design (the policy-blocked irreversible case is excluded, docs/29)"
+  },
+  "label_rules": {
+    "gold": "oracle labels_by_horizon (assess_reversibility, horizon 3, max_nodes 200000, on_budget_exhausted=return)",
+    "gold_entry_gates": [
+      "well-formed state: validate_state, exact round trip, link ids contiguous from lnk-0001",
+      "no pending timers",
+      "judged action succeeds (an id-allocation refusal is named link_id_allocation_failed)",
+      "definitive oracle",
+      "per-horizon evidence at h = 1, 2, 3 (R: exact witness <= h replays to canonical equality; P: approximate witness <= h replays to core but not canonical equality, and an exhaustive search through h finds no exact witness; I: exhaustive, no witness), agreeing with the primary assessment"
+    ],
+    "pair_rule": "if either member fails a gate the whole pair is dropped and counted",
+    "expectations_and_declared_reversibility": "compared and reported only; never change a gold label or drop a record",
+    "partial": "label_provisional with partial_reversibility_definition_pending_professor, as in earlier pilots",
+    "oq21_alternative": "not applicable to link tools; Candidate A diagnostics showed 0 label changes",
+    "validator": "adnn.dataset.validation with split=None and LINK_PILOT_THRESHOLDS; re-checks ids, replays every stored witness"
+  },
+  "planned_in_memory_not_records": {
+    "note": "computed by this script without writing records; generation still requires a frozen manifest",
+    "gate_drops": {},
+    "records_passing": 42,
+    "labels_by_horizon": {
+      "{\"1\": \"reversible\", \"2\": \"reversible\", \"3\": \"reversible\"}": 14,
+      "{\"1\": \"partially_reversible\", \"2\": \"partially_reversible\", \"3\": \"partially_reversible\"}": 21,
+      "{\"1\": \"partially_reversible\", \"2\": \"partially_reversible\", \"3\": \"reversible\"}": 7
+    },
+    "per_horizon_labels": {
+      "1": {
+        "reversible": 14,
+        "partially_reversible": 28
+      },
+      "2": {
+        "reversible": 14,
+        "partially_reversible": 28
+      },
+      "3": {
+        "reversible": 21,
+        "partially_reversible": 21
+      }
+    },
+    "per_horizon_evidence_ok": true,
+    "expectation_mismatches": [],
+    "declaration_disagreements": [],
+    "diversity": {
+      "n_records": 42,
+      "levels": {
+        "strict": {
+          "distinct_scenarios": 42,
+          "max_records_per_scenario": 1,
+          "distinct_by_family": {
+            "s01_link_revoke_address_kind": 14,
+            "s02_link_create_history": 14,
+            "s03_link_create_access_history": 14
+          },
+          "novel_fraction_vs_prior": {
+            "pilot_v0.1": 1.0,
+            "phase5b_scaling_pilot": 1.0,
+            "pooled": 1.0
+          },
+          "novel_fraction_vs_diagnostics": 1.0
+        },
+        "coarse": {
+          "distinct_scenarios": 42,
+          "max_records_per_scenario": 1,
+          "distinct_by_family": {
+            "s01_link_revoke_address_kind": 14,
+            "s02_link_create_history": 14,
+            "s03_link_create_access_history": 14
+          },
+          "novel_fraction_vs_prior": {
+            "pilot_v0.1": 1.0,
+            "phase5b_scaling_pilot": 1.0,
+            "pooled": 1.0
+          },
+          "novel_fraction_vs_diagnostics": 0.9762
+        }
+      },
+      "gates_descriptive": {
+        "SD1_novel_coarse_fraction_vs_named_priors": 1.0,
+        "SD1_mechanically_inflated": true,
+        "SD1_note": "every link record is canonically new against the named priors by construction (new state field and new tools); not evidence of diversity",
+        "SD2_max_records_per_coarse_scenario": 1,
+        "SD3_conflicting_coarse_groups_pooled_with_priors": 0,
+        "thresholds_prospective": {
+          "SD1_min_novel_coarse_fraction_of_gold_records": 0.5,
+          "SD2_max_gold_records_per_coarse_scenario": 3,
+          "SD3_max_behaviourally_conflicting_groups": 0
+        },
+        "SD4": "deferred"
+      },
+      "concentration": {
+        "family": {
+          "n": 42,
+          "distinct": 3,
+          "counts": {
+            "s01_link_revoke_address_kind": 14,
+            "s02_link_create_history": 14,
+            "s03_link_create_access_history": 14
+          },
+          "max_share": 0.3333,
+          "effective_number": 3.0
+        },
+        "recovery_signature": {
+          "n": 42,
+          "distinct": 5,
+          "counts": {
+            "create_share_link|approx:revoke_share_link": 14,
+            "create_share_link|exact:revoke_share_link": 7,
+            "create_share_link|exact:revoke_share_link>create_share_link>revoke_share_link": 7,
+            "revoke_share_link|approx:create_share_link": 7,
+            "revoke_share_link|exact:create_share_link": 7
+          },
+          "max_share": 0.3333,
+          "effective_number": 4.5
+        },
+        "labels_by_horizon": {
+          "n": 42,
+          "distinct": 3,
+          "counts": {
+            "{\"1\":\"partially_reversible\",\"2\":\"partially_reversible\",\"3\":\"partially_reversible\"}": 21,
+            "{\"1\":\"partially_reversible\",\"2\":\"partially_reversible\",\"3\":\"reversible\"}": 7,
+            "{\"1\":\"reversible\",\"2\":\"reversible\",\"3\":\"reversible\"}": 14
+          },
+          "max_share": 0.5,
+          "effective_number": 2.571
+        },
+        "label_h3": {
+          "n": 42,
+          "distinct": 2,
+          "counts": {
+            "partially_reversible": 21,
+            "reversible": 21
+          },
+          "max_share": 0.5,
+          "effective_number": 2.0
+        },
+        "render_style": {
+          "n": 42,
+          "distinct": 3,
+          "counts": {
+            "compact": 12,
+            "kv": 18,
+            "prose": 12
+          },
+          "max_share": 0.4286,
+          "effective_number": 2.882
+        },
+        "background_n_files": {
+          "n": 42,
+          "distinct": 2,
+          "counts": {
+            "1": 16,
+            "2": 26
+          },
+          "max_share": 0.619,
+          "effective_number": 1.893
+        },
+        "background_n_links": {
+          "n": 42,
+          "distinct": 4,
+          "counts": {
+            "0": 3,
+            "1": 10,
+            "2": 21,
+            "3": 8
+          },
+          "max_share": 0.5,
+          "effective_number": 2.873
+        },
+        "background_n_custom_links": {
+          "n": 42,
+          "distinct": 4,
+          "counts": {
+            "0": 9,
+            "1": 16,
+            "2": 12,
+            "3": 5
+          },
+          "max_share": 0.381,
+          "effective_number": 3.486
+        },
+        "background_n_active_links": {
+          "n": 42,
+          "distinct": 3,
+          "counts": {
+            "0": 14,
+            "1": 16,
+            "2": 12
+          },
+          "max_share": 0.381,
+          "effective_number": 2.96
+        }
+      },
+      "recovery_signatures_by_family": {
+        "s01_link_revoke_address_kind": [
+          "revoke_share_link|approx:create_share_link",
+          "revoke_share_link|exact:create_share_link"
+        ],
+        "s02_link_create_history": [
+          "create_share_link|approx:revoke_share_link",
+          "create_share_link|exact:revoke_share_link"
+        ],
+        "s03_link_create_access_history": [
+          "create_share_link|approx:revoke_share_link",
+          "create_share_link|exact:revoke_share_link>create_share_link>revoke_share_link"
+        ]
+      },
+      "recovery_signatures_by_label_h3": {
+        "partially_reversible": [
+          "create_share_link|approx:revoke_share_link",
+          "revoke_share_link|approx:create_share_link"
+        ],
+        "reversible": [
+          "create_share_link|exact:revoke_share_link",
+          "create_share_link|exact:revoke_share_link>create_share_link>revoke_share_link",
+          "revoke_share_link|exact:create_share_link"
+        ]
+      }
+    }
+  },
+  "prior_datasets_for_SD1": [
+    {
+      "name": "pilot_v0.1",
+      "path": "data/pilot/pilot_v0.1.jsonl",
+      "sha256": "f66b98baac43faf1ece408cc22e645faf22aace13ad6aac86f1f2c83f1d3fc53",
+      "n_records": 210
+    },
+    {
+      "name": "phase5b_scaling_pilot",
+      "path": "data/scaling_pilot/records.jsonl",
+      "sha256": "bfd1175fb7e12c0f0993adb3f7079d29388dcf250d35f1ac37693af0236baa5b",
+      "n_records": 240
+    }
+  ],
+  "sensitivity_prior_not_a_gate": {
+    "name": "candidate_a_diagnostics_D1_D9",
+    "source": "adnn.feasibility.share_link_diagnostics.cases() (definitive cases)",
+    "reason": "same mechanism; novelty against it is the informative within-mechanism figure"
+  },
+  "stop_conditions": {
+    "diversity_version": "scenario-diversity-0.2",
+    "primary_level": "coarse",
+    "sensitivity_level": "strict",
+    "SD1": {
+      "metric": "fraction of gold records whose coarse canonical scenario is absent from every named prior dataset",
+      "threshold": ">= 0.50",
+      "caveat": "mechanically inflated: no prior record has share_links or a link tool; met by construction and not evidence of diversity"
+    },
+    "SD2": {
+      "metric": "maximum gold records per coarse canonical scenario",
+      "threshold": "<= 3"
+    },
+    "SD3": {
+      "metric": "coarse canonical groups, pooled with the named priors, whose members' labels_by_horizon or recovery signature differ",
+      "threshold": "== 0"
+    },
+    "SD4": "deferred until an explicit, auditable mechanism taxonomy and irreversibility-cause representation exist; recovery signatures are not causal mechanisms",
+    "on_failure": "report and stop; no reseeding or planner tuning after seeing results"
+  },
+  "leakage_checks": {
+    "scenario_level": [
+      "every planned state has a distinct strict and coarse canonical scenario",
+      "overlap with prior-dataset and diagnostic scenarios reported (strict and coarse)"
+    ],
+    "family_level": [
+      "no split, so there is no train/test family leakage to check; families are reported separately and never pooled with historical datasets"
+    ],
+    "prompt": "validator leakage tokens plus tests: no label word, depth, witness, scenario/family/pair id or recovery certificate in 1.1.0 prompts"
+  },
+  "reporting": "strict and coarse canonical counts separately: within the pilot, per family, against each named prior, against the diagnostics; recovery signatures and concentration (max share, inverse-Simpson effective number) per family, label, render style and background factor; each horizon separately",
+  "novelty_inflation_risk": {
+    "risk": "share_links is a new state field and the link tools are new actions, so SD1 against the named priors is mechanically about 1.0",
+    "mitigations": [
+      "SD2 and within-pilot distinct coarse counts are the binding diversity measures",
+      "novelty against the Candidate A diagnostics is the within-mechanism figure",
+      "recovery-signature counts and concentration are reported next to structural counts, so background variation is not read as mechanism variation",
+      "sandbox configuration is not varied"
+    ]
+  },
+  "exclusions": [
+    "policy-blocked irreversible link case (docs/29)",
+    "generated-address create (always P, no state-dependent pair)",
+    "states with link-id gaps or other malformed hand-built states (gate)",
+    "pooling with historical datasets"
+  ],
+  "frozen_from": {
+    "draft_generator": "scripts/dataset/phase5e_draft_manifest.py at base_commit (clean tree)",
+    "draft_sha256": "e08b1c536ef6874a26f5662f31525c3f64c5d2960319096fd63a6462d14d4c1f",
+    "changes_from_draft": [
+      "version, status, frozen_at_utc, base_commit set",
+      "frozen_from, freeze_confirmation and generation_procedure added",
+      "open_decisions_for_review replaced by decisions_resolved"
+    ]
+  },
+  "freeze_confirmation": {
+    "seed": 20261102,
+    "families": 3,
+    "family_ids": [
+      "s01_link_revoke_address_kind",
+      "s02_link_create_history",
+      "s03_link_create_access_history"
+    ],
+    "base_scenarios": 21,
+    "minimal_pairs": 21,
+    "states": 42,
+    "records": 42,
+    "horizons": [
+      1,
+      2,
+      3
+    ],
+    "primary_horizon": 3,
+    "horizon_reporting": "labels and evidence reported separately at h = 1, 2, 3; s03 labels are horizon-relative (P at h1/h2, R at h3 only because h3 equals the exact depth)",
+    "prompt_builder_version": "1.1.0",
+    "split": null,
+    "split_note": "no formal train/test split for this diagnostic pilot",
+    "pooling": "kept separate from all historical datasets",
+    "sd1_prior_datasets": [
+      "pilot_v0.1",
+      "phase5b_scaling_pilot"
+    ],
+    "prospective_thresholds": {
+      "SD1": ">= 0.50",
+      "SD2": "<= 3",
+      "SD3": "== 0",
+      "SD4": "deferred"
+    },
+    "sd1_warning": "SD1 is mechanically inflated for this new tool family: no record in the named priors has a share_links field or a link tool, so every link record is novel by construction. SD1 is reported but is not evidence of diversity or of causal novelty.",
+    "within_pilot_planned": {
+      "distinct_scenarios": {
+        "strict": 42,
+        "coarse": 42
+      },
+      "max_records_per_scenario": {
+        "strict": 1,
+        "coarse": 1
+      },
+      "novel_fraction_vs_candidate_a_diagnostics": {
+        "strict": 1.0,
+        "coarse": 0.9762
+      },
+      "recovery_signatures": 5,
+      "concentration": {
+        "family": {
+          "max_share": 0.3333,
+          "effective_number": 3.0
+        },
+        "recovery_signature": {
+          "max_share": 0.3333,
+          "effective_number": 4.5
+        },
+        "labels_by_horizon": {
+          "max_share": 0.5,
+          "effective_number": 2.571
+        },
+        "label_h3": {
+          "max_share": 0.5,
+          "effective_number": 2.0
+        },
+        "render_style": {
+          "max_share": 0.4286,
+          "effective_number": 2.882
+        },
+        "background_n_files": {
+          "max_share": 0.619,
+          "effective_number": 1.893
+        },
+        "background_n_links": {
+          "max_share": 0.5,
+          "effective_number": 2.873
+        },
+        "background_n_custom_links": {
+          "max_share": 0.381,
+          "effective_number": 3.486
+        },
+        "background_n_active_links": {
+          "max_share": 0.381,
+          "effective_number": 2.96
+        }
+      }
+    },
+    "coverage_not_mechanisms": "the 42 records are diagnostic coverage of one mechanism (Candidate A sharing links) with 5 recovery signatures; they are not 42 independent causal mechanisms",
+    "no_irreversible_expected": true
+  },
+  "generation_procedure": {
+    "runner": "scripts/dataset/phase5e_generate_pilot.py (orchestration only; refuses to run unless this manifest matches its sha256 sidecar, HEAD descends from base_commit and src/adnn is unchanged since base_commit)",
+    "outputs": "results/phase5e/pilot/run1 and run2 (git-ignored): records.jsonl, tool_sets.json, manifest.json, generation_report.json",
+    "determinism": "run twice; records.jsonl and tool_sets.json must be byte-identical",
+    "validation": "adnn.dataset.validation.validate_directory with LINK_PILOT_THRESHOLDS and adnn.dataset.api.load_dataset with every probe and stated prompt hash-checked",
+    "stop_and_report_if": [
+      "any pair fails its contract or any gate (no selective regeneration)",
+      "any label lacks per-horizon evidence or any witness does not replay",
+      "the validator or the loader reports an error",
+      "the two runs differ",
+      "a prospective diversity gate fails (reported, not forced)"
+    ]
+  },
+  "decisions_resolved": [
+    "freeze approved in Phase 5E Task 4",
+    "42 states with 5 recovery signatures and no I class accepted as diagnostic coverage (Phase 5E Task 3)"
+  ]
+}
