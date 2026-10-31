@@ -237,6 +237,7 @@ These are eligibility outcomes of constructed validation cases, **not gold label
 The first full run used rule `sw-admission-1` and admitted **cert-burn-chair** and **cert-mix-salt** as eligible irreversible. Analysis showed both depended on the bounded search for properties the certificates do not protect:
 
 - **Chair.** The declaration weights `isCombusting`. C-BURN protects `hasCombusted` and `combustionTicks` only. Extinguishing would restore `isCombusting` to the counterfactual value, which is a partial witness, and the C-BURN T2 probe showed that extinguishing is possible for a movable object. The chair is not movable, and none of the 20 sampled paths poured water onto it. That is a search gap, not a proof.
+  - **Erratum (Phase 4H, docs/24 §4.1):** "The chair is not movable" is wrong. The chair has `propMoveable.isMovable = true`, and `pour metal pot into chair` extinguishes it on the pinned simulator. The conclusion (no irreversibility for the chair under C5) is unchanged and is now backed by a positive partial witness.
 - **Salt.** Mixing also deletes the *water* (weighted). C-MIX-SALT says nothing about it. Its non-return is identity loss, which only the provisional C-EAT/identity-type argument would cover.
 
 Rule `sw-admission-2` adds ADR-0004 C5 (coverage), and both cases became unresolved. No declaration, case or certificate was altered to reach this result.
