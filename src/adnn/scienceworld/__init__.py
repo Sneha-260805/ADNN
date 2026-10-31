@@ -2,8 +2,10 @@
 
 Scope (Phase 4C): verified pinned runtime, deterministic fresh-environment
 replay of immutable recipes, raw and canonical state capture, and difference
-diagnostics. **No restoration search and no reversibility labels** — those
-depend on open professor decisions (OQ-03, OQ-30, OQ-31).
+diagnostics. Phase 4D (docs/19): restricted inverse-action restoration
+diagnostics and exploratory structural object matching. **No exhaustive
+restoration search and no reversibility labels**: those depend on open
+professor decisions (OQ-03, OQ-30, OQ-31, OQ-36; docs/20).
 
 ScienceWorld is an optional dependency: importing this package never imports
 ``scienceworld``, ``py4j`` or starts Java. A real simulator is only started by
@@ -22,6 +24,7 @@ from adnn.scienceworld.canonical import (
 )
 from adnn.scienceworld.diagnostics import (
     DISCRETE_EXPLORATION,
+    TEMPERATURE_TOLERANCE_EXPLORATION,
     Projection,
     StateDiff,
     canonical_diff,
@@ -29,6 +32,7 @@ from adnn.scienceworld.diagnostics import (
     raw_diff,
 )
 from adnn.scienceworld.env import (
+    ActionTemplate,
     ProcessLeakError,
     ScienceWorldSession,
     SessionStateError,
@@ -56,24 +60,46 @@ from adnn.scienceworld.replay import (
     compare_results,
     replay,
     replay_in_fresh_process,
+    run_recipe,
 )
+from adnn.scienceworld.restoration_diagnostics import (
+    OUTCOMES,
+    REGISTRY,
+    ExplicitPath,
+    InverseExperiment,
+    InverseRule,
+    PathAttempt,
+    RestorationDiagnostic,
+    phase4d_experiments,
+    run_inverse_experiment,
+)
+from adnn.scienceworld.structural import StructuralReport, structural_match
 
 __all__ = [
     "CANONICAL_RULES",
     "CANONICAL_VERSION",
     "DISCRETE_EXPLORATION",
     "FIRST_TICK_PREPARATION",
+    "OUTCOMES",
     "PINNED",
+    "REGISTRY",
+    "TEMPERATURE_TOLERANCE_EXPLORATION",
+    "ActionTemplate",
     "CanonicalState",
     "CapturedState",
     "EpisodeTerminatedError",
+    "ExplicitPath",
     "InvalidReplayActionError",
+    "InverseExperiment",
+    "InverseRule",
+    "PathAttempt",
     "ProcessLeakError",
     "Projection",
     "RawState",
     "ReplayDivergenceError",
     "ReplayRecipe",
     "ReplayResult",
+    "RestorationDiagnostic",
     "RuntimeConfig",
     "RuntimeProvenance",
     "ScienceWorldSession",
@@ -82,6 +108,7 @@ __all__ = [
     "SimulatorPin",
     "StateDiff",
     "StepResult",
+    "StructuralReport",
     "TraceComparison",
     "UnpinnedRuntimeError",
     "assert_reproducible",
@@ -90,9 +117,13 @@ __all__ = [
     "capture_state",
     "classify_observation",
     "compare_results",
+    "phase4d_experiments",
     "projection_diff",
     "raw_diff",
     "replay",
     "replay_in_fresh_process",
     "resolve_runtime",
+    "run_inverse_experiment",
+    "run_recipe",
+    "structural_match",
 ]

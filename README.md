@@ -99,6 +99,7 @@ See [`docs/06_TEAM_RESPONSIBILITIES.md`](docs/06_TEAM_RESPONSIBILITIES.md).
 | Pilot dataset (210 sandbox examples, regenerable, not in git) | Generated and validated (`docs/13`, `docs/14`); pipeline development only |
 | Consumer API + team handoff (`adnn.dataset.api`, `docs/15`) | Implemented; integration tests regenerate the pilot from scratch |
 | ScienceWorld feasibility, reproducibility trial, replay/state-capture adapter (`adnn.scienceworld`, pinned `e8216d6`) | Implemented (`docs/16`–`18`); optional integration tests; **no labels / no restoration oracle yet** |
+| ScienceWorld restoration diagnostics, structural-matching prototype, source investigation, professor decision memo | Implemented (`docs/19`, `docs/20`); **diagnostics only, no labels**; awaiting decisions OQ-30/31/03/36 |
 | Final dataset, ScienceWorld labelling | Not started |
 | Extraction, probes | Not started |
 | Stated knowledge, agent loop, evaluation | Not started |

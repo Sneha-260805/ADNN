@@ -200,6 +200,18 @@ DISCRETE_EXPLORATION = Projection(
 )
 
 
+TEMPERATURE_TOLERANCE_EXPLORATION = Projection(
+    name="temperature-tolerance-exploration-v1",
+    ignore=("world.moves",),
+    tolerances={"propMaterial.temperatureC": 2.0},
+    purpose=(
+        "Exploration only (illustrates OQ-30 option C): every discrete field is compared "
+        "exactly; temperatures may differ by at most 2.0 degC, a placeholder of the order "
+        "of idle drift over one or two ticks (docs/17 §4.3). Not an approved tolerance."
+    ),
+)
+
+
 def projection_diff(a: CanonicalState, b: CanonicalState, projection: Projection) -> StateDiff:
     return canonical_diff(
         a,

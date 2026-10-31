@@ -217,11 +217,12 @@ Results of the runs on 2026-10-31 are in §9.
 ## 10. Known limitations
 
 - Door states only for the current room, and agent-internal state is not exposed, so canonical states are **incomplete by construction**.
-- uuid identity is valid within one (task, variation, simplifications) on the pinned build. Comparing states where objects were *re-created* (e.g. pour back, re-mix) needs a structural mapping that is not implemented: uuids differ even if the "same" substance reappears.
+- uuid identity is valid within one (task, variation, simplifications) on the pinned build. Comparing states where objects were *re-created* (e.g. refill, re-mix) needs a structural mapping: uuids differ even if the "same" substance reappears. An exploratory, separate prototype now exists (`19` §5); the canonical contract R1 is unchanged.
+- *Update (Phase 4D):* `wait1` = 2 ticks and `wait` = 11 ticks are confirmed from source (`19` §2.2).
 - The launch context changes the process working directory and `PATH` briefly, so sessions are not thread-safe to start.
 - Determinism evidence covers the tested traces (boil, door, stove, mixing, resets); it is not a proof for all tasks.
 - Capture costs ≈0.19 s per state. Capturing every step of long traces is expensive.
-- `wait1` advances `moves` by 2 (as observed); the exact iteration accounting is not traced in source.
+- `wait1` advances `moves` by 2 (as observed). *Update (Phase 4D): now traced in source, see above.*
 
 ## 11. Professor and team decisions still required
 

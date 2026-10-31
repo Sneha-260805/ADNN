@@ -58,6 +58,7 @@ class Backend(Protocol):
     def inventory(self) -> str: ...
     def getObjectTree(self) -> dict[str, Any]: ...  # noqa: N802 - upstream name
     def get_valid_action_object_combinations(self) -> list[str]: ...
+    def get_valid_action_object_combinations_with_templates(self) -> list[dict[str, Any]]: ...
     def get_num_moves(self) -> int: ...
     def get_gold_action_sequence(self) -> list[str]: ...
     def close(self) -> None: ...
@@ -90,6 +91,15 @@ class StepResult:
 
     def to_dict(self) -> dict[str, Any]:
         return {**self.__dict__, "advanced_time": self.advanced_time}
+
+
+@dataclass(frozen=True)
+class ActionTemplate:
+    """A valid action with the simulator uuids of the objects it refers to (as strings)."""
+
+    action: str
+    template_id: int
+    obj_ids: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -251,6 +261,23 @@ class ScienceWorldSession:
 
     def valid_actions(self) -> list[str]:
         return sorted(self._require().get_valid_action_object_combinations())
+
+    def valid_action_templates(self) -> list[ActionTemplate]:
+        """Valid actions with the uuids they resolve to (free call; no time passes, docs/19 §2).
+
+        Lets callers select an action by the objects it acts on rather than by its referent
+        text. Door actions carry portal uuids that do not occur in the object tree.
+        """
+        rows = self._require().get_valid_action_object_combinations_with_templates()
+        return sorted(
+            (
+                ActionTemplate(
+                    str(r["action"]), int(r["template_id"]), tuple(str(i) for i in r["obj_ids"])
+                )
+                for r in rows
+            ),
+            key=lambda t: (t.action, t.obj_ids),
+        )
 
     def moves(self) -> int:
         return int(self._require().get_num_moves())

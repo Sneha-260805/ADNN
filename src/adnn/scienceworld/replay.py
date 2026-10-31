@@ -229,6 +229,39 @@ class ReplayResult:
         )
 
 
+def run_recipe(
+    session: ScienceWorldSession,
+    recipe: ReplayRecipe,
+    *,
+    capture: str = "final",
+    strict: bool = True,
+) -> tuple[CapturedState, tuple[StepRecord, ...], float]:
+    """Load ``recipe`` into a running session and execute it (shared by :func:`replay`).
+
+    Returns the initial state, the step records and the ``perf_counter`` time at which
+    load + reset + initial capture finished. The session is left in the recipe's final
+    state, so a caller may continue stepping (e.g. restoration diagnostics, docs/19).
+    """
+    if capture not in CAPTURE_MODES:
+        raise ValueError(f"capture must be one of {CAPTURE_MODES}")
+    session.load(recipe.task, recipe.variation, recipe.simplifications)
+    initial = capture_state(session)
+    t_loaded = time.perf_counter()
+    steps: list[StepRecord] = []
+    sequence = recipe.all_actions
+    for i, (phase, action) in enumerate(sequence):
+        result = session.step(action)
+        if strict and result.status != "accepted":
+            raise InvalidReplayActionError(
+                f"step {i} ({phase}) {action!r} was {result.status}: {result.observation[:120]!r}"
+            )
+        if strict and result.done and i < len(sequence) - 1:
+            raise EpisodeTerminatedError(f"episode ended at step {i} ({action!r})")
+        state = capture_state(session) if capture == "all" else None
+        steps.append(StepRecord(i, phase, result, state))
+    return initial, tuple(steps), t_loaded
+
+
 def replay(
     recipe: ReplayRecipe,
     *,
@@ -250,26 +283,11 @@ def replay(
     if recipe.simulator != pin:
         raise UnpinnedRuntimeError("recipe was recorded with a different simulator pin")
     t0 = time.perf_counter()
-    steps: list[StepRecord] = []
     with ScienceWorldSession(
         config, step_limit=recipe.step_limit, backend_factory=backend_factory
     ) as session:
         t_started = time.perf_counter()
-        session.load(recipe.task, recipe.variation, recipe.simplifications)
-        initial = capture_state(session)
-        t_loaded = time.perf_counter()
-        sequence = recipe.all_actions
-        for i, (phase, action) in enumerate(sequence):
-            result = session.step(action)
-            if strict and result.status != "accepted":
-                raise InvalidReplayActionError(
-                    f"step {i} ({phase}) {action!r} was {result.status}: "
-                    f"{result.observation[:120]!r}"
-                )
-            if strict and result.done and i < len(sequence) - 1:
-                raise EpisodeTerminatedError(f"episode ended at step {i} ({action!r})")
-            state = capture_state(session) if capture == "all" else None
-            steps.append(StepRecord(i, phase, result, state))
+        initial, steps, t_loaded = run_recipe(session, recipe, capture=capture, strict=strict)
         final = capture_state(session)
         provenance = session.provenance.to_dict() if session.provenance else None
     t_end = time.perf_counter()
@@ -277,7 +295,7 @@ def replay(
         recipe=recipe,
         provenance=provenance,
         initial=initial,
-        steps=tuple(steps),
+        steps=steps,
         final=final,
         timings={
             "start_s": round(t_started - t0, 4),
