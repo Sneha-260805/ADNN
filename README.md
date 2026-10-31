@@ -98,6 +98,7 @@ See [`docs/06_TEAM_RESPONSIBILITIES.md`](docs/06_TEAM_RESPONSIBILITIES.md).
 | Shared prompt builder (`adnn.dataset.prompting`, v1.0.0) | Implemented (`docs/12`) |
 | Pilot dataset (210 sandbox examples, regenerable, not in git) | Generated and validated (`docs/13`, `docs/14`); pipeline development only |
 | Consumer API + team handoff (`adnn.dataset.api`, `docs/15`) | Implemented; integration tests regenerate the pilot from scratch |
+| ScienceWorld feasibility, reproducibility trial, replay/state-capture adapter (`adnn.scienceworld`, pinned `e8216d6`) | Implemented (`docs/16`–`18`); optional integration tests; **no labels / no restoration oracle yet** |
 | Final dataset, ScienceWorld labelling | Not started |
 | Extraction, probes | Not started |
 | Stated knowledge, agent loop, evaluation | Not started |
