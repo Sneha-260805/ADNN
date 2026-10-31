@@ -220,11 +220,23 @@ class _Sampler:
         action = rng.choice(pool[cls])
         return by_text[action], cls, n_door
 
-    def walk(self, family: FamilySpec, prefix: tuple[str, ...]) -> str | None:
-        """Execute ``prefix`` after the base recipe; reason for rejection, or None."""
+    def walk(
+        self, family: FamilySpec, prefix: tuple[str, ...], *, allow_idle: bool = False
+    ) -> str | None:
+        """Execute ``prefix`` after the base recipe; reason for rejection, or None.
+
+        With ``allow_idle``, :data:`IDLE_ACTION` steps are tick-matching padding: they must be
+        accepted and take exactly one tick, but need no observed effect (docs/22 §3).
+        """
         run_recipe(self.session, family.base_recipe(), strict=True)
         state = capture_state(self.session)
         for action in prefix:
+            if allow_idle and action == IDLE_ACTION:
+                r = self.session.step(action)
+                if r.status != "accepted" or r.moves_after - r.moves_before != 1:
+                    return f"idle_padding_{r.status}"
+                state = capture_state(self.session)
+                continue
             reason, state, _ = _effective_step(self.session, action, state)
             if reason:
                 return reason
@@ -393,12 +405,16 @@ def explicit_example(
     runtime: RuntimeConfig | None = None,
     backend_factory: Callable[[], Backend] | None = None,
     seed: int = 0,
+    allow_idle: bool = False,
 ) -> SampledExample:
-    """A hand-specified example, verified under the same rules as sampled ones (role 'explicit')."""
+    """A hand-specified example, verified under the same rules as sampled ones (role 'explicit').
+
+    ``allow_idle`` admits :data:`IDLE_ACTION` as tick-matching padding in ``prefix``.
+    """
     recipe = family.base_recipe().extend(*prefix)
     with ScienceWorldSession(runtime, backend_factory=backend_factory) as session:
         sampler = _Sampler(session, SamplerConfig(seed=seed, families=(family,)), SamplingLog())
-        reason = sampler.walk(family, prefix)
+        reason = sampler.walk(family, prefix, allow_idle=allow_idle)
         if reason:
             raise ValueError(f"history rejected: {reason}")
         history, state, by_text = sampler.clean_state(family, recipe)
