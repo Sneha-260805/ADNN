@@ -54,6 +54,23 @@ Unresolved research-design questions. Each has a **proposed default** so that wo
 
 | OQ-37 | Structural replacement semantics: when an original object still exists elsewhere (e.g. water drained into the unreachable sewer) and a structurally identical replacement occupies its old container, is that restoration, approximate restoration or compensation? | Determines tier 2 vs tier 3 in the OQ-03 proposal; affects refill-type actions | Prototype reports *relocated + extra* (not restoration) and never forces ambiguous matches (`19` §5) | Prof | Phase 4E labels | Open |
 
+> **Project decision (2026-10-31).** The professor will not be asked for methodological clarification. "Prof" items in the ScienceWorld block (OQ-29–OQ-37) are now decided by the research team. The decisions are recorded, with rationale, limitations and planned sensitivity analyses, in `docs/decisions/0002-scienceworld-provisional-methodology.md`:
+>
+> | Question | Team position |
+> |---|---|
+> | OQ-29 | RD-06 |
+> | OQ-30 | RD-01, RD-02 |
+> | OQ-31 | RD-03, RD-04 |
+> | OQ-36 | RD-05 |
+>
+> These positions are **not professor-approved**. OQ-03 and OQ-37 remain open team decisions before any ScienceWorld label is issued.
+
+| ID | Question | Why it matters | Proposed default | Ask | Blocks | Status |
+|---|---|---|---|---|---|---|
+| OQ-38 | **New in Phase 4E.** ScienceWorld's valid-action *referent text* depends on which free queries were made earlier in the episode. The same recipe, with `capture_state` / `valid_action_templates` calls interleaved between steps, yields a different valid-action list. For example, "soil in flower pot 1 containing soil" appears in one list where "soil in flower pot containing soil" appears in the other. The canonical object state is unchanged (`21` §3.2). Which query protocol defines "the" valid-action list of a state, and hence the exact action text? | Action text is model input and the minimal-pair key. Without a fixed protocol, the same state can have different action strings, and replay fingerprints (which include the valid-action list) diverge | Fixed query protocol: load → recipe actions with no interleaved queries → `capture_state` → `valid_action_templates`. It is used by the sampler, `replay()` and the restoration runner. Record it in every record | Team | Final ScienceWorld dataset | Proposed (implemented in Phase 4E). Cause [SRC]: `InputParser.chooseUniqueReferents` (`input/InputParser.scala:644`) falls back to the global `scala.util.Random` after 10 failed disambiguation attempts. That generator is seeded once per environment (`EnvironmentMaker.scala:23`) and also drives world dynamics, e.g. `Bee.scala`. Free queries could therefore perturb stochastic dynamics. This was tested in 2 greenhouse probes (bee hive open, 8 ticks, 0/1/3 queries per tick) and was **not observed** (`21` §3.2) |
+| OQ-39 | **New in Phase 4E.** Some ScienceWorld processes are stochastic: bees choose portals and flowers with the global `scala.util.Random` (`Bee.scala`). They are reproducible under replay, but between two different histories the RNG stream differs. In the pilot, 6 of 11 candidate pairs (`open bee hive`) differ only in *which* bees left the hive (`21` §7.3). Exclude objects with RNG-driven behaviour from targets and pairs, or require pair consequence differences to survive a re-seeded or different-history control? | Spurious minimal pairs and spurious counterfactual mismatches attributed to the action rather than to randomness | Exclude bee-hive targets and contrasts from the gold candidate pool until a control exists. Keep them in evidence records with a flag | Team | Final ScienceWorld dataset | Open |
+| OQ-40 | **New in Phase 4E.** Candidate pairs currently require a different *consequence signature*, i.e. a different effect or different evidence. REQ-DATA-05 needs reversibility to change with the state, but no pilot pair differs in evidence status (`21` §7.3). Should the gold pair criterion require different labels after the RD-03 mapping, and should sampling actively search for state differences that change restorability (e.g. a container placed in the sink, an open vs closed source container)? | The ≥30% minimal-pair requirement cannot be met by effect-only differences | Keep effect-difference candidates as evidence. The gold criterion is a label difference after mapping. Add targeted contrast generators (sink/container, open/closed, device on/off) in the next milestone | Team | Final ScienceWorld dataset | Open |
+
 ## Resolved
 
 *(none yet)*

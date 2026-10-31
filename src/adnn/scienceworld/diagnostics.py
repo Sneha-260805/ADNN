@@ -212,6 +212,29 @@ TEMPERATURE_TOLERANCE_EXPLORATION = Projection(
 )
 
 
+def _temperature_sensitivity(tolerance: float) -> Projection:
+    return Projection(
+        name=f"temperature-tolerance-{tolerance:g}C-v1",
+        ignore=(),
+        tolerances={"propMaterial.temperatureC": tolerance},
+        purpose=(
+            f"Sensitivity analysis RD-02 (docs/decisions/0002): every field, including "
+            f"world.moves and combustionTicks, is compared exactly, except temperatures, "
+            f"which may differ by at most {tolerance:g} degC. Temperatures are compared, "
+            f"never dropped. A research-team choice, not a professor-approved tolerance."
+        ),
+    )
+
+
+# RD-02: temperature comparisons at exact equality (plain canonical_diff), 0.01 and 0.1 degC.
+TEMPERATURE_TOLERANCE_001 = _temperature_sensitivity(0.01)
+TEMPERATURE_TOLERANCE_01 = _temperature_sensitivity(0.1)
+TEMPERATURE_SENSITIVITY: tuple[Projection, ...] = (
+    TEMPERATURE_TOLERANCE_001,
+    TEMPERATURE_TOLERANCE_01,
+)
+
+
 def projection_diff(a: CanonicalState, b: CanonicalState, projection: Projection) -> StateDiff:
     return canonical_diff(
         a,

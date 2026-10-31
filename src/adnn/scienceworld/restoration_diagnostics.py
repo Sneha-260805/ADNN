@@ -438,6 +438,8 @@ class RestorationDiagnostic:
     outcomes: tuple[str, ...]
     provenance: dict[str, Any] | None
     max_paths: int
+    s0_raw_fingerprint: str | None = None
+    s0_canonical_fingerprint: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         e = self.experiment
@@ -467,6 +469,8 @@ class RestorationDiagnostic:
             "unobservable": list(self.unobservable),
             "outcomes": list(self.outcomes),
             "provenance": self.provenance,
+            "s0_raw_fingerprint": self.s0_raw_fingerprint,
+            "s0_canonical_fingerprint": self.s0_canonical_fingerprint,
         }
 
 
@@ -532,16 +536,19 @@ def run_inverse_experiment(
     with ScienceWorldSession(
         config, step_limit=recipe.step_limit, backend_factory=backend_factory
     ) as session:
-
+        # Fixed query order (docs/21 §3.2): valid-action referent text depends on which free
+        # queries were made earlier, so every rebuild issues the same queries in the same order.
         def rebuild_s0() -> CapturedState:
             run_recipe(session, recipe, strict=True)
             state = capture_state(session)
             if reference is not None and state.raw.fingerprint != reference.final.raw.fingerprint:
                 raise _divergence("raw_state(S0 reconstruction)", n_recipe)
+            templates0.clear()
+            templates0.update((t.action, t) for t in session.valid_action_templates())
             return state
 
+        templates0: dict[str, ActionTemplate] = {}
         s0 = rebuild_s0()
-        templates0 = {t.action: t for t in session.valid_action_templates()}
         provenance = session.provenance.to_dict() if session.provenance else None
         target = experiment.target_action
 
@@ -551,6 +558,7 @@ def run_inverse_experiment(
             return RestorationDiagnostic(
                 experiment, status, step, ids, None, (), 0, (),
                 _unobservable(s0, s0), (TARGET_NOT_EXECUTED,), provenance, max_paths,
+                s0.raw.fingerprint, s0.canonical.fingerprint,
             )  # fmt: skip
 
         if target not in templates0:
@@ -600,6 +608,7 @@ def run_inverse_experiment(
                     again.status != "accepted"
                 ):
                     raise _divergence("raw_state(S1 reconstruction)", n_recipe + 1)
+                session.valid_action_templates()  # same query order as the first pass
             steps = _execute_path(session, path)
             executed = len(steps) == len(path) and all(s.status == "accepted" for s in steps)
             s2 = capture_state(session)
@@ -664,7 +673,7 @@ def run_inverse_experiment(
     return RestorationDiagnostic(
         experiment, target_step.status, target_step, target_ids, effect, proposals,
         len(candidates), tuple(attempts), _unobservable(s0, s1), tuple(sorted(top)),
-        provenance, max_paths,
+        provenance, max_paths, s0.raw.fingerprint, s0.canonical.fingerprint,
     )  # fmt: skip
 
 

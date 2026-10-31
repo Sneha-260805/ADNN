@@ -3,9 +3,11 @@
 Scope (Phase 4C): verified pinned runtime, deterministic fresh-environment
 replay of immutable recipes, raw and canonical state capture, and difference
 diagnostics. Phase 4D (docs/19): restricted inverse-action restoration
-diagnostics and exploratory structural object matching. **No exhaustive
-restoration search and no reversibility labels**: those depend on open
-professor decisions (OQ-03, OQ-30, OQ-31, OQ-36; docs/20).
+diagnostics and exploratory structural object matching. Phase 4E (docs/21):
+provisional evidence records, seeded sampling and candidate minimal pairs in the
+submodules ``provisional`` and ``provisional_sampling``, under the research
+team's decision log (docs/decisions/0002; not professor-approved). **No
+exhaustive restoration search and no reversibility labels.**
 
 ScienceWorld is an optional dependency: importing this package never imports
 ``scienceworld``, ``py4j`` or starts Java. A real simulator is only started by
@@ -24,6 +26,9 @@ from adnn.scienceworld.canonical import (
 )
 from adnn.scienceworld.diagnostics import (
     DISCRETE_EXPLORATION,
+    TEMPERATURE_SENSITIVITY,
+    TEMPERATURE_TOLERANCE_001,
+    TEMPERATURE_TOLERANCE_01,
     TEMPERATURE_TOLERANCE_EXPLORATION,
     Projection,
     StateDiff,
@@ -83,6 +88,9 @@ __all__ = [
     "OUTCOMES",
     "PINNED",
     "REGISTRY",
+    "TEMPERATURE_SENSITIVITY",
+    "TEMPERATURE_TOLERANCE_001",
+    "TEMPERATURE_TOLERANCE_01",
     "TEMPERATURE_TOLERANCE_EXPLORATION",
     "ActionTemplate",
     "CanonicalState",
