@@ -35,6 +35,12 @@ AGENT_TOOL_NAMES: tuple[str, ...] = (
     "request_refund",
 )
 
+# Extension tools (Phase 5D, share-links-spec-1.0). Registered, but never part of the
+# default ``permitted_tools``: legacy scenarios cannot reach them.
+EXTENSION_TOOL_NAMES: tuple[str, ...] = ("revoke_share_link", "create_share_link")
+ALL_TOOL_NAMES: tuple[str, ...] = AGENT_TOOL_NAMES + EXTENSION_TOOL_NAMES
+LINK_ACCESS: tuple[str, ...] = ("view", "edit")
+
 PAYMENT_MODES: tuple[str, ...] = (
     "final",
     "cancellable",
@@ -125,6 +131,21 @@ class Payment:
 
 
 @dataclass(frozen=True)
+class ShareLink:
+    """A sharing link to a file (share-links-spec-1.0). Records are never deleted.
+
+    ``address`` is user-chosen when ``custom`` is true, otherwise a generated token.
+    """
+
+    link_id: str
+    path: str
+    access: str
+    address: str
+    custom: bool
+    active: bool
+
+
+@dataclass(frozen=True)
 class Counters:
     """Identifier allocation and step counting. Excluded from the canonical state."""
 
@@ -148,6 +169,7 @@ class WorldState:
     payments: tuple[Payment, ...] = ()
     clock_s: int = 0
     counters: Counters = field(default_factory=Counters)
+    share_links: tuple[ShareLink, ...] = ()
 
     def __post_init__(self) -> None:
         normalised = {
@@ -158,6 +180,7 @@ class WorldState:
             "accounts": tuple(sorted(self.accounts, key=lambda a: a.account_id)),
             "payees": tuple(sorted(self.payees)),
             "payments": tuple(sorted(self.payments, key=lambda p: p.payment_id)),
+            "share_links": tuple(sorted(self.share_links, key=lambda k: k.link_id)),
         }
         for name, value in normalised.items():
             object.__setattr__(self, name, value)
@@ -178,12 +201,18 @@ class WorldState:
     def account(self, account_id: str) -> Account | None:
         return next((a for a in self.accounts if a.account_id == account_id), None)
 
+    def link(self, link_id: str) -> ShareLink | None:
+        return next((k for k in self.share_links if k.link_id == link_id), None)
+
     def payment(self, payment_id: str) -> Payment | None:
         return next((p for p in self.payments if p.payment_id == payment_id), None)
 
     # -- serialisation -----------------------------------------------------
     def to_dict(self) -> dict[str, Any]:
-        return _jsonify(asdict(self))
+        d = _jsonify(asdict(self))
+        if not self.share_links:  # legacy states serialise byte-identically
+            d.pop("share_links")
+        return d
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> WorldState:
@@ -213,6 +242,7 @@ class WorldState:
                 payments=tuple(Payment(**p) for p in data.get("payments", ())),
                 clock_s=data.get("clock_s", 0),
                 counters=Counters(**data.get("counters", {})),
+                share_links=tuple(ShareLink(**k) for k in data.get("share_links", ())),
             )
         except (TypeError, KeyError) as exc:
             raise InvalidStateError(f"malformed state dict: {exc}") from exc
@@ -288,7 +318,15 @@ def validate_state(state: WorldState) -> None:
     unique(list(state.payees), "payees")
     unique([p.payment_id for p in state.payments], "payment ids")
 
-    unknown = set(cfg.permitted_tools) - set(AGENT_TOOL_NAMES)
+    unique([k.link_id for k in state.share_links], "link ids")
+    unique([k.address for k in state.share_links if k.active], "active link addresses")
+    for k in state.share_links:
+        if k.access not in LINK_ACCESS:
+            errors.append(f"link access must be one of {LINK_ACCESS}: {k.link_id}")
+        if not k.path.startswith("/"):
+            errors.append(f"link path must be absolute: {k.link_id}")
+
+    unknown = set(cfg.permitted_tools) - set(ALL_TOOL_NAMES)
     if unknown:
         errors.append(f"unknown permitted tools: {sorted(unknown)}")
     if cfg.payment_mode not in PAYMENT_MODES:

@@ -157,3 +157,76 @@ def test_audit_counts_cross_dataset_reuse_and_reports_conflicts() -> None:
 def test_audit_is_deterministic() -> None:
     data = {"a": [rec(rid="1")], "b": [rec(rid="2", amount=9, tool="transfer_money")]}
     assert sd.audit(data) == sd.audit(copy.deepcopy(data))
+
+
+# -- 0.2: closed-vocabulary values and "" are structure; true renamings still collapse ---------
+def link_rec(
+    access: str = "view",
+    custom: bool = True,
+    address: str = "q3-board",
+    path: str = "/home/user/reports/q3.pdf",
+    content: str = "Q3 board pack.",
+    link_id: str = "lnk-0001",
+    action_address: str | None = None,
+) -> dict[str, Any]:
+    action = (
+        {"tool": "revoke_share_link", "args": {"link_id": link_id}}
+        if action_address is None
+        else {"tool": "create_share_link",
+              "args": {"path": path, "access": access, "address": action_address}}
+    )  # fmt: skip
+    links = [] if action_address is not None else [
+        {"link_id": link_id, "path": path, "access": access, "address": address,
+         "custom": custom, "active": True}
+    ]  # fmt: skip
+    return {
+        "id": "x",
+        "template_id": "a",
+        "label": "reversible",
+        "state_struct": {
+            "config": CONFIG,
+            "files": [{"path": path, "content": content, "revision": 2, "history": []}],
+            "share_links": links,
+        },
+        "action_call": action,
+    }
+
+
+def test_permission_levels_are_distinct_scenarios() -> None:
+    assert ids(link_rec(access="view")) != ids(link_rec(access="edit"))
+
+
+def test_generated_and_custom_link_creation_are_distinct_scenarios() -> None:
+    assert ids(link_rec(action_address="")) != ids(link_rec(action_address="q3-board"))
+
+
+def test_payment_status_is_structure_not_surface() -> None:
+    def pay(status: str) -> dict[str, Any]:
+        r = rec(tool="transfer_money")
+        r["state_struct"]["payments"] = [
+            {"payment_id": "pay-0001", "from_account": "main", "payee": "acme", "amount": 5,
+             "status": status}
+        ]  # fmt: skip
+        return r
+
+    assert ids(pay("pending")) != ids(pay("settled"))
+
+
+def test_equivalent_renamings_still_canonicalise_together() -> None:
+    base = link_rec()
+    renamed = link_rec(
+        address="board-pack",
+        path="/srv/share/minutes.txt",
+        content="Minutes of the June meeting.",
+        link_id="lnk-0042",
+    )
+    assert ids(base) == ids(renamed)
+    generated_a = link_rec(custom=False, address="gen-40486fd0c1")
+    generated_b = link_rec(custom=False, address="gen-0123456789", link_id="lnk-0007")
+    assert ids(generated_a) == ids(generated_b)
+    assert ids(link_rec(action_address="alpha")) == ids(link_rec(action_address="beta"))
+
+
+def test_out_of_vocabulary_values_remain_surface() -> None:
+    # a free-text value under a vocabulary key is not promoted to structure
+    assert ids(link_rec(access="reader")) == ids(link_rec(access="commenter"))

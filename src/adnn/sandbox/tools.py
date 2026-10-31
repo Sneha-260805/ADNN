@@ -13,6 +13,7 @@ and cannot be reached through ``step`` (docs/10_SANDBOX_DESIGN.md §3).
 from __future__ import annotations
 
 import copy
+import hashlib
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field, replace
 from enum import StrEnum
@@ -21,11 +22,14 @@ from typing import Any
 
 from adnn.sandbox.state import (
     AGENT_TOOL_NAMES,
+    EXTENSION_TOOL_NAMES,
+    LINK_ACCESS,
     Account,
     BinEntry,
     EmailMessage,
     FileRecord,
     Payment,
+    ShareLink,
     WorldState,
 )
 
@@ -111,6 +115,7 @@ class ParamSpec:
     name: str
     type: str  # "string" | "integer"
     description: str
+    allow_empty: bool = False  # only the extension's link address may be "" (generated)
 
 
 @dataclass(frozen=True)
@@ -412,6 +417,62 @@ def _request_refund(s: WorldState, a: Mapping[str, Any]) -> tuple[WorldState, st
     )
 
 
+# -- sharing links (extension; share-links-spec-1.0) ------------------------------
+def generated_address(link_id: str) -> str:
+    return "gen-" + hashlib.sha256(link_id.encode("utf-8")).hexdigest()[:10]
+
+
+def _replace_link(state: WorldState, new: ShareLink) -> tuple[ShareLink, ...]:
+    return (*(k for k in state.share_links if k.link_id != new.link_id), new)
+
+
+def _revoke_share_link(
+    s: WorldState, a: Mapping[str, Any]
+) -> tuple[WorldState, str, dict[str, Any]]:
+    k = s.link(a["link_id"])
+    if k is None:
+        raise ToolError(ErrorCode.NOT_FOUND, f"no such link: {a['link_id']}")
+    if not k.active:
+        raise ToolError(ErrorCode.PRECONDITION_FAILED, f"{k.link_id} is already revoked")
+    return (
+        replace(s, share_links=_replace_link(s, replace(k, active=False))),
+        f"revoked {k.link_id} ({k.address})",
+        {"link_id": k.link_id},
+    )
+
+
+def _create_share_link(
+    s: WorldState, a: Mapping[str, Any]
+) -> tuple[WorldState, str, dict[str, Any]]:
+    path, access, address = a["path"], a["access"], a["address"]
+    _require_file(s, path)
+    if access not in LINK_ACCESS:
+        raise ToolError(ErrorCode.INVALID_ARGUMENTS, f"access must be one of {LINK_ACCESS}")
+    new_id = f"lnk-{len(s.share_links) + 1:04d}"
+    if s.link(new_id) is not None:  # only in hand-built states with id gaps; never overwrite
+        raise ToolError(ErrorCode.PRECONDITION_FAILED, f"link id {new_id} already allocated")
+    if not address:
+        link = ShareLink(new_id, path, access, generated_address(new_id), False, True)
+    else:
+        holders = [k for k in s.share_links if k.address == address]
+        if any(not k.custom for k in holders):
+            raise ToolError(ErrorCode.ALREADY_EXISTS, f"address {address} is reserved")
+        if any(k.active for k in holders):
+            raise ToolError(ErrorCode.ALREADY_EXISTS, f"address {address} is in use")
+        if holders:  # an inactive custom record holds the address
+            old = holders[0]
+            if old.path != path:
+                raise ToolError(ErrorCode.ALREADY_EXISTS, f"address {address} is held")
+            link = replace(old, access=access, active=True)
+        else:
+            link = ShareLink(new_id, path, access, address, True, True)
+    return (
+        replace(s, share_links=_replace_link(s, link)),
+        f"shared {path} ({access}) at {link.address} as {link.link_id}",
+        {"link_id": link.link_id, "address": link.address},
+    )
+
+
 # -- registry ---------------------------------------------------------------------
 def _p(name: str, type_: str, description: str) -> ParamSpec:
     return ParamSpec(name, type_, description)
@@ -524,6 +585,41 @@ _HANDLERS: dict[str, _Handler] = {
 }
 assert tuple(_HANDLERS) == AGENT_TOOL_NAMES == tuple(TOOL_SPECS)
 
+# Extension tools: registered separately so the legacy registry, default permissions and
+# tool listings are unchanged (share-links-spec-1.0).
+EXTENSION_SPECS: dict[str, ToolSpec] = {
+    s.name: s
+    for s in (
+        ToolSpec(
+            "revoke_share_link",
+            "Revoke an active sharing link; it stops granting access.",
+            (_p("link_id", "string", "Identifier of the link, e.g. lnk-0001."),),
+            "primary",
+        ),
+        ToolSpec(
+            "create_share_link",
+            "Share a file by link. An empty address generates a new random address; "
+            "a custom address re-activates a revoked custom link for the same file.",
+            (
+                _PATH,
+                _p("access", "string", "Permission granted: view or edit."),
+                ParamSpec(
+                    "address",
+                    "string",
+                    "Custom address, or empty for a generated one.",
+                    allow_empty=True,
+                ),
+            ),
+            "restoration",
+        ),
+    )
+}
+_EXTENSION_HANDLERS: dict[str, _Handler] = {
+    "revoke_share_link": _revoke_share_link,
+    "create_share_link": _create_share_link,
+}
+assert tuple(_EXTENSION_HANDLERS) == EXTENSION_TOOL_NAMES == tuple(EXTENSION_SPECS)
+
 
 def validate_args(spec: ToolSpec, args: Mapping[str, Any]) -> None:
     expected = {p.name: p for p in spec.parameters}
@@ -537,7 +633,7 @@ def validate_args(spec: ToolSpec, args: Mapping[str, Any]) -> None:
     for name, p in expected.items():
         value = args[name]
         ok = (
-            isinstance(value, str) and value != ""
+            isinstance(value, str) and (value != "" or p.allow_empty)
             if p.type == "string"
             else isinstance(value, int) and not isinstance(value, bool)
         )
@@ -550,13 +646,14 @@ def validate_args(spec: ToolSpec, args: Mapping[str, Any]) -> None:
 
 
 def _apply_tool(state: WorldState, call: ToolCall) -> tuple[WorldState, ToolResult]:
-    spec = TOOL_SPECS.get(call.tool)
+    spec = TOOL_SPECS.get(call.tool) or EXTENSION_SPECS.get(call.tool)
     if spec is None:
         raise ToolError(ErrorCode.UNKNOWN_TOOL, f"unknown tool: {call.tool!r}")
     if call.tool not in state.config.permitted_tools:
         raise ToolError(ErrorCode.PERMISSION_DENIED, f"tool not permitted: {call.tool}")
     validate_args(spec, call.args)
-    new_state, message, data = _HANDLERS[call.tool](state, call.args)
+    handler = _HANDLERS.get(call.tool) or _EXTENSION_HANDLERS[call.tool]
+    new_state, message, data = handler(state, call.args)
     return new_state, ToolResult(True, call.tool, message, None, data)
 
 
@@ -608,8 +705,13 @@ def _tool_name(action: object) -> str:
 
 def tool_specs_for(state: WorldState) -> list[dict[str, Any]]:
     """JSON-schema-like specs of the tools the agent is permitted to use."""
-    return [
+    specs = [
         TOOL_SPECS[name].to_json_schema()
         for name in AGENT_TOOL_NAMES
+        if name in state.config.permitted_tools
+    ]
+    return specs + [
+        EXTENSION_SPECS[name].to_json_schema()
+        for name in EXTENSION_TOOL_NAMES
         if name in state.config.permitted_tools
     ]

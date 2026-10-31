@@ -38,11 +38,11 @@ from __future__ import annotations
 import hashlib
 import json
 from collections.abc import Iterator, Mapping
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from enum import StrEnum
 from typing import Any
 
-from adnn.sandbox.state import WorldState, canonical_hash, full_hash
+from adnn.sandbox.state import LINK_ACCESS, WorldState, canonical_hash, full_hash
 from adnn.sandbox.tools import ToolCall, step
 
 
@@ -87,7 +87,7 @@ def core_projection(state: WorldState) -> dict[str, Any]:
     for p in state.payments:
         if p.status == "refunded":
             fees[p.from_account] = fees.get(p.from_account, 0) + p.fee_charged
-    return {
+    core = {
         "config": asdict(state.config),
         "files": {f.path: f.content for f in state.files},
         "backups": {b.path: b.content for b in state.backups},
@@ -100,6 +100,16 @@ def core_projection(state: WorldState) -> dict[str, Any]:
             if p.status in ("pending", "settled")
         ),
     }
+    # share-links-spec-1.0 §3: functional access of ACTIVE links. Generated ids and tokens and
+    # inactive records are not core. Absent when no link is active, so legacy core hashes
+    # are unchanged.
+    active = [k for k in state.share_links if k.active]
+    if active:
+        core["share_links"] = sorted(
+            ([k.path, k.access, k.address if k.custom else None] for k in active),
+            key=json.dumps,  # None (generated) and str (custom) addresses do not compare
+        )
+    return core
 
 
 def core_hash(state: WorldState) -> str:
@@ -124,6 +134,7 @@ class ArgumentPool:
     contents: tuple[str, ...]
     emails: tuple[tuple[str, str, str], ...]
     amounts: tuple[int, ...]
+    addresses: tuple[str, ...] = ()  # custom link addresses (share-links-spec-1.0 §4)
 
 
 def _positive_int(value: object) -> bool:
@@ -144,7 +155,16 @@ def argument_pool(state: WorldState, judged: ToolCall) -> ArgumentPool:
     amounts: set[int] = {p.amount for p in state.payments}
     if _positive_int(judged.args.get("amount")):
         amounts.add(judged.args["amount"])
-    return ArgumentPool(tuple(sorted(contents)), tuple(sorted(emails)), tuple(sorted(amounts)))
+    addresses: set[str] = {k.address for k in state.share_links if k.custom}
+    address = judged.args.get("address")
+    if judged.tool == "create_share_link" and isinstance(address, str) and address:
+        addresses.add(address)
+    return ArgumentPool(
+        tuple(sorted(contents)),
+        tuple(sorted(emails)),
+        tuple(sorted(amounts)),
+        tuple(sorted(addresses)),
+    )
 
 
 def wait_call(state: WorldState) -> ToolCall:
@@ -204,6 +224,16 @@ def candidate_calls(state: WorldState, pool: ArgumentPool) -> Iterator[ToolCall]
                             "transfer_money",
                             {"from_account": src.account_id, "to": dst, "amount": amount},
                         )
+    # share-links-spec-1.0 §4 (extension tools; never permitted in legacy scenarios)
+    for k in state.share_links if ok("revoke_share_link") else ():
+        yield ToolCall("revoke_share_link", {"link_id": k.link_id})
+    if ok("create_share_link"):
+        for f in state.files:
+            for access in LINK_ACCESS:
+                for address in ("", *pool.addresses):
+                    yield ToolCall(
+                        "create_share_link", {"path": f.path, "access": access, "address": address}
+                    )
 
 
 # -- judge -----------------------------------------------------------------------
@@ -302,6 +332,7 @@ def assess_reversibility(
     max_nodes: int = 200_000,
     on_budget_exhausted: str = "raise",
     extra_contents: tuple[str, ...] = (),
+    extra_addresses: tuple[str, ...] = (),
 ) -> RestorationAssessment:
     """Compute exact and approximate restoration depths of ``action`` in ``state``.
 
@@ -315,6 +346,7 @@ def assess_reversibility(
     ``extra_contents`` adds free-text values to the argument pool. It exists only
     for sensitivity analysis of the information rule (OQ-21), e.g. "the agent
     remembers the old text"; the default empty tuple is the documented rule.
+    ``extra_addresses`` does the same for link addresses (share-links-spec-1.0).
 
     ``pending_timers_before`` flags states in which undo/cancel windows that
     pre-date the action may expire during the search; such states change over
@@ -331,7 +363,9 @@ def assess_reversibility(
     pool = argument_pool(s1, call)
     if extra_contents:
         merged = tuple(sorted(set(pool.contents) | set(extra_contents)))
-        pool = ArgumentPool(merged, pool.emails, pool.amounts)
+        pool = replace(pool, contents=merged)  # keep every other pool component
+    if extra_addresses:
+        pool = replace(pool, addresses=tuple(sorted(set(pool.addresses) | set(extra_addresses))))
 
     exact: tuple[int, tuple[ToolCall, ...]] | None = None
     approx: tuple[int, tuple[ToolCall, ...]] | None = None

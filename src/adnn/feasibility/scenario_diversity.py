@@ -10,7 +10,9 @@ Three identifiers per sandbox record, from most to least abstract:
 * **canonical scenario** (:func:`canonical_scenario`): the full world state and action with
   surface strings alpha-renamed (equality relations kept, names dropped) and list order
   normalised. Two levels: ``strict`` keeps the rank order of non-configuration numbers;
-  ``coarse`` keeps only numeric equality. Configuration values are kept verbatim.
+  ``coarse`` keeps only numeric equality. Configuration values are kept verbatim, and so
+  are (since 0.2) values of closed schema vocabularies (:data:`VOCABULARY`) and the empty
+  string, which are structure, not surface names.
 * **surface template** (:func:`surface_ids`): the surface-masked text signature
   (``composition.template_signature``) and the exact rendered text.
 
@@ -29,8 +31,18 @@ from typing import Any
 
 from adnn.dataset.schema import sha256_text, stable_json
 from adnn.feasibility.composition import template_signature
+from adnn.sandbox.state import EMAIL_STATUSES, LINK_ACCESS, PAYMENT_STATUSES
 
-DIVERSITY_VERSION = "scenario-diversity-0.1"
+# 0.2 (Phase 5D Task 3): closed-vocabulary values and "" are kept verbatim; 0.1 alpha-renamed
+# every non-config string, which merged view/edit links, pending/settled payments and
+# generated ("")/custom link addresses.
+DIVERSITY_VERSION = "scenario-diversity-0.2"
+# Fields whose values come from a closed vocabulary declared by the sandbox schema. A value is
+# kept verbatim only if it belongs to the field's vocabulary; anything else stays surface.
+VOCABULARY: dict[str, frozenset[str]] = {
+    "access": frozenset(LINK_ACCESS),
+    "status": frozenset(EMAIL_STATUSES) | frozenset(PAYMENT_STATUSES),
+}
 LEVELS = ("strict", "coarse")
 _DROP = ("clock_s", "counters")  # simulation bookkeeping, identical at generation time
 
@@ -67,14 +79,19 @@ def recovery_signature_id(record: Record) -> str:
 
 
 # -- canonical scenario -----------------------------------------------------------------------
-def _skeleton(obj: Any, linked: Mapping[str, str]) -> Any:
+def _verbatim(key: str | None, value: str) -> bool:
+    """Structural strings: the empty sentinel, or a closed-vocabulary value of its field."""
+    return value == "" or (key is not None and value in VOCABULARY.get(key, ()))
+
+
+def _skeleton(obj: Any, linked: Mapping[str, str], key: str | None = None) -> Any:
     """Order key for list elements: shape with unlinked strings and numbers masked."""
     if isinstance(obj, dict):
-        return {k: _skeleton(v, linked) for k, v in sorted(obj.items())}
+        return {k: _skeleton(v, linked, k) for k, v in sorted(obj.items())}
     if isinstance(obj, list):
-        return sorted((_skeleton(v, linked) for v in obj), key=stable_json)
+        return sorted((_skeleton(v, linked, key) for v in obj), key=stable_json)
     if isinstance(obj, str):
-        return linked.get(obj, "<s>")
+        return obj if _verbatim(key, obj) else linked.get(obj, "<s>")
     if isinstance(obj, bool) or obj is None:
         return obj
     return "<n>"
@@ -99,15 +116,16 @@ def canonical_scenario(record: Record, level: str = "strict") -> dict[str, Any]:
     strings: dict[str, str] = {}
     numbers: list[float] = []
 
-    def collect(obj: Any) -> None:
+    def collect(obj: Any, key: str | None = None) -> None:
         if isinstance(obj, dict):
             for k in sorted(obj):
-                collect(obj[k])
+                collect(obj[k], k)
         elif isinstance(obj, list):
             for v in obj:
-                collect(v)
+                collect(v, key)
         elif isinstance(obj, str):
-            strings.setdefault(obj, f"s{len(strings)}")
+            if not _verbatim(key, obj):
+                strings.setdefault(obj, f"s{len(strings)}")
         elif isinstance(obj, (int, float)) and not isinstance(obj, bool):
             numbers.append(obj)
 
@@ -123,13 +141,13 @@ def canonical_scenario(record: Record, level: str = "strict") -> dict[str, Any]:
         for v in numbers:
             num_token.setdefault(v, f"n{len(num_token)}")
 
-    def rename(obj: Any) -> Any:
+    def rename(obj: Any, key: str | None = None) -> Any:
         if isinstance(obj, dict):
-            return {k: rename(v) for k, v in sorted(obj.items())}
+            return {k: rename(v, k) for k, v in sorted(obj.items())}
         if isinstance(obj, list):
-            return [rename(v) for v in obj]
+            return [rename(v, key) for v in obj]
         if isinstance(obj, str):
-            return strings[obj]
+            return obj if _verbatim(key, obj) else strings[obj]
         if isinstance(obj, bool) or obj is None:
             return obj
         return num_token[obj]
