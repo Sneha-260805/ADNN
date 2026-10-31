@@ -428,6 +428,9 @@ PRIMARY_TOOLS: tuple[str, ...] = (
     "send_email",
     "transfer_money",
 )
+# Candidate A extension tools with design rules (share-links-spec-1.0; docs/30 §3). Kept out
+# of PRIMARY_TOOLS so that the legacy design table is unchanged.
+EXTENSION_PRIMARY_TOOLS: tuple[str, ...] = ("revoke_share_link", "create_share_link")
 
 
 @dataclass(frozen=True)
@@ -452,6 +455,8 @@ def declared_reversibility(
     these rules agree with the brute-force judge on a grid of states.
     """
     call = ToolCall.from_obj(action)
+    if call.tool in EXTENSION_PRIMARY_TOOLS:
+        return _declared_share_link(state, call)
     if call.tool not in PRIMARY_TOOLS:
         return None
     s1, result = step(state, call)
@@ -521,3 +526,53 @@ def declared_reversibility(
         return both(None)  # final
 
     return None
+
+
+def _declared_share_link(state: WorldState, call: ToolCall) -> DeclaredReversibility | None:
+    """Design rules for the sharing-link tools (share-links-spec-1.0 §3; docs/30 §3).
+
+    * revoke, custom link: re-creating it with the same file, access and address re-activates
+      the same record -> exact depth 1 (needs ``create_share_link``).
+    * revoke, generated link: a new generated link restores the core (file, access) but not the
+      identifier or token -> approximate depth 1 only.
+    * create, new record: revoking leaves an inactive record that no tool removes -> approximate
+      depth 1 only (needs ``revoke_share_link``).
+    * create, re-activating a revoked custom record: revoke restores it exactly if the access is
+      unchanged (depth 1); otherwise revoke, re-create with the old access, revoke (depth 3).
+
+    Re-creating needs ``create_share_link`` to be permitted *and* its next identifier to be free.
+    Returns ``None`` for states outside this table (another inactive custom record ahead of the
+    revoked link for the same address); such cases are labelled by the judge only. Like the
+    legacy rules, these never replace oracle labels: the test suite compares them on a grid.
+    """
+    s1, result = step(state, call)
+    if not result.ok:
+        return DeclaredReversibility(0, 0)
+    perm, a = set(state.config.permitted_tools), call.args
+    can_revoke = "revoke_share_link" in perm
+    # create_share_link allocates lnk-<count + 1> before anything else and refuses if that id
+    # exists (id gaps in hand-built states), even when it would only re-activate a record
+    next_id = f"lnk-{len(s1.share_links) + 1:04d}"
+    can_create = "create_share_link" in perm and s1.link(next_id) is None
+
+    if call.tool == "revoke_share_link":
+        k = state.link(a["link_id"])
+        assert k is not None  # the call succeeded
+        if not can_create:
+            return DeclaredReversibility(None, None)
+        if not k.custom:
+            return DeclaredReversibility(None, 1)
+        holders = [x for x in s1.share_links if x.address == k.address]
+        if holders[0].link_id != k.link_id:
+            return None
+        return DeclaredReversibility(1, 1)
+
+    # create_share_link
+    if not can_revoke:
+        return DeclaredReversibility(None, None)
+    if len(s1.share_links) > len(state.share_links):  # a new record was added
+        return DeclaredReversibility(None, 1)
+    old = next(x for x in state.share_links if x.address == a["address"] and x.custom)
+    if old.access == a["access"]:
+        return DeclaredReversibility(1, 1)
+    return DeclaredReversibility(3 if can_create else None, 1)

@@ -17,15 +17,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from adnn.dataset.prompting import (
-    PROMPT_BUILDER_VERSION,
-    PromptInputs,
-    build_agent_messages,
-    build_probe_prompt,
-    build_stated_prompt,
-    locate_action,
+from adnn.dataset.prompt_versions import (
+    PromptBuilder,
+    UnsupportedPromptBuilderError,
+    builder_for,
 )
-from adnn.dataset.rendering import RENDER_STYLES, TEST_ONLY_STYLES, render_state_text
+from adnn.dataset.prompting import PromptInputs, locate_action
+from adnn.dataset.rendering import RENDER_STYLES, TEST_ONLY_STYLES
 from adnn.dataset.schema import (
     ALL_FIELDS,
     ENVIRONMENTS,
@@ -39,8 +37,16 @@ from adnn.dataset.schema import (
     read_jsonl,
     sha256_file,
 )
-from adnn.sandbox import InvalidStateError, ToolCall, WorldState, assess_reversibility, step
-from adnn.sandbox.restoration import has_pending_timers
+from adnn.sandbox import (
+    InvalidStateError,
+    ToolCall,
+    WorldState,
+    assess_reversibility,
+    canonical_hash,
+    step,
+)
+from adnn.sandbox.restoration import core_hash, has_pending_timers
+from adnn.sandbox.state import EXTENSION_TOOL_NAMES
 
 # Tokens that must never appear in any prompt (metadata / oracle vocabulary).
 FORBIDDEN_IN_ANY_PROMPT: tuple[str, ...] = (
@@ -108,6 +114,14 @@ def _within(path: str, scope: str) -> bool:
 
 
 # -- per-record checks --------------------------------------------------------------------
+def _builder(r: Mapping[str, Any], rep: ValidationReport, check: str) -> PromptBuilder | None:
+    try:
+        return builder_for(r["meta"].get("prompt_builder_version"))
+    except UnsupportedPromptBuilderError as exc:
+        rep.error(check, f"{r['id']}: {exc}")
+        return None
+
+
 def _check_schema(r: Mapping[str, Any], rep: ValidationReport) -> bool:
     rep.checks_run["schema"] += 1
     rid = r.get("id", "<no id>")
@@ -157,8 +171,12 @@ def _check_replay(
     _, result = step(state, call)
     if not result.ok:
         rep.error("replay", f"{rid}: replayed action failed: {result.message}")
-    if render_state_text(state, r["render_style"]) != r["state_text"]:
-        rep.error("replay", f"{rid}: state_text differs from re-rendering")
+    builder = _builder(r, rep, "replay")
+    if builder is not None:
+        if state.share_links and not builder.renders_share_links:
+            rep.error("replay", f"{rid}: builder {builder.version} cannot render share links")
+        if builder.render_state_text(state, r["render_style"]) != r["state_text"]:
+            rep.error("replay", f"{rid}: state_text differs from re-rendering")
     from adnn.sandbox.tools import tool_specs_for  # local: avoids a cycle at import time
 
     if tool_sets.get(r["tool_set_id"]) != tool_specs_for(state):
@@ -196,13 +214,14 @@ def _check_prompts(
 ) -> None:
     rep.checks_run["prompts"] += 1
     rid = r["id"]
+    builder = _builder(r, rep, "prompts")
+    if builder is None:
+        return
     inputs = PromptInputs.from_example(r, tool_sets)
-    probe = build_probe_prompt(inputs, r["action_text"])
-    stated = build_stated_prompt(inputs, r["action_text"])
-    agent = build_agent_messages(inputs)
+    probe = builder.build_probe_prompt(inputs, r["action_text"])
+    stated = builder.build_stated_prompt(inputs, r["action_text"])
+    agent = builder.build_agent_messages(inputs)
     meta = r["meta"]
-    if meta.get("prompt_builder_version") != PROMPT_BUILDER_VERSION:
-        rep.error("prompts", f"{rid}: prompt builder version mismatch")
     if probe.prompt_sha256 != meta.get("probe_prompt_sha256"):
         rep.error("prompts", f"{rid}: probe prompt hash differs on rebuild")
     if stated.prompt_sha256 != meta.get("stated_prompt_sha256"):
@@ -222,6 +241,48 @@ def _check_prompts(
         leaked = [t for t in tokens if t in low] + [s for s in secrets if s and s in text]
         if leaked:
             rep.error("leakage", f"{rid}: {bundle.kind} prompt contains {leaked}")
+
+
+def _check_share_links(r: Mapping[str, Any], rep: ValidationReport) -> None:
+    """Link records (a link in the state or a link action): well-formed ids, replayable witnesses.
+
+    Identifiers must be ``lnk-0001 .. lnk-<n>`` without gaps: ``create_share_link`` allocates
+    ``lnk-<n + 1>`` and refuses when it is taken, so a gap would silently turn recoveries into
+    failures. Every stored witness must restore the pre-action state from the post-action state
+    (exactly, or in the core projection); an exact witness has exactly ``restore_depth`` steps.
+    """
+    try:
+        state = WorldState.from_dict(r["state_struct"])
+    except InvalidStateError:
+        return  # reported by _check_replay
+    call = ToolCall.from_obj(r["action_call"])
+    if not state.share_links and call.tool not in EXTENSION_TOOL_NAMES:
+        return
+    rid = r["id"]
+    rep.checks_run["share_links"] += 1
+    ids = [k.link_id for k in state.share_links]
+    if ids != [f"lnk-{i + 1:04d}" for i in range(len(ids))]:
+        rep.error("share_links", f"{rid}: link ids are not contiguous from lnk-0001: {ids}")
+    after, result = step(state, call)
+    if not result.ok:
+        return  # reported by _check_replay
+    oracle = r["meta"].get("oracle") or {}
+    for key, depth_key, digest in (
+        ("exact_witness", "restore_depth", canonical_hash),
+        ("approx_witness", "approx_restore_depth", core_hash),
+    ):
+        witness, depth = oracle.get(key), r[depth_key]
+        if witness is None:
+            if depth is not None:
+                rep.error("share_links", f"{rid}: {depth_key}={depth} without {key}")
+            continue
+        s = after
+        for c in witness:
+            s, _ = step(s, ToolCall.from_obj(c))
+        if digest(s) != digest(state):
+            rep.error("share_links", f"{rid}: {key} does not restore the pre-action state")
+        if key == "exact_witness" and len(witness) != depth:
+            rep.error("share_links", f"{rid}: {key} has {len(witness)} steps, depth {depth}")
 
 
 # -- dataset-level checks -------------------------------------------------------------------
@@ -281,6 +342,18 @@ def _check_pairs(records: list[dict[str, Any]], rep: ValidationReport) -> None:
                 "pairs",
                 f"{pid}: states differ outside pivot scope {pa['scope']}: {outside or diff}",
             )
+
+
+def _check_builder_versions(
+    records: list[dict[str, Any]], rep: ValidationReport, declared: str | None = None
+) -> None:
+    """One prompt-builder version per dataset, equal to the manifest's when it names one."""
+    rep.checks_run["builder_versions"] += 1
+    versions = sorted({str(r["meta"].get("prompt_builder_version")) for r in records})
+    if len(versions) > 1:
+        rep.error("builder_versions", f"dataset mixes prompt builder versions {versions}")
+    if declared is not None and versions and versions != [declared]:
+        rep.error("builder_versions", f"records use {versions}, manifest declares {declared}")
 
 
 def _check_label_consistency(records: list[dict[str, Any]], rep: ValidationReport) -> None:
@@ -351,21 +424,28 @@ def _check_counts(
 def validate_records(
     records: list[dict[str, Any]],
     *,
-    split: Mapping[str, Any],
+    split: Mapping[str, Any] | None,
     tool_sets: Mapping[str, Any],
     thresholds: Mapping[str, float] = PILOT_THRESHOLDS,
     rerun_oracle: bool = True,
+    declared_builder_version: str | None = None,
 ) -> ValidationReport:
+    """``split=None`` only for datasets without a train/test split (docs/30 §4)."""
     rep = ValidationReport()
     valid = [r for r in records if _check_schema(r, rep)]
     for r in valid:
         _check_replay(r, tool_sets, rep, rerun_oracle)
         _check_provisional(r, rep)
         _check_prompts(r, tool_sets, rep)
+        _check_share_links(r, rep)
     _check_uniqueness(valid, rep)
     _check_pairs(valid, rep)
     _check_label_consistency(valid, rep)
-    _check_split(valid, split, rep)
+    _check_builder_versions(valid, rep, declared_builder_version)
+    if split is None:
+        rep.warn("split", "no train/test split: split checks skipped")
+    else:
+        _check_split(valid, split, rep)
     _check_counts(valid, rep, thresholds)
     return rep
 
@@ -385,14 +465,26 @@ def validate_directory(
         ("tool_sets", files["tool_sets"]),
         ("split", manifest["split"]),
     ):
+        if rel is None:  # no split
+            continue
         rep_pre.checks_run["file_hashes"] += 1
         if sha256_file(directory / rel["file"]) != rel["sha256"]:
             rep_pre.error("file_hashes", f"{key} file hash does not match manifest")
     records = read_jsonl(directory / files["dataset"]["file"])
-    split = json.loads((directory / manifest["split"]["file"]).read_text(encoding="utf-8"))
+    split_entry = manifest["split"]
+    split = (
+        None
+        if split_entry is None
+        else json.loads((directory / split_entry["file"]).read_text(encoding="utf-8"))
+    )
     tool_sets = json.loads((directory / files["tool_sets"]["file"]).read_text(encoding="utf-8"))
     rep = validate_records(
-        records, split=split, tool_sets=tool_sets, thresholds=thresholds, rerun_oracle=rerun_oracle
+        records,
+        split=split,
+        tool_sets=tool_sets,
+        thresholds=thresholds,
+        rerun_oracle=rerun_oracle,
+        declared_builder_version=manifest.get("prompt_builder_version"),
     )
     rep.errors[:0] = rep_pre.errors
     rep.checks_run.update(rep_pre.checks_run)
