@@ -25,7 +25,8 @@ from adnn.sandbox.state import ShareLink
 ROOT = Path(__file__).resolve().parents[1]
 PLANS = fam.plan_share_scenarios()
 FIRST = [next(p for p in PLANS if p.family.family_id == f) for f in fam.FAMILY_IDS]
-DRAFT = ROOT / "docs/preregistration/phase5e_pilot_manifest.DRAFT.json"
+FROZEN = ROOT / "docs/preregistration/phase5e_pilot_manifest.json"
+FROZEN_SHA = ROOT / "docs/preregistration/phase5e_pilot_manifest.sha256"
 
 
 @pytest.fixture(scope="module")
@@ -52,7 +53,7 @@ def _write(
 
 
 # -- A: counts ----------------------------------------------------------------------------------
-def test_planned_counts_are_unambiguous_and_match_the_draft_manifest() -> None:
+def test_planned_counts_are_unambiguous_and_match_the_frozen_manifest() -> None:
     counts = fam.planned_counts(PLANS)
     assert (
         counts["families"],
@@ -64,14 +65,13 @@ def test_planned_counts_are_unambiguous_and_match_the_draft_manifest() -> None:
     assert all(
         v == {"scenarios": 7, "pairs": 7, "states": 14} for v in counts["by_family"].values()
     )
-    if not DRAFT.exists():  # the draft is intentionally not committed until it is frozen
-        pytest.skip(
-            "draft manifest absent; regenerate with scripts/dataset/phase5e_draft_manifest.py"
-        )
-    draft = json.loads(DRAFT.read_text("utf-8"))
-    assert draft["frozen_at_utc"] is None and "NOT FROZEN" in draft["status"]
-    assert draft["generation"]["planned_counts"] == counts
-    assert draft["generation"]["config_sha256"] == fam.GenerationConfig().sha256()
+    assert sha256_file(FROZEN) == FROZEN_SHA.read_text("utf-8").split()[0]
+    frozen = json.loads(FROZEN.read_text("utf-8"))
+    assert frozen["frozen_at_utc"] and frozen["status"].startswith("FROZEN")
+    assert frozen["generation"]["planned_counts"] == counts
+    assert frozen["generation"]["config_sha256"] == fam.GenerationConfig().sha256()
+    confirmed = frozen["freeze_confirmation"]
+    assert (confirmed["families"], confirmed["minimal_pairs"], confirmed["records"]) == (3, 21, 42)
 
 
 # -- B/C: version-aware loading, end to end ---------------------------------------------------

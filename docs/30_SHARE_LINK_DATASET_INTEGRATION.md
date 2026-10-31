@@ -339,3 +339,89 @@ module's own audit:
   manifest `887e42ba…b72f`, Candidate A spec `5da475c5…e137` (matches its `.sha256`).
 - **Legacy fingerprint:** byte-identical over the 450 historical records.
 - **Line endings:** no CRLF in any new or changed file.
+
+## 14. Phase 5E Task 4: frozen manifest and diagnostic pilot results
+
+**Freeze (before any generation).**
+- **Manifest:** `docs/preregistration/phase5e_pilot_manifest.json`, version 1.0, sha256
+  `e3fe5010…9fdd`, with a sidecar `.sha256`.
+- **Provenance:** `base_commit` 43339db, `frozen_at_utc` 2026-10-31T21:19:00Z. It was derived
+  from the draft regenerated on a clean tree at `base_commit`; the draft's sha256 and the list
+  of changes are recorded in `frozen_from`.
+- **Commit:** `2d020cf` contains only the manifest and its sidecar.
+- **Checks:** the committed files match the working tree; `base_commit` is an ancestor of HEAD;
+  `src/` is unchanged since `base_commit`.
+- **The superseded draft** was deleted, because the frozen file replaces it. The count test
+  now checks the frozen manifest (sidecar hash, planned counts, config hash, confirmed
+  counts) and no longer skips (Phase 5F).
+
+**Generation.** `scripts/dataset/phase5e_generate_pilot.py` is orchestration only. Before
+generating, it re-checks the sidecar, the ancestry, the unchanged `src/adnn`, the config hash,
+the Candidate A spec hash and the prior-dataset checksums. Output goes to
+`results/phase5e/pilot/run1` and `run2`, which are git-ignored and preserved.
+
+| Item | Result |
+|---|---|
+| Status / stop conditions | OK; none hit (0 gate drops, 0 pair-contract violations, 0 unsupported labels, 0 validator errors, 0 prompt-hash failures) |
+| Records / pairs | 42 / 21 (exactly as frozen) |
+| `records.jsonl` sha256 | `a78646e1069e4172c770ad30a72bdc1c6abae1dbe0e82728711c062d44fa7efe` |
+| `tool_sets.json` sha256 | `5ab7eabd09f34c015ba9bbc2612be0c8b3e09e745e738c371359663972eb9528` |
+| Dataset `manifest.json` sha256 | `e50b8ef117bf06abda9821d38d4cfbab6cf8d77365e688821d0baeba198cd98f` |
+| Determinism (run 1 vs run 2) | all three files byte-identical; reports identical except runtime |
+| Validator | 0 errors; 2 expected warnings (no split; 0 irreversible); 42 replay and oracle re-runs, 42 witness-replay link checks, 21 pair checks |
+| Loader | 42 records, 21 pairs, 42/42 probe and stated hashes rebuilt (builder 1.1.0) |
+| Expectation mismatches / declaration disagreements | 0 / 0 |
+| Runtime | ~24 s per run (18 s build and label, 6 s validate and load) |
+
+**Labels by horizon (R / P; I = 0 at every horizon):**
+
+| Family | h1 | h2 | h3 |
+|---|---|---|---|
+| s01 revoke, address kind | 7 / 7 | 7 / 7 | 7 / 7 |
+| s02 create, same-access history | 7 / 7 | 7 / 7 | 7 / 7 |
+| s03 create, other-access history | 0 / 14 | 0 / 14 | 7 / 7 |
+| **All** | **14 / 28** | **14 / 28** | **21 / 21** |
+
+Label patterns: R R R ×14, P P P ×21, P P R ×7. The s03 labels are horizon-relative (§9).
+
+**Recovery witnesses and residuals** (every record's witness is in `generation_report.json`):
+
+| Family and member | Exact witness | Approximate witness | Residual |
+|---|---|---|---|
+| s01 custom | `create` (1 step) | — | none |
+| s01 generated | none | `create` | identity loss (new id and token) |
+| s02 same access | `revoke` (1 step) | — | none |
+| s02/s03 absent | none | `revoke` | residual history (new inactive record) |
+| s03 other access, h1/h2 | none within h | `revoke` | stale access on the revoked record |
+| s03 other access, h3 | `revoke → create(old access) → revoke` (3 steps) | — | none |
+
+**Diversity: mechanical vs causal novelty.**
+
+| Measure | Strict | Coarse |
+|---|---|---|
+| Distinct scenarios (14 per family) | 42 | 42 |
+| Within-pilot duplication (maximum records per scenario) | 1 | 1 |
+| SD1: novel vs `pilot_v0.1` / `phase5b_scaling_pilot` / pooled | 1.0 / 1.0 / 1.0 | 1.0 / 1.0 / 1.0 |
+| Novel vs Candidate A diagnostics D1–D9 | 1.0 | 0.976 (1 shared) |
+| SD3: conflicting groups pooled with the priors | — | 0 |
+
+- **Prospective gates:** SD1 ≥ 0.50, SD2 ≤ 3 and SD3 = 0 all pass.
+- **Mechanical novelty:** SD1 = 1.0 holds by construction, because the link field and the link
+  tools are new. It is *not* evidence of diversity. SD2 = 1 holds by planner de-duplication,
+  and SD3 has little power at this size (§9).
+- **Causal novelty:** **one mechanism** (Candidate A sharing links), with **5 recovery
+  signatures** and **3 residual kinds** (identity loss, residual history, stale access). The 5
+  signatures are "new" against the priors only because the tools are new.
+- **Concentration** (inverse-Simpson effective number, then maximum share):
+  - family: 3.0, 0.33;
+  - recovery signature: 4.5, 0.33;
+  - h3 label: 2.0, 0.50;
+  - render style: 2.88, 0.43;
+  - number of files: 1.89, 0.62.
+
+The 42 records are diagnostic coverage of that one mechanism, not independent mechanisms.
+
+**Integrity after generation.**
+- The frozen manifest and its sidecar are unmodified, and `src/` is unchanged.
+- The historical dataset, Phase 5B manifest and Candidate A spec hashes are unchanged.
+- The legacy state fingerprint is byte-identical.
