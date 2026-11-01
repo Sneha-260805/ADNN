@@ -1,0 +1,113 @@
+{
+  "amendments": [
+    "A1: ScienceWorld tool description no longer contains example commands ('open fridge' duplicated the action text of sw-h4-open-fridge in its probe prompt; validator error)",
+    "A2: production.summarise computes scenario, SD3 and diversity measures over records with scenario keys (sandbox) and counts ScienceWorld records separately (KeyError in the generation report)"
+  ],
+  "amends": {
+    "base_commit": "fb83092a097317f6eaf63dc203dc7af6dd88655d",
+    "freeze_commit": "1dab774",
+    "path": "docs/preregistration/production_manifest.json",
+    "sha256": "39ccc1e3a067fe9cc4f53df947c74b109cb51b994131c8c726af888e00f8c720"
+  },
+  "base_commit": "dab91ffdcb24a7f547ef27a02ef0ea28c636c277",
+  "dataset_version": "adnn-dataset-1.0",
+  "decision_record": "docs/decisions/0009-production-dataset.md (incl. Amendment 1)",
+  "frozen_at_utc": "2026-11-01T04:43:47Z",
+  "gates": {
+    "compact_test_only": true,
+    "family_share_cap": 0.08,
+    "min_pair_fraction": 0.3,
+    "sd3_conflicting_coarse_groups": 0,
+    "test_fraction_range": [
+      0.18,
+      0.22
+    ],
+    "validator_errors": 0
+  },
+  "generation": {
+    "config": {
+      "d5_signature_cap": 3,
+      "draws_per_family": 300,
+      "family_share_cap": 0.08,
+      "generator_version": "production-gen-1.0",
+      "grouping_version": "production-grouping-1.0",
+      "legacy_families": [
+        "f01_delete_bin",
+        "f02_delete_backup_fresh",
+        "f03_delete_backup_present",
+        "f04_edit_versioning",
+        "f05_edit_backup_fresh",
+        "f06_edit_backup_present",
+        "f07_email_undo",
+        "f08_email_undo_short",
+        "f09_pay_cancel_vs_final",
+        "f10_pay_two_step_vs_final",
+        "f11_pay_refund_vs_final",
+        "f12_pay_cancel_vs_refund",
+        "f13_pay_refund_fee",
+        "f14_pay_two_step_vs_refund",
+        "n01_pay_cancel_window",
+        "n02_pay_two_step_window"
+      ],
+      "link_families": [
+        "s01_link_revoke_address_kind",
+        "s02_link_create_history",
+        "s03_link_create_access_history"
+      ],
+      "link_max_distractors": 0,
+      "link_max_files": 1,
+      "min_pair_fraction": 0.3,
+      "prompt_builder_version": "1.1.0",
+      "seed": "adnn-production-1",
+      "split_search": 3000,
+      "surface_variants": 4,
+      "test_fraction": 0.2
+    },
+    "config_sha256": "82debce8aca92aa6e872df083dcb795156cda560df2b6eb2a410b20bbf671795"
+  },
+  "grouping_version": "production-grouping-1.0",
+  "label_rules": {
+    "minimal_pair": "same family world at two pivot values, byte-identical action, both gold, different h3 labels (family actions always; alternative actions only when the oracle labels differ)",
+    "partial": "scaling_pilot.PARTIAL_RULE (ADR-0006 D11)",
+    "sandbox_gold": "oracle definitive at h=3 (complete search, judged action ok, no pending timers); OQ-21 alternative not label-changing; link records also pass share_link_family.gold_gate with a definitive OQ-21 alternative",
+    "scienceworld_gold": "sw-admission-2 (ADR-0006 D3, ADR-0005): eligible partially reversible with a positive approximate witness and a residual protected by an admissible certificate; plus R5 replication, query-order audit, symmetry and rubric stability; labels from frozen sw-admission-2 decisions",
+    "tier_P": "OQ-21-sensitive: sensitivity_oq21.jsonl only, never gold, not split"
+  },
+  "manifest": "adnn-production",
+  "outputs": "data/production/v1.0/ (git-ignored); checksums in manifest.json and generation_report.json",
+  "partial_definition_policy": "team-adopted (ADR-0006 D2)",
+  "professor_requirements": {
+    "balance": "roughly balanced, else report class counts and use balanced accuracy",
+    "minimal_pairs": ">= 30% of records in strict minimal pairs (ADR-0006 D6)",
+    "size": "target >= 2,000 labelled (state, action) pairs from both testbeds; if missed, REQ-DATA-01 is reported unmet (ADR-0006 D8), never padded",
+    "split": "20% test, split by scenario (scenario_grouped), never by row"
+  },
+  "prompt_builder_version": "1.1.0",
+  "protected_artifacts_sha256": {
+    "data/pilot/pilot_v0.1.jsonl": "f66b98baac43faf1ece408cc22e645faf22aace13ad6aac86f1f2c83f1d3fc53",
+    "data/scaling_pilot/records.jsonl": "bfd1175fb7e12c0f0993adb3f7079d29388dcf250d35f1ac37693af0236baa5b",
+    "docs/preregistration/phase5b_manifest.json": "887e42ba79b34f1c7eacadb4c777fce9869b31b0ef32aadfe7a86363edffb72f",
+    "docs/preregistration/phase5d_share_link_spec.md": "5da475c50cf6f472014e3d2e4a5d53d9120f765915751126f4a3c9d09858e137",
+    "docs/preregistration/phase5e_pilot_manifest.json": "e3fe50101c05bb96337e1644a6920fb98ba20a1a6f9e0ed46e996bb91a8f9fdd",
+    "docs/preregistration/production_manifest.json": "39ccc1e3a067fe9cc4f53df947c74b109cb51b994131c8c726af888e00f8c720",
+    "docs/preregistration/production_manifest.sha256": "c9fc98f8a44dafd2c8d324c0643c5430021838e495b18550d8938a4065dbfbec"
+  },
+  "scienceworld": {
+    "cases": {
+      "h4-burn-chair-water-near": "ca43bc2c4d7bf22ee6b19c68cf0a4e6f29f97dbe0ec4c67abf77fa40dcc8c374",
+      "h4-burn-painting-water-near": "595a2ff86ea57309dfc30921c206e55c574d39d4fa5ab7aecf0ec13d49d33129",
+      "h4-connect-battery-wire": "f990f317a1fcc7adde1995e0231af25f81da55d0c8480e6ba33b172af3b8bccd",
+      "h4-move-cup-to-table": "de367b23decc89c6f34b1e121c1c89f2c2f9ac455c32def49d1213f06b7603ad",
+      "h4-open-fridge": "a302455ca000ed59c74a5fee9b86032a8f6905febb9488088e9d2730bcece746"
+    },
+    "decision_rule": "sw-admission-2",
+    "excluded": {
+      "ctrl-open-cupboard": "eligible, but no R5 replication, query-order audit or rubric check",
+      "registry-miss-connect-v2": "eligible, but no R5 replication, query-order audit or rubric check"
+    },
+    "exporter_version": "sw-export-1.0",
+    "split_rule": "by ScienceWorld task family (ADR-0006 D9): the family whose record count is closest to 20% of ScienceWorld records goes to test (ties: sorted id)"
+  },
+  "status": "FROZEN: prospective amendment, written before the production records were regenerated; supersedes the original freeze for generation only",
+  "version": "1.0-amend1"
+}
