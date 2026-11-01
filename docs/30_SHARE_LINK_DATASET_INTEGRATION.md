@@ -425,3 +425,31 @@ The 42 records are diagnostic coverage of that one mechanism, not independent me
 - The frozen manifest and its sidecar are unmodified, and `src/` is unchanged.
 - The historical dataset, Phase 5B manifest and Candidate A spec hashes are unchanged.
 - The legacy state fingerprint is byte-identical.
+
+## 15. Erratum (Phase 5G, 2026-11-01): partial marker and OQ-21
+
+**Two defects in the pilot generator** (`share-link-gen-0.2-draft`):
+- It flags every partial with the obsolete `partial_reversibility_definition_pending_professor`
+  reason instead of the ADR-0006 D2 team-adopted rule.
+- It records `oq21_alternative_labels_by_horizon: None` ("not applicable") without measuring
+  it.
+
+**The frozen manifest, its sidecar and the 42 pilot records are not changed.** The pilot stays
+diagnostic and is never pooled.
+
+**Production fix (ADR-0008 B6).** `adnn.dataset.share_link_production` (`share-link-gen-0.3`)
+builds records from the same plans, gates and oracle, then:
+- uses `scaling_pilot.PARTIAL_RULE`;
+- computes the OQ-21 alternative (pre-action contents and addresses added to the pool, as in
+  docs/29 §7.4);
+- sets `tier` and `sensitivity_group`.
+
+The validator enforces this under `partial_definition_policy: "team-adopted (ADR-0006 D2)"`.
+
+**Measured.**
+- The OQ-21 alternative changed 0 of the 32 link labels computed in the Phase 5G dry run
+  (docs/33).
+- It also changed 0 of the 10 diagnostic cases (docs/29 §7.4).
+
+**Reproducing the frozen pilot.** The runner refuses to run once `src/adnn` differs from
+`43339db`, so the pilot must be reproduced from that commit.

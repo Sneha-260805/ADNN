@@ -82,9 +82,17 @@ class LoadedDataset:
         raise KeyError(example_id)
 
     def split_of(self, record: Mapping[str, Any]) -> str:
-        """Split by scenario family (``template_id``), never by row."""
+        """Split by scenario family (``template_id``), or by scenario group (``scenario_id``)
+        for a ``scenario_grouped`` split (ADR-0009); never by row."""
         if self.split is None:
             return "unsplit"
+        if self.split.get("kind") == "scenario_grouped":
+            sid = record["scenario_id"]
+            if sid in self.split["test_scenarios"]:
+                return "test"
+            if sid in self.split["train_scenarios"]:
+                return "train"
+            raise DatasetIntegrityError(f"scenario {sid} is in no split")
         fam = record["template_id"]
         if fam in self.split["test_families"]:
             return "test"

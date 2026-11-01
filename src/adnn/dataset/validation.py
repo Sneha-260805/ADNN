@@ -37,6 +37,7 @@ from adnn.dataset.schema import (
     read_jsonl,
     sha256_file,
 )
+from adnn.feasibility.scaling_pilot import PARTIAL_RULE
 from adnn.sandbox import (
     InvalidStateError,
     ToolCall,
@@ -47,6 +48,14 @@ from adnn.sandbox import (
 )
 from adnn.sandbox.restoration import core_hash, has_pending_timers
 from adnn.sandbox.state import EXTENSION_TOOL_NAMES
+
+# Manifest ``partial_definition_policy`` values. Datasets without the key (pilot_v0.1, the
+# Phase 5E link pilot) keep the original pending-professor convention.
+PARTIAL_POLICY_PENDING = "pending-professor"
+PARTIAL_POLICY_TEAM = "team-adopted (ADR-0006 D2)"
+PARTIAL_POLICIES = (PARTIAL_POLICY_PENDING, PARTIAL_POLICY_TEAM)
+# ADR-0006 D3 tier fields: required under the team-adopted policy, absent otherwise.
+TIER_FIELDS = ("tier", "sensitivity_group")
 
 # Tokens that must never appear in any prompt (metadata / oracle vocabulary).
 FORBIDDEN_IN_ANY_PROMPT: tuple[str, ...] = (
@@ -122,11 +131,14 @@ def _builder(r: Mapping[str, Any], rep: ValidationReport, check: str) -> PromptB
         return None
 
 
-def _check_schema(r: Mapping[str, Any], rep: ValidationReport) -> bool:
+def _check_schema(
+    r: Mapping[str, Any], rep: ValidationReport, policy: str = PARTIAL_POLICY_PENDING
+) -> bool:
     rep.checks_run["schema"] += 1
     rid = r.get("id", "<no id>")
-    missing = [f for f in ALL_FIELDS if f not in r]
-    extra = sorted(set(r) - set(ALL_FIELDS))
+    fields = ALL_FIELDS + (TIER_FIELDS if policy == PARTIAL_POLICY_TEAM else ())
+    missing = [f for f in fields if f not in r]
+    extra = sorted(set(r) - set(fields))
     if missing or extra:
         rep.error("schema", f"{rid}: missing {missing}, unexpected {extra}")
         return False
@@ -196,13 +208,42 @@ def _check_replay(
             rep.error("oracle", f"{rid}: restore depths differ on replay")
 
 
-def _check_provisional(r: Mapping[str, Any], rep: ValidationReport) -> None:
+def _check_scienceworld(r: Mapping[str, Any], rep: ValidationReport) -> None:
+    """ScienceWorld records are re-checked against the stored, frozen evidence (ADR-0009)."""
+    from adnn.scienceworld.export import validate_record  # local: optional stratum
+
+    rep.checks_run["scienceworld_evidence"] += 1
+    for msg in validate_record(r):
+        rep.error("scienceworld", msg)
+
+
+def _check_provisional(
+    r: Mapping[str, Any], rep: ValidationReport, policy: str = PARTIAL_POLICY_PENDING
+) -> None:
     rep.checks_run["provisional"] += 1
     rid, reasons = r["id"], r["provisional_reasons"]
     has_partial = "partially_reversible" in r["labels_by_horizon"].values()
-    if has_partial and PROVISIONAL_PARTIAL not in reasons:
-        rep.error("provisional", f"{rid}: partial label not flagged provisional")
     alt = r["meta"].get("oq21_alternative_labels_by_horizon")
+    if policy == PARTIAL_POLICY_PENDING:
+        if has_partial and PROVISIONAL_PARTIAL not in reasons:
+            rep.error("provisional", f"{rid}: partial label not flagged provisional")
+    else:  # team-adopted partial rule (ADR-0006 D2/D11; ADR-0008)
+        if PROVISIONAL_PARTIAL in reasons:
+            rep.error("provisional", f"{rid}: obsolete pending-professor partial flag")
+        rule = PARTIAL_RULE
+        if r["environment"] == "scienceworld":
+            from adnn.scienceworld import export as sw_export
+
+            rule = sw_export.SW_PARTIAL_RULE
+        if has_partial and r["meta"].get("partial_definition") != rule:
+            rep.error("provisional", f"{rid}: partial without the team-adopted rule")
+        if r["action_verb"] in EXTENSION_TOOL_NAMES and alt is None:
+            rep.error("provisional", f"{rid}: OQ-21 alternative not computed")
+        sensitive = PROVISIONAL_OQ21 in reasons
+        if r.get("tier") != ("P" if sensitive else "G"):
+            rep.error("provisional", f"{rid}: tier inconsistent with OQ-21 sensitivity")
+        if r.get("sensitivity_group") != ("OQ-21" if sensitive else None):
+            rep.error("provisional", f"{rid}: sensitivity_group inconsistent with tier")
     if alt is not None and alt != r["labels_by_horizon"] and PROVISIONAL_OQ21 not in reasons:
         rep.error("provisional", f"{rid}: OQ-21-sensitive label not flagged")
     if r["label_provisional"] != bool(reasons):
@@ -369,10 +410,48 @@ def _check_label_consistency(records: list[dict[str, Any]], rep: ValidationRepor
         seen.setdefault(key, (r["id"], r["label"]))
 
 
+def _check_grouped_split(
+    records: list[dict[str, Any]], split: Mapping[str, Any], rep: ValidationReport
+) -> None:
+    """Scenario-grouped split (ADR-0009): ``scenario_id`` is the split group (number-masked
+    scenario joined with pair). Every group on one side, minimal pairs and number-masked
+    scenarios never across, held-out styles only in test, no identical input across."""
+    train_s, test_s = set(split["train_scenarios"]), set(split["test_scenarios"])
+    if train_s & test_s:
+        rep.error("split", f"scenarios in both splits: {sorted(train_s & test_s)[:5]}")
+    side: dict[str, str] = {}
+    masked_side: dict[str, set[str]] = defaultdict(set)
+    held_out = set(split.get("test_only_styles", TEST_ONLY_STYLES))
+    for r in records:
+        sid = r["scenario_id"]
+        s = "test" if sid in test_s else "train" if sid in train_s else None
+        if s is None:
+            rep.error("split", f"{r['id']}: scenario not assigned to a split")
+            continue
+        side[r["id"]] = s
+        masked = r["meta"].get("scenario_keys", {}).get("masked")
+        if masked is not None:
+            masked_side[masked].add(s)
+        if s == "train" and r["render_style"] in held_out:
+            rep.error("split", f"{r['id']}: test-only render style used in train")
+    for m, sides in masked_side.items():
+        if len(sides) > 1:
+            rep.error("split", f"number-masked scenario {m} spans splits")
+    inputs: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for r in records:
+        if r["id"] in side:
+            inputs[(r["state_text"], r["action_text"])].add(side[r["id"]])
+    if any(len(v) > 1 for v in inputs.values()):
+        rep.error("split", "identical (state_text, action_text) in both splits")
+
+
 def _check_split(
     records: list[dict[str, Any]], split: Mapping[str, Any], rep: ValidationReport
 ) -> None:
     rep.checks_run["split"] += 1
+    if split.get("kind") == "scenario_grouped":
+        _check_grouped_split(records, split, rep)
+        return
     train_f, test_f = set(split["train_families"]), set(split["test_families"])
     if train_f & test_f:
         rep.error("split", f"families in both splits: {sorted(train_f & test_f)}")
@@ -429,15 +508,22 @@ def validate_records(
     thresholds: Mapping[str, float] = PILOT_THRESHOLDS,
     rerun_oracle: bool = True,
     declared_builder_version: str | None = None,
+    partial_policy: str = PARTIAL_POLICY_PENDING,
 ) -> ValidationReport:
-    """``split=None`` only for datasets without a train/test split (docs/30 §4)."""
+    """``split=None`` only for datasets without a train/test split (docs/30 §4).
+    ``partial_policy`` is the manifest's ``partial_definition_policy`` (ADR-0008)."""
+    if partial_policy not in PARTIAL_POLICIES:
+        raise ValueError(f"unknown partial_definition_policy {partial_policy!r}")
     rep = ValidationReport()
-    valid = [r for r in records if _check_schema(r, rep)]
+    valid = [r for r in records if _check_schema(r, rep, partial_policy)]
     for r in valid:
-        _check_replay(r, tool_sets, rep, rerun_oracle)
-        _check_provisional(r, rep)
+        if r["environment"] == "scienceworld":
+            _check_scienceworld(r, rep)
+        else:
+            _check_replay(r, tool_sets, rep, rerun_oracle)
+            _check_share_links(r, rep)
+        _check_provisional(r, rep, partial_policy)
         _check_prompts(r, tool_sets, rep)
-        _check_share_links(r, rep)
     _check_uniqueness(valid, rep)
     _check_pairs(valid, rep)
     _check_label_consistency(valid, rep)
@@ -485,6 +571,7 @@ def validate_directory(
         thresholds=thresholds,
         rerun_oracle=rerun_oracle,
         declared_builder_version=manifest.get("prompt_builder_version"),
+        partial_policy=manifest.get("partial_definition_policy", PARTIAL_POLICY_PENDING),
     )
     rep.errors[:0] = rep_pre.errors
     rep.checks_run.update(rep_pre.checks_run)
