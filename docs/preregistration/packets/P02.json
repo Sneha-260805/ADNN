@@ -1,0 +1,401 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "P02",
+ "task_description": "Task description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+ "actions_already_taken": [],
+ "target_action": "eat apple",
+ "target_objects": [
+  {
+   "role": "apple",
+   "name": "apple",
+   "propMoveable.isMovable": true,
+   "propEdibility.isEdible": true,
+   "container": {
+    "role": "bowl",
+    "name": "bowl",
+    "propContainer.isOpen": true,
+    "propMaterial.temperatureC": 10.003739783079492,
+    "propMaterial.stateOfMatter": "solid",
+    "propMaterial.substanceName": "wood",
+    "propMaterial.hasCombusted": false,
+    "propMaterial.isCombusting": false,
+    "propMaterial.combustionTicks": 100,
+    "propMoveable.isMovable": true
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "air in kitchen",
+   "name": "air",
+   "propMaterial.temperatureC": 24.513743470184796,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "sink in kitchen",
+   "name": "sink",
+   "propContainer.isOpen": true,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": true,
+   "propMaterial.temperatureC": 10.04380161988955,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": false
+  },
+  {
+   "role": "stove",
+   "name": "stove",
+   "propContainer.isOpen": true,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": false
+  },
+  {
+   "role": "fridge",
+   "name": "fridge",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": true,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "wood cup in fridge",
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 8.027662249999999,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "orange juice",
+       "name": "orange juice",
+       "propMaterial.temperatureC": 9.8000323625,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "orange juice",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "freezer",
+   "name": "freezer",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": true,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": false
+  },
+  {
+   "role": "oven",
+   "name": "oven",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": false
+  },
+  {
+   "role": "cupboard",
+   "name": "cupboard",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.034989144146245,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in cupboard",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.003800389319853,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "metal pot",
+     "name": "metal pot",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003646815043767,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "steel",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "tin cup",
+     "name": "tin cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003530448822271,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "tin",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "ceramic cup",
+     "name": "ceramic cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.000179925584849,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "ceramic",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "counter",
+   "name": "counter",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.037649210443316,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in counter",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.003899626402877,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "bowl",
+     "name": "bowl",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003739783079492,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "apple",
+       "name": "apple",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      },
+      {
+       "role": "banana",
+       "name": "banana",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      },
+      {
+       "role": "orange in bowl",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      },
+      {
+       "role": "potato",
+       "name": "potato",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "thermometer",
+   "name": "thermometer",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": false,
+   "propMaterial.temperatureC": 10.043596934501055,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "glass",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "painting in kitchen",
+   "name": "painting",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.043641967747048,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "paper",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "table in kitchen",
+   "name": "table",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.04049149310258,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "glass cup in table",
+     "name": "glass cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003978733042981,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "glass",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "chair in kitchen",
+   "name": "chair",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.043608885563932,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "lighter",
+   "name": "lighter",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": false,
+   "propMaterial.temperatureC": 10.043580052710144,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "metal",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "glass jar",
+   "name": "glass jar",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.042385703480631,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "glass",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "sodium chloride",
+     "name": "sodium chloride",
+     "propMaterial.temperatureC": 10.00169223628093,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "sodium chloride",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "soap",
+   "name": "soap",
+   "propMaterial.temperatureC": 10.04359572300356,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "soap",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "stopwatch",
+   "name": "stopwatch",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "red box",
+   "name": "red box",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.043522573559128,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "ceramic",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "b643b8b67c7ac98784149bfab34a80db9e68d0e8e0cf2ad80d8b80bb1056db9b"
+}

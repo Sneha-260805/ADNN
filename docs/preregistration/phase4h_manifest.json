@@ -1,0 +1,102 @@
+{
+ "version": "sw-prereg-1",
+ "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+ "decision_rule": "sw-admission-2",
+ "records": [
+  {
+   "case_id": "h4-open-fridge",
+   "sha256": "ce9a6f6e9b71166dff66b1b9a44beb2a828bba73b4672b4cf2a9110f9b2168bf"
+  },
+  {
+   "case_id": "h4-move-cup-to-table",
+   "sha256": "41c5688927a16490a4102560caf5ee9d9fe5db25ba54e2d275c94c5ddde84865"
+  },
+  {
+   "case_id": "h4-pour-juice-into-sink",
+   "sha256": "d291bc9c8aae4b462c74a69984a64feaec3b7b9d33c1e52785f1028d47581963"
+  },
+  {
+   "case_id": "h4-cup-water-to-freezer",
+   "sha256": "cbf88df70be3493496aa403a27ff41bcd391dd3fa6126d748fd0f0d2acb1d6f5"
+  },
+  {
+   "case_id": "h4-mix-soap-water",
+   "sha256": "f6720b2acc7c2ad5665e135b0f695ebd186285642d53ec2dc1a2dad41eec18aa"
+  },
+  {
+   "case_id": "h4-mix-salt-two-salts",
+   "sha256": "4908493e871a9095d58a99e318911eedd54d2291406f06a1aeed1f6a02d76757"
+  },
+  {
+   "case_id": "h4-burn-painting-water-near",
+   "sha256": "ba4a15fc68dabe1490792c624ad4757514b942a88734adcf5bde6de211812ddb"
+  },
+  {
+   "case_id": "h4-burn-chair-water-near",
+   "sha256": "fd28e3c65ae892574edfc0b169332ab0e28af4dec51a031752cdf0f4b9b9e8e9"
+  },
+  {
+   "case_id": "h4-eat-banana",
+   "sha256": "89bb19b33f2821f34d7f0862aada78032970f2fd679b20cb26c6aedeb46bea0f"
+  },
+  {
+   "case_id": "h4-eat-apple-plant-world",
+   "sha256": "f01629b7c149e4cade09fde98b616980bc2f3de58fc94edb7c83f5f8a640b90f"
+  },
+  {
+   "case_id": "h4-connect-battery-wire",
+   "sha256": "704365fecd72f56cd6680e1601a7b7aacdaebe6a26374d64e2ec53d70d350080"
+  },
+  {
+   "case_id": "h4-teleport-to-workshop",
+   "sha256": "cd5be2b06ba554916f1ea86b29e56aba7f4911425af3d0626b48578def064ea6"
+  }
+ ],
+ "frozen_at_utc": "2026-10-31T15:27:40Z",
+ "packet_version": "sw-declaration-packet-1",
+ "rubric_version": "sw-declaration-rubric-1",
+ "packet_ids": {
+  "h4-mix-salt-two-salts": "P01",
+  "h4-eat-apple-plant-world": "P02",
+  "h4-connect-battery-wire": "P03",
+  "h4-move-cup-to-table": "P04",
+  "h4-burn-chair-water-near": "P05",
+  "h4-burn-painting-water-near": "P06",
+  "h4-eat-banana": "P07",
+  "h4-open-fridge": "P08",
+  "h4-pour-juice-into-sink": "P09",
+  "h4-teleport-to-workshop": "P10",
+  "h4-cup-water-to-freezer": "P11",
+  "h4-mix-soap-water": "P12"
+ },
+ "packet_sha256": {
+  "h4-open-fridge": "cdb5300b26f8d73431ce8183007c2adf72b52b2c854a82c7859c0972017b7fe3",
+  "h4-move-cup-to-table": "33250bdde420eb2f01368b8a87022d21e6acb062a7b2b8af137c540d2dd9d1fb",
+  "h4-pour-juice-into-sink": "36e437a5323166c0c19672ee29199e1352a12084050ab87d608e02ad1f162f5c",
+  "h4-cup-water-to-freezer": "75e7f151cb329cf8b7d6d1b41b31930cff4bb2d5c587765558a110d8bafc3fd7",
+  "h4-mix-soap-water": "d2bebd4597754f5afd58eb4c8cd225c6c44a05316dcb5d3ea64149a0dd74e90a",
+  "h4-mix-salt-two-salts": "2993538861fccf4e5869dddc5535a208a13c8e0b659468c95fd73817120963fa",
+  "h4-burn-painting-water-near": "3c38278b1056cebacaaf2d15f97d6c70225ce423ab686b8a548223c3f6060498",
+  "h4-burn-chair-water-near": "32e55ebbf3f4fab848c6a183b6d61336e283360d61b73548934229d197d4dd0b",
+  "h4-eat-banana": "3a141f69ea8e36d87d1a54dd65cea586c7d5ae5ec5c0ad7c477cf4de78a7405d",
+  "h4-eat-apple-plant-world": "b643b8b67c7ac98784149bfab34a80db9e68d0e8e0cf2ad80d8b80bb1056db9b",
+  "h4-connect-battery-wire": "ec6d6361adf6cb99b0689489368733c66df3a56938c76a3af067b4615ab16b9b",
+  "h4-teleport-to-workshop": "dec21b127fa950a4ebc6c82fa860213e32a540204a8907147bc157a2acc7f014"
+ },
+ "rubric_declaration_sha256": {
+  "h4-open-fridge": "1c7d88190d1b8ebe0541feacb5ffa65d0ae36e4e9f7a2dd3061a4b55b1bf82de",
+  "h4-move-cup-to-table": "8beb303560fb658a3f120d8e4b6004f2452f2d6f3cc5ac59d6b6a1cf362ec3e0",
+  "h4-pour-juice-into-sink": "cff7d8c55e266c15fe428bc8414d576c14805783bd96c56cf8cbd72683a1c03e",
+  "h4-cup-water-to-freezer": "a59e909fad84e3a03039ef7b42c18dde518f742ce09fbd94b8201d070098c3f7",
+  "h4-mix-soap-water": "48a7b9dc2118e98e5801507a427fbf1cdd47ab87dda3debf24b1245425e92469",
+  "h4-mix-salt-two-salts": "04a6d597a2f2d1c72fccfbad7fccc9977870d222abe3272b27638ceeeedb906d",
+  "h4-burn-painting-water-near": "d8406804e3e178a738c9275cd2b43b95064e3164fa1f75101288f930bd8dc8a7",
+  "h4-burn-chair-water-near": "8aac8938465cfb1bf82a45d897dfe80a99ec54b77210f500fa044f021efe7e2e",
+  "h4-eat-banana": "8650843ca3ae8b2fbe1ca81052d7ba22d07a741c2fd8fbf61c1667148a2956bf",
+  "h4-eat-apple-plant-world": "bf5da37c350297b258c6042160bed4840c4dcae94ccd519170654dfa19bf7ab1",
+  "h4-connect-battery-wire": "e462609c22dc210dbc97ccb0f71edd0ab45c017e7a19e4ea766e0fe0709ef11d",
+  "h4-teleport-to-workshop": "aed808ed911aff16ba1a333c44f0faf3b11a3f470b8ff64f7feb97bfbb3a3781"
+ },
+ "rubric_document_sha256": "69da8af22d7fb3450f29dc9796f30d8bd0590aba3642d6683fab504b91730ada",
+ "note": "frozen before any Phase 4H recovery experiment; see docs/24 \u00a73"
+}

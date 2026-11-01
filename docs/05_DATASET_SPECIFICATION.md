@@ -50,6 +50,8 @@ File: `data/processed/reversibility_vMAJOR.MINOR.jsonl` (UTF-8, one JSON object 
 | `meta` | object | Environment-specific provenance: ScienceWorld `task_name`, `variation_idx`, `action_history`, BFS stats (nodes expanded, pruning mode); ToolEmu `case_index`; generator seed. |
 | `dataset_version` | string | e.g. `1.0`. |
 
+> **Update 2026-10-30 (pilot, `docs/13`):** three fields were added to the record schema: `render_style` (`kv`/`prose`/`compact`, `docs/12` §4), `label_provisional` (bool) and `provisional_reasons` (list). `template_id` is the **scenario family** and is the split unit for the pilot. The authoritative field list is `adnn.dataset.schema.ALL_FIELDS`; the validator rejects unknown fields.
+
 ### 2.3 Illustrative records (NOT data — format illustration only)
 
 ```json
@@ -90,6 +92,8 @@ Definitions follow spec §4.2, with h the horizon (primary h = 3):
 - **ScienceWorld:** **OPEN (OQ-03).** Proposed default: approximate restoration = the canonical state differs only in a whitelist of continuous or soft properties (e.g. temperature within ±δ, container position within the same room), or a fact-overlap similarity ≥ τ. Until this is decided, ScienceWorld examples may be released as binary-only, with partially-reversible coming from the sandbox. **This must be agreed with the professor because it affects class balance.**
 
 ### Sandbox reversibility design (planned, to be finalised in Phase 2)
+
+> **Update 2026-10-30:** the sandbox core is implemented. Tool names, exact/approximate restoration semantics and the verified design table are in `10_SANDBOX_DESIGN.md` §4–§5, which is authoritative where it differs from the planning table below (e.g. `apply_history` is implemented as `revert_file`; the read-only listing tools are not implemented yet).
 
 | Tool | Pivot | Restore path | Label at h=3 |
 |---|---|---|---|

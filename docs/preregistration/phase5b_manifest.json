@@ -1,0 +1,342 @@
+{
+  "base_commit": "c47cc221918adaeec59bdfec5f1cd09a70007889",
+  "code_sha256": {
+    "src\\adnn\\dataset\\pilot.py": "96f68e4735c5c39c48b74aba8626ea1783e55258adc6f6eb725d8c4237a57a67",
+    "src\\adnn\\feasibility\\scaling_pilot.py": "070aa4ce768f22739c75e6b9ed927641205e4d506b2607046ecd287d42ab79ff",
+    "src\\adnn\\feasibility\\stop_conditions.py": "cff1bc0a8985ff628a03ede341f16328d9a08638e5f86aef69b31657bc88b2a8",
+    "src\\adnn\\sandbox\\restoration.py": "a96659ab70c2cf591054f08982772499874b27835cd110d11a7462d3a27862e4",
+    "src\\adnn\\sandbox\\tools.py": "165612c4e3fad7ffaa8bd1da03c57aa7113c9186593d65eece86f8396122e319"
+  },
+  "exclusions": [
+    "pending timers in the initial state",
+    "judged action failed",
+    "oracle not definitive (budget exhausted)",
+    "duplicate (state_text, action_text) within the pilot or identical to a record of the existing 210-example pilot",
+    "a family whose oracle pair labels disagree with its frozen design expectation in any scenario is excluded in full (never re-specified)"
+  ],
+  "frozen_at_utc": "2026-10-31T18:22:27Z",
+  "generator_version": "scaling-pilot-gen-0.1",
+  "label_rules": {
+    "irreversible": "complete bounded search over D to h=3 with no exact or approximate restoration; horizon- and domain-relative",
+    "partial": "team-adopted (ADR-0006 D11): partially_reversible at h=3 iff a verified approximate restoration within D exists and exact restoration fails exhaustively within D and h=3; horizon- and domain-relative, never a claim of universal irreversibility",
+    "tier_G": "oracle definitive (complete search, action ok, no pending timers), re-derived by the audit, not OQ-21-sensitive",
+    "tier_P": "OQ-21-sensitive: label changes under the alternative information rule; kept as a separate sensitivity group, never converted to gold"
+  },
+  "no_gold_export": true,
+  "sandbox": {
+    "examples_per_scenario": {
+      "non_pair": 2,
+      "pair_members": 2
+    },
+    "families": [
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "files",
+        "family_id": "f02_delete_backup_fresh",
+        "new": false,
+        "pivot_factor": "backup up to date",
+        "pivot_scope": "backups[0]",
+        "pivot_values": [
+          "fresh",
+          "stale"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "files",
+        "family_id": "f03_delete_backup_present",
+        "new": false,
+        "pivot_factor": "backup exists",
+        "pivot_scope": "backups",
+        "pivot_values": [
+          "fresh",
+          "None"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "partially_reversible",
+          "irreversible"
+        ],
+        "domain": "files",
+        "family_id": "f04_edit_versioning",
+        "new": false,
+        "pivot_factor": "file versioning enabled",
+        "pivot_scope": "config.versioning_enabled",
+        "pivot_values": [
+          "True",
+          "False"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "files",
+        "family_id": "f06_edit_backup_present",
+        "new": false,
+        "pivot_factor": "backup exists",
+        "pivot_scope": "backups",
+        "pivot_values": [
+          "fresh",
+          "None"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "email",
+        "family_id": "f07_email_undo",
+        "new": false,
+        "pivot_factor": "email undo window",
+        "pivot_scope": "config.email_undo_window_s",
+        "pivot_values": [
+          "60",
+          "0"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "email",
+        "family_id": "f08_email_undo_short",
+        "new": false,
+        "pivot_factor": "email undo window length",
+        "pivot_scope": "config.email_undo_window_s",
+        "pivot_values": [
+          "60",
+          "10"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "money",
+        "family_id": "f10_pay_two_step_vs_final",
+        "new": false,
+        "pivot_factor": "payment policy",
+        "pivot_scope": "config.payment_mode",
+        "pivot_values": [
+          "cancellable_two_step",
+          "final"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "partially_reversible",
+          "irreversible"
+        ],
+        "domain": "money",
+        "family_id": "f11_pay_refund_vs_final",
+        "new": false,
+        "pivot_factor": "payment policy",
+        "pivot_scope": "config.payment_mode",
+        "pivot_values": [
+          "refundable_with_fee",
+          "final"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "partially_reversible"
+        ],
+        "domain": "money",
+        "family_id": "f12_pay_cancel_vs_refund",
+        "new": false,
+        "pivot_factor": "payment policy",
+        "pivot_scope": "config.payment_mode",
+        "pivot_values": [
+          "cancellable",
+          "refundable_with_fee"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "partially_reversible",
+          "irreversible"
+        ],
+        "domain": "money",
+        "family_id": "f13_pay_refund_fee",
+        "new": false,
+        "pivot_factor": "refund fee",
+        "pivot_scope": "config.refund_fee",
+        "pivot_values": [
+          "5",
+          "amount"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "money",
+        "family_id": "n01_pay_cancel_window",
+        "new": true,
+        "pivot_factor": "payment cancel window length",
+        "pivot_scope": "config.payment_cancel_window_s",
+        "pivot_values": [
+          "60",
+          "10"
+        ]
+      },
+      {
+        "design_expected_h3": [
+          "reversible",
+          "irreversible"
+        ],
+        "domain": "money",
+        "family_id": "n02_pay_two_step_window",
+        "new": true,
+        "pivot_factor": "two-step cancel window length",
+        "pivot_scope": "config.payment_cancel_window_s",
+        "pivot_values": [
+          "60",
+          "20"
+        ]
+      }
+    ],
+    "non_pair_actions": "OTHER_ACTION_CYCLE[(index + j) % 5] for j in 0..1, state pivot value (index + j) % 2",
+    "non_pair_cycle": [
+      "edit_b",
+      "pay_payee2",
+      "edit_b",
+      "internal",
+      "delete_b"
+    ],
+    "oracle": {
+      "action_domain": "Every permitted tool over ids from the current state and free values from the argument pool, plus one explicit wait step per node (docs/10 §5.4).",
+      "action_domain_limitations": [
+        "OQ-24: send_email uses whole (to, subject, body) triples from the pool; fields are not recombined across messages.",
+        "OQ-24: transfer amounts come only from payment amounts and the judged action's amount; balances and sums are not used."
+      ],
+      "horizon": 3,
+      "information_rule": "PROVISIONAL (OQ-21): restoration may use only the post-action state and the judged action's arguments, not the pre-action state.",
+      "keep_rule": "is_definitive == True (status complete, judged action succeeded, no pending timers)",
+      "max_nodes": 200000,
+      "on_budget_exhausted": "return",
+      "partial_definition": "team-adopted (ADR-0006 D11): partially_reversible at h=3 iff a verified approximate restoration within D exists and exact restoration fails exhaustively within D and h=3; horizon- and domain-relative, never a claim of universal irreversibility",
+      "wait_semantics": "PROVISIONAL (OQ-23): failed calls and read_file advance time by one step."
+    },
+    "planned_examples": 240,
+    "render_styles": {
+      "test": [
+        "kv",
+        "prose",
+        "compact"
+      ],
+      "train": [
+        "kv",
+        "prose"
+      ]
+    },
+    "scenarios_per_family": 5,
+    "split": {
+      "group_key": "template_id",
+      "method": "one test family per domain, chosen by seed from family ids only, before any text is rendered",
+      "test_families": [
+        "f06_edit_backup_present",
+        "f08_email_undo_short",
+        "f13_pay_refund_fee"
+      ],
+      "train_families": [
+        "f02_delete_backup_fresh",
+        "f03_delete_backup_present",
+        "f04_edit_versioning",
+        "f07_email_undo",
+        "f10_pay_two_step_vs_final",
+        "f11_pay_refund_vs_final",
+        "f12_pay_cancel_vs_refund",
+        "n01_pay_cancel_window",
+        "n02_pay_two_step_window"
+      ]
+    }
+  },
+  "scienceworld": {
+    "configured_task_families": [
+      "1-1",
+      "3-1",
+      "5-1"
+    ],
+    "decision": "stop: fewer than 8 genuinely distinct action families",
+    "distinct_physical_families": [
+      "chemistry",
+      "consumption",
+      "container",
+      "device",
+      "electrical",
+      "liquid_transfer",
+      "relocation"
+    ],
+    "min_possible_max_task_share": 0.3333,
+    "n_distinct": 7,
+    "not_supported_by_sampler": [
+      "combustion (use lighter on X)"
+    ],
+    "physical_family_of_class": {
+      "activate_deactivate": "device",
+      "connect": "electrical",
+      "eat": "consumption",
+      "mix": "chemistry",
+      "move": "relocation",
+      "open_close": "container",
+      "pick_up": "relocation",
+      "pour": "liquid_transfer"
+    },
+    "required": 8,
+    "sampler_verb_classes": [
+      "open_close",
+      "activate_deactivate",
+      "move",
+      "pick_up",
+      "pour",
+      "eat",
+      "mix",
+      "connect"
+    ],
+    "task_cap_satisfiable": false
+  },
+  "seeds": {
+    "family_selection": "20261101|families",
+    "params": "20261101|params|<scenario_id>|<attempt>",
+    "sampling": 20261101,
+    "split": "20261101|split",
+    "style": "20261101|style|<scenario_id>"
+  },
+  "sensitivity_groups": {
+    "OQ-21": "alternative labels stored per record; tier P",
+    "OQ-24": "widened action-domain re-labelling of every non-reversible record",
+    "horizons": "labels at h=1,2,3"
+  },
+  "sha256": "4b029749a2ea9d00129e1e29a74840032a0a5d3a1bbcae227962687912e0f0ad",
+  "stop_conditions": {
+    "S1_checkpoint": "after 80 ScienceWorld candidates",
+    "S6_checkpoint": "after the complete sandbox stratum",
+    "thresholds": {
+      "S1_sw_checkpoint_candidates": 80,
+      "S1_sw_min_gold_yield": 0.1,
+      "S2_max_measurement_affected_fraction": 0.02,
+      "S2_max_replication_failures": 0,
+      "S3_max_rubric_sensitive_fraction": 0.1,
+      "S4_max_family_share_of_class": 0.4,
+      "S5_min_effective_fraction": 0.6,
+      "S6_min_strict_pair_fraction": 0.3,
+      "S7_max_rederivation_failures": 0
+    }
+  },
+  "version": "scaling-pilot-0.1"
+}

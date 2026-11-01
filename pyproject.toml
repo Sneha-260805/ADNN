@@ -38,6 +38,9 @@ adnn = ["py.typed"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+markers = [
+    "scienceworld: needs the pinned isolated ScienceWorld runtime (ADNN_SW_JAVA_HOME, ADNN_SW_SITE_PACKAGES); skipped otherwise",
+]
 
 [tool.ruff]
 line-length = 100
