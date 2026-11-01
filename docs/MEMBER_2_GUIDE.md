@@ -4,6 +4,8 @@ This is a *future implementation plan*. Nothing here is implemented yet. Require
 
 ## 0. Available now (2026-10-30): actual APIs
 
+> **Production dataset v1.0 (2026-11-01).** For reportable work use `data/production/v1.0`; see `docs/36_MEMBER_2_LOADER_V1.md`. It has a scenario-grouped split, 621 gold records and 112 minimal pairs. The pilot snippets below are for development only.
+
 > **Since the team handoff (`docs/15_TEAM_HANDOFF.md`), prefer `adnn.dataset.api.load_dataset`.** It verifies checksums, splits by family, rebuilds hash-checked prompts and keeps labels in `eval_metadata`. The snippet below still works but does no integrity checks.
 
 The pilot dataset and the shared prompt builder exist (`docs/12`, `docs/13`, `docs/14`). They replace the *planned* C3 signature in §2. Build the pilot locally (it is not in git):
