@@ -1,20 +1,16 @@
 # data/
 
-Labelled data produced by this project. **Empty at setup stage — no data has been generated yet.**
+Generated datasets. **Everything here except this README is git-ignored.** A git clone
+therefore contains no data. Get the verified v1.0 bundle from Member 1 and check its
+checksums ([GITHUB_HANDOFF.md §5](../GITHUB_HANDOFF.md)).
 
-Planned layout (see `docs/05_DATASET_SPECIFICATION.md`):
-
-| Path | Content | In git? |
+| Path | Content | How to get it |
 |---|---|---|
-| `data/raw/` | Raw ScienceWorld trajectories, BFS logs, ToolEmu case copies | No (regenerable / licence-restricted) |
-| `data/interim/` | Unvalidated generated examples | No |
-| `data/processed/reversibility_v<MAJOR.MINOR>.jsonl` | Released labelled dataset | Only frozen releases, added with `git add -f` at the release tag |
-| `data/processed/DATA_CARD.md` | Data card (REQ-DEL-03) | Frozen versions only (`git add -f`) |
-| `data/splits/split_seed{0,1,2}.json` | Frozen scenario-level splits | Frozen versions only (`git add -f`) |
-| `data/tasks/agent_tasks_v<MAJOR.MINOR>.jsonl` | RQ3 paired agent tasks | Frozen versions only (`git add -f`) |
-| `data/annotation/` | Blind human labels for the 100-pair agreement study | Frozen versions only (`git add -f`) |
+| `production/v1.0/` | **Production dataset v1.0**: 621 gold records, split, tool sets, manifest, OQ-21 sensitivity file (docs/34, docs/35) | Bundle from Member 1 (checksum-verified); regeneration only for audits |
+| `pilot/` | Historical 210-record pilot (development only; never report results on it) | `python -m adnn.dataset.pilot --out data/pilot` (deterministic) |
+| `scaling_pilot/` | Phase 5B scaling pilot; a protected input of the production generator | Bundle from Member 1 |
+| `production/superseded-run1-invalid/` | Invalid first production run (ADR-0009 Amendment 1); Member 1's machine only | Do not use |
+| `tasks/` | RQ3 paired agent tasks | **Not created yet** (Member 3 with Member 1) |
 
-Everything under `data/` except this README is git-ignored by default (see `.gitignore`).
-
-Licence note: derived ScienceWorld and ToolEmu content must respect the upstream licences;
-verify before release (REQ-ENV-09, OQ-15).
+**Licence note.** Derived ScienceWorld content must respect the upstream licence. Check it
+before any public release (REQ-ENV-09, OQ-15).

@@ -5,8 +5,10 @@ reported. For the dataset's contents, see docs/35 (data card) and docs/34 (repor
 
 ## 1. Get the data
 
-The dataset is not in git. Either copy `data/production/v1.0/` from Member 1, or regenerate it
-(docs/34 §6). Then check it:
+The dataset is not in git. Get the checksum-verified bundle from Member 1
+([GITHUB_HANDOFF.md §5](../GITHUB_HANDOFF.md), [ENVIRONMENT_SETUP.md §3](../ENVIRONMENT_SETUP.md)).
+Besides `data/production/v1.0/`, the bundle holds the 8 ScienceWorld evidence files that the
+validator re-checks; the loader alone does not need them. Then check it:
 
 ```powershell
 .\.venv\Scripts\python.exe -m adnn.dataset.validation data/production/v1.0   # expect 0 errors
