@@ -135,3 +135,45 @@ gold rules are never relaxed to reach it.
   legacy, link and ScienceWorld records.
 - **Tier P.** OQ-21-sensitive units are written to `sensitivity_oq21.jsonl` (tier P), never to
   the gold file and never split (ADR-0006 D11).
+
+## Amendment 1 (2026-11-01): two corrections found by the first generation run
+
+**Why.** The first run from the original freeze (`production_manifest.json`, sha256
+`39ccc1e3…`, freeze commit `1dab774`) wrote its files, but it is **not a valid dataset**.
+- The full validator reported one error: in `sw-h4-open-fridge` the action text occurs twice
+  in the probe prompt.
+- The run then crashed in its own report step.
+
+The sandbox records of that run matched the feasibility hash (`4033fca2…`). The run's output
+was set aside and was never released.
+
+**A1: ScienceWorld tool description.** The description of the `scienceworld_action` tool
+gave the example commands `'open fridge'` and `'move cup to table'`. The first is exactly the
+action of `sw-h4-open-fridge`, so the probe position could not be located uniquely.
+- The description now has **no example commands**.
+- The action, environment, state text, evidence, oracle and gold label are unchanged.
+- Only the 5 ScienceWorld prompt hashes change.
+
+**A2: generation report.** `production.summarise` expected `meta.scenario_keys` on every
+record, and ScienceWorld records have none.
+- Scenario, SD3 and diversity measures now cover the records that have scenario keys (the
+  sandbox).
+- ScienceWorld records are counted separately (`scienceworld_records`).
+- For sandbox-only input the output is unchanged, so the feasibility result stands.
+
+**What this amendment does not change:**
+- the configuration, its sha256, gates, grouping, label rules, oracle, split rule or
+  `DATASET_VERSION`;
+- the professor's requirements;
+- the original freeze and its sidecar, which are kept unchanged as historical artifacts and
+  listed among the protected hashes.
+
+**Procedure.**
+1. Regression tests for A1 and A2 (`tests/test_production_dataset.py`) fail without the
+   fixes.
+2. The fixes are committed.
+3. A new manifest, `production_manifest_amend1.json`, is frozen prospectively, with `amends`
+   pointing to the original.
+4. The dataset is regenerated once from the new manifest.
+
+**Acceptance.** The regenerated sandbox records must hash to `4033fca2…`.

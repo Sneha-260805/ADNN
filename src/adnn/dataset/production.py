@@ -662,13 +662,18 @@ def build(cfg: ProductionConfig, dataset_version: str) -> Built:
 
 # -- summary and gates -----------------------------------------------------------------------
 def summarise(records: list[dict[str, Any]], split: Mapping[str, Any]) -> dict[str, Any]:
-    """Counts, balance, pairs, split, diversity and the SD3 conflict check."""
+    """Counts, balance, pairs, split, diversity and the SD3 conflict check.
+
+    Scenario, SD3 and diversity measures cover the records with production scenario keys
+    (sandbox); ScienceWorld records have none and are counted separately (ADR-0009 A2)."""
     n = len(records)
     test = set(split["test_scenarios"])
     te = [r for r in records if r["scenario_id"] in test]
-    keys = [r["meta"]["scenario_keys"] for r in records]
+    keyed = [r for r in records if "scenario_keys" in r["meta"]]
+    nk = len(keyed)
+    keys = [r["meta"]["scenario_keys"] for r in keyed]
     beh: dict[str, dict[str, set[str]]] = {lvl: defaultdict(set) for lvl in ("strict", "coarse")}
-    for r, k in zip(records, keys, strict=True):
+    for r, k in zip(keyed, keys, strict=True):
         sig = stable_json(
             [
                 r["labels_by_horizon"],
@@ -688,6 +693,7 @@ def summarise(records: list[dict[str, Any]], split: Mapping[str, Any]) -> dict[s
 
     return {
         "records": n,
+        "scienceworld_records": sum(r["environment"] == "scienceworld" for r in records),
         "classes_h3": cls(records),
         "class_fraction_h3": {k: round(v / n, 3) for k, v in cls(records).items()} if n else {},
         "classes_by_horizon": {
@@ -719,12 +725,12 @@ def summarise(records: list[dict[str, Any]], split: Mapping[str, Any]) -> dict[s
             "max_records_per_coarse": max(by_coarse.values(), default=0),
             "max_records_per_masked": max(by_masked.values(), default=0),
             "effective_masked_scenarios_inverse_simpson": round(
-                n * n / sum(c * c for c in by_masked.values()), 1
+                nk * nk / sum(c * c for c in by_masked.values()), 1
             )
-            if n
+            if nk
             else None,
-            "top10_masked_share": round(sum(c for _, c in by_masked.most_common(10)) / n, 3)
-            if n
+            "top10_masked_share": round(sum(c for _, c in by_masked.most_common(10)) / nk, 3)
+            if nk
             else None,
             "max_family_share": round(max(by_family.values()) / n, 4) if n else None,
             "by_family": dict(sorted(by_family.items())),
@@ -739,7 +745,7 @@ def summarise(records: list[dict[str, Any]], split: Mapping[str, Any]) -> dict[s
             if r["render_style"] in TEST_ONLY_STYLES and r["scenario_id"] not in test
         ),
         "declaration_disagreements": sum(
-            1 for r in records if r["meta"]["declaration_agrees"] is False
+            1 for r in keyed if r["meta"]["declaration_agrees"] is False
         ),
     }
 

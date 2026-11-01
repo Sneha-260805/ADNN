@@ -1,10 +1,13 @@
-"""Write the prospective production manifest (ADR-0009) BEFORE any record is generated.
+"""Write the prospective AMENDED production manifest (ADR-0009, amendment 1) BEFORE the
+records are regenerated.
 
     python scripts/dataset/phase5h_freeze_manifest.py
 
 Requires a clean ``src/adnn`` at HEAD (the manifest's ``base_commit``). Writes
-``docs/preregistration/production_manifest.json`` and its ``.sha256`` sidecar; commit both
-in a freeze commit, then run ``phase5h_generate.py``.
+``docs/preregistration/production_manifest_amend1.json`` and its ``.sha256`` sidecar; commit
+both in a freeze commit, then run ``phase5h_generate.py``. The original freeze
+(``production_manifest.json``, commit 1dab774) is kept unchanged as a historical artifact and
+is protected below; this script wrote it before the amendment.
 """
 
 from __future__ import annotations
@@ -19,14 +22,29 @@ from adnn.dataset import production as prod
 from adnn.dataset.validation import PARTIAL_POLICY_TEAM
 from adnn.scienceworld import export as sx
 
-OUT = Path("docs/preregistration/production_manifest.json")
-SIDECAR = Path("docs/preregistration/production_manifest.sha256")
+OUT = Path("docs/preregistration/production_manifest_amend1.json")
+SIDECAR = Path("docs/preregistration/production_manifest_amend1.sha256")
+AMENDS = {
+    "path": "docs/preregistration/production_manifest.json",
+    "sha256": "39ccc1e3a067fe9cc4f53df947c74b109cb51b994131c8c726af888e00f8c720",
+    "freeze_commit": "1dab774",
+    "base_commit": "fb83092a097317f6eaf63dc203dc7af6dd88655d",
+}
+AMENDMENTS = [
+    "A1: ScienceWorld tool description no longer contains example commands ('open fridge' "
+    "duplicated the action text of sw-h4-open-fridge in its probe prompt; validator error)",
+    "A2: production.summarise computes scenario, SD3 and diversity measures over records with "
+    "scenario keys (sandbox) and counts ScienceWorld records separately (KeyError in the "
+    "generation report)",
+]
 PROTECTED = {
     "data/pilot/pilot_v0.1.jsonl": "f66b98baac43faf1ece408cc22e645faf22aace13ad6aac86f1f2c83f1d3fc53",  # noqa: E501
     "data/scaling_pilot/records.jsonl": "bfd1175fb7e12c0f0993adb3f7079d29388dcf250d35f1ac37693af0236baa5b",  # noqa: E501
     "docs/preregistration/phase5b_manifest.json": "887e42ba79b34f1c7eacadb4c777fce9869b31b0ef32aadfe7a86363edffb72f",  # noqa: E501
     "docs/preregistration/phase5d_share_link_spec.md": "5da475c50cf6f472014e3d2e4a5d53d9120f765915751126f4a3c9d09858e137",  # noqa: E501
     "docs/preregistration/phase5e_pilot_manifest.json": "e3fe50101c05bb96337e1644a6920fb98ba20a1a6f9e0ed46e996bb91a8f9fdd",  # noqa: E501
+    "docs/preregistration/production_manifest.json": "39ccc1e3a067fe9cc4f53df947c74b109cb51b994131c8c726af888e00f8c720",  # noqa: E501
+    "docs/preregistration/production_manifest.sha256": "c9fc98f8a44dafd2c8d324c0643c5430021838e495b18550d8938a4065dbfbec",  # noqa: E501
 }
 
 
@@ -45,11 +63,14 @@ def main() -> int:
     now = dt.datetime.now(dt.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     manifest = {
         "manifest": "adnn-production",
-        "version": "1.0",
-        "status": "FROZEN: prospective, written before any production record was generated",
+        "version": "1.0-amend1",
+        "status": "FROZEN: prospective amendment, written before the production records were "
+        "regenerated; supersedes the original freeze for generation only",
+        "amends": AMENDS,
+        "amendments": AMENDMENTS,
         "frozen_at_utc": now,
         "base_commit": head,
-        "decision_record": "docs/decisions/0009-production-dataset.md",
+        "decision_record": "docs/decisions/0009-production-dataset.md (incl. Amendment 1)",
         "dataset_version": prod.DATASET_VERSION,
         "professor_requirements": {
             "size": "target >= 2,000 labelled (state, action) pairs from both testbeds; "

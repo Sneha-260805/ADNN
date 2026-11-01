@@ -29,8 +29,8 @@ from adnn.dataset.schema import sha256_file, write_json, write_jsonl
 from adnn.dataset.validation import validate_directory
 from adnn.scienceworld import export as sx
 
-FROZEN = Path("docs/preregistration/production_manifest.json")
-SIDECAR = Path("docs/preregistration/production_manifest.sha256")
+FROZEN = Path("docs/preregistration/production_manifest_amend1.json")  # ADR-0009 amendment 1
+SIDECAR = Path("docs/preregistration/production_manifest_amend1.sha256")
 THRESHOLDS = {"min_examples": 1, "min_pair_fraction": 0.30, "min_class_fraction": 0.25}
 
 

@@ -10,6 +10,8 @@ import pytest
 
 from adnn.dataset import production as prod
 from adnn.dataset.api import LoadedDataset
+from adnn.dataset.prompting import PromptInputs, locate_action
+from adnn.dataset.prompting_v11 import build_probe_prompt
 from adnn.dataset.rendering import TEST_ONLY_STYLES
 from adnn.dataset.validation import PARTIAL_POLICY_TEAM, validate_records
 from adnn.scienceworld import export as sx
@@ -174,3 +176,39 @@ def test_unresolved_horizons_are_not_exported(monkeypatch) -> None:
     monkeypatch.setattr(sx, "observe", lambda *a, **k: pytest.fail("must not replay"))
     records, report = sx.export("test")
     assert records == [] and report["cases"]["x"]["exported"] is False
+
+
+@needs_evidence
+def test_scienceworld_action_text_occurs_once_in_probe_prompt(monkeypatch) -> None:
+    """ADR-0009 A1: 'open fridge' in the tool description duplicated sw-h4-open-fridge."""
+    monkeypatch.chdir(ROOT)
+    tools = {sx.SW_TOOL_SET_ID: sx.SW_TOOLS}
+    for case in sx.COMPLETE_CASES:
+        rec = sx.make_record(sx.gate(case), "This room is called the kitchen.", "test")
+        assert rec["action_text"] not in str(sx.SW_TOOLS)
+        bundle = build_probe_prompt(PromptInputs.from_example(rec, tools), rec["action_text"])
+        locate_action("\n".join(m["content"] for m in bundle.messages), rec["action_text"])
+        rep = validate_records(
+            [rec],
+            split=None,
+            tool_sets=tools,
+            thresholds={"min_examples": 1, "min_pair_fraction": 0.0, "min_class_fraction": 0.0},
+            partial_policy=PARTIAL_POLICY_TEAM,
+        )
+        assert not [e for e in rep.errors if e.startswith("[prompts]")], rep.errors
+
+
+@needs_evidence
+def test_summary_handles_scienceworld_records(built: prod.Built, monkeypatch) -> None:
+    """ADR-0009 A2: summarise raised KeyError on records without meta.scenario_keys."""
+    monkeypatch.chdir(ROOT)
+    sw = sx.make_record(sx.gate("h4-open-fridge"), "This room is called the kitchen.", "test")
+    split = dict(built.split, train_scenarios=[*built.split["train_scenarios"], sw["scenario_id"]])
+    base = prod.summarise(built.records, built.split)
+    mixed = prod.summarise([*built.records, sw], split)
+    assert base["scienceworld_records"] == 0 and mixed["scienceworld_records"] == 1
+    assert mixed["records"] == base["records"] + 1
+    assert mixed["scenarios"] == base["scenarios"]
+    assert mixed["sd3_conflicting_groups"] == base["sd3_conflicting_groups"]
+    conc = ("effective_masked_scenarios_inverse_simpson", "top10_masked_share")
+    assert all(mixed["concentration"][k] == base["concentration"][k] for k in conc)

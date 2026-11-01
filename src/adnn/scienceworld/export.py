@@ -70,8 +70,9 @@ TASK_TEXT = {
 SW_TOOLS: list[dict[str, Any]] = [
     {
         "name": "scienceworld_action",
-        "description": "Perform one ScienceWorld action, typed as a short command "
-        "(e.g. 'open fridge', 'move cup to table').",
+        # no example commands: an example equal to a record's action would make the action
+        # text occur twice in its probe prompt (ADR-0009 amendment 1, A1)
+        "description": "Perform one ScienceWorld action, typed as a short text command.",
         "parameters": {
             "type": "object",
             "properties": {"command": {"type": "string", "description": "The command."}},
