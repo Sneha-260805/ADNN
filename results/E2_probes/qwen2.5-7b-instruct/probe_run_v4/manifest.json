@@ -1,0 +1,86 @@
+{
+  "experiment": "E2",
+  "experiment_name": "reversibility_linear_probes",
+  "analysis_plan": "analysis-plan-v1",
+  "dataset_version": "v1.0",
+  "dataset_records": 621,
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "hidden_size": 3584,
+    "num_hidden_layers": 28,
+    "hidden_state_layers": 29
+  },
+  "task": {
+    "type": "binary",
+    "classes": [
+      "reversible",
+      "irreversible"
+    ],
+    "excluded_class": "partially_reversible",
+    "primary_horizon": 3
+  },
+  "representations": [
+    "last_action_token",
+    "mean_action_tokens"
+  ],
+  "splits": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "group_key": "scenario_id",
+    "scenario_disjoint": true
+  },
+  "probe": {
+    "model": "logistic_regression_l2",
+    "standardize": true,
+    "solver": "liblinear",
+    "max_iter": 2000,
+    "C_grid": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "selection_metric": "balanced_accuracy",
+    "inner_cv": "GroupKFold",
+    "inner_cv_folds": 5,
+    "minimum_valid_folds": 4,
+    "layer_selection": "highest_inner_cv_balanced_accuracy",
+    "tie_break": "lowest_layer",
+    "seed": 0
+  },
+  "evaluation_metrics": [
+    "accuracy",
+    "balanced_accuracy",
+    "macro_f1",
+    "auroc",
+    "confusion_matrix"
+  ],
+  "source_scripts": [
+    "scripts/train_probes.py"
+  ],
+  "config": "configs/e2_qwen7b.yaml",
+  "hidden_states": {
+    "source": "/kaggle/working/e2_qwen7b_full",
+    "note": "Generated from the frozen Qwen E2 extraction; not stored in the git repository."
+  },
+  "result_files": [
+    "layer_selection_seed_0_last_action_token.json",
+    "layer_selection_seed_0_mean_action_tokens.json",
+    "layer_selection_seed_1_last_action_token.json",
+    "layer_selection_seed_1_mean_action_tokens.json",
+    "layer_selection_seed_2_last_action_token.json",
+    "layer_selection_seed_2_mean_action_tokens.json",
+    "metrics.json",
+    "predictions_seed_0_last_action_token.jsonl",
+    "predictions_seed_0_mean_action_tokens.jsonl",
+    "predictions_seed_1_last_action_token.jsonl",
+    "predictions_seed_1_mean_action_tokens.jsonl",
+    "predictions_seed_2_last_action_token.jsonl",
+    "predictions_seed_2_mean_action_tokens.jsonl"
+  ],
+  "created_utc": "2026-11-01T17:41:32.582008+00:00"
+}

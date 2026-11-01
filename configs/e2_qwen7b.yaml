@@ -1,0 +1,108 @@
+project:
+  name: adnn-irreversibility
+  experiment: E2
+  analysis_plan: analysis-plan-v1
+  dataset_version: v1.0
+
+dataset:
+  path: data/production/v1.0
+  total_records: 621
+
+task:
+  type: binary
+  labels:
+    - reversible
+    - irreversible
+  excluded_label: partially_reversible
+  primary_horizon: 3
+
+model:
+  id: Qwen/Qwen2.5-7B-Instruct
+  dtype: float16
+  hidden_size: 3584
+  num_hidden_layers: 28
+
+extraction:
+  token_positions:
+    primary: last_action_token
+    ablation:
+      - mean_action_tokens
+  layers: all
+  storage_dtype: float16
+
+splits:
+  seeds:
+    - 0
+    - 1
+    - 2
+  group_key: scenario_id
+  scenario_disjoint: true
+  test_fraction_target: 0.20
+
+probe:
+  model: logistic_regression_l2
+  standardize: true
+  solver: liblinear
+  max_iter: 2000
+  C_grid:
+    - 0.001
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+  selection_metric: balanced_accuracy
+  inner_cv:
+    method: GroupKFold
+    folds: 5
+    group_key: scenario_id
+    minimum_valid_folds: 4
+  layer_selection: highest_inner_cv_balanced_accuracy
+  tie_break: lowest_layer
+  seed: 0
+
+evaluation:
+  metrics:
+    - accuracy
+    - balanced_accuracy
+    - macro_f1
+    - auroc
+    - confusion_matrix
+
+statistics:
+  bootstrap_resamples: 1000
+  bootstrap_seed: 12345
+  ci_level: 0.95
+  bootstrap_unit: scenario_id
+  paired_test: mcnemar
+
+primary_outcome:
+  metric: balanced_accuracy
+  representation: last_action_token
+  horizon: 3
+  subset: minimal_pair_test_subset
+  comparator: lexical_action_baseline
+
+controls:
+  - majority_baseline
+  - layer_0
+  - shuffled_labels
+  - random_fixed_label_per_action_verb
+  - lexical_action_baseline
+
+ablations:
+  token_position:
+    - last_action_token
+    - mean_action_tokens
+  minimal_pairs:
+    - all
+    - minimal_pairs_only
+  horizon:
+    - 1
+    - 2
+    - 3
+  cross_environment: true
+
+freeze:
+  status: analysis-plan-v1
+  test_evaluation_allowed_after_freeze: true
+  post_freeze_changes_must_be_logged: true
