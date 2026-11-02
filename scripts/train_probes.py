@@ -1,45 +1,11 @@
+
 #!/usr/bin/env python3
 
-"""
-E2 linear probes for ADNN.
-
-Task:
-    Binary reversible vs irreversible classification.
-
-Excluded:
-    partially_reversible
-
-Representations:
-    - last_action_token
-    - mean_action_tokens
-
-Model:
-    Qwen/Qwen2.5-7B-Instruct
-
-Probe:
-    StandardScaler + L2 Logistic Regression
-
-Selection:
-    - 5-fold GroupKFold by scenario_id
-    - C selected using training data only
-    - layer selected using training-only inner-CV
-    - at least 4 valid folds required
-
-Evaluation:
-    Held-out scenario-disjoint test set.
-
-No test data is used for C or layer selection.
-"""
-
 import argparse
-import hashlib
 import json
-import os
-from collections import Counter
 from pathlib import Path
 
 import numpy as np
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
@@ -49,961 +15,760 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 from sklearn.model_selection import GroupKFold
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 
-# ------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------
-
 SEEDS = [0, 1, 2]
-
-LAYERS = list(range(29))
-
-C_GRID = [
-    0.001,
-    0.01,
-    0.1,
-    1.0,
-    10.0,
-]
-
-N_SPLITS = 5
-
-LABEL_TO_INT = {
-    "reversible": 0,
-    "irreversible": 1,
-}
-
-POSITIONS = [
-    "last_action_token",
-    "mean_action_tokens",
-]
+C_GRID = [0.001, 0.01, 0.1, 1.0, 10.0]
+MIN_VALID_FOLDS = 4
 
 
-# ------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------
-
-def sha256_file(path):
-
-    digest = hashlib.sha256()
-
-    with open(path, "rb") as f:
-
-        while True:
-
-            chunk = f.read(
-                1024 * 1024
-            )
-
-            if not chunk:
-                break
-
-            digest.update(chunk)
-
-    return digest.hexdigest()
+def load_json(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
-def load_metadata(path):
-
-    with open(
-        path,
-        "r",
-        encoding="utf-8"
-    ) as f:
-
-        return [
-            json.loads(line)
-            for line in f
-        ]
+def save_json(obj, path):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2)
 
 
-def evaluate_binary(
-    y_true,
-    y_pred,
-    y_probability
-):
 
-    metrics = {
-        "accuracy": float(
-            accuracy_score(
-                y_true,
-                y_pred
-            )
-        ),
 
-        "balanced_accuracy": float(
-            balanced_accuracy_score(
-                y_true,
-                y_pred
-            )
-        ),
+def _evaluate_one_layer(args):
+    """
+    Evaluate one layer across all GroupKFold folds and C values.
 
-        "macro_f1": float(
-            f1_score(
-                y_true,
-                y_pred,
-                average="macro"
-            )
-        ),
+    This function is intentionally self-contained so it can be
+    executed safely by a separate worker process.
+    """
+    (
+        X_layer,
+        y,
+        fold_splits,
+        layer,
+        C_grid,
+    ) = args
+
+    X_layer = np.asarray(X_layer, dtype=np.float32)
+
+    scores_by_C = {
+        float(C): []
+        for C in C_grid
     }
 
-    if len(np.unique(y_true)) == 2:
+    for train_idx, val_idx in fold_splits:
 
-        metrics["auroc"] = float(
-            roc_auc_score(
-                y_true,
-                y_probability
-            )
+        y_train = y[train_idx]
+        y_val = y[val_idx]
+
+        if len(np.unique(y_train)) < 2:
+            continue
+
+        if len(np.unique(y_val)) < 2:
+            continue
+
+        # Fit scaler exactly once per layer/fold.
+        scaler = StandardScaler()
+
+        X_train_scaled = scaler.fit_transform(
+            X_layer[train_idx]
         )
 
-    else:
+        X_val_scaled = scaler.transform(
+            X_layer[val_idx]
+        )
 
-        metrics["auroc"] = None
+        # Reuse scaled data for every C.
+        for C in C_grid:
 
-    metrics["confusion_matrix"] = (
-        confusion_matrix(
-            y_true,
-            y_pred,
-            labels=[0, 1]
-        ).tolist()
-    )
-
-    return metrics
-
-
-def build_model(C):
-
-    return Pipeline([
-        (
-            "scaler",
-            StandardScaler()
-        ),
-        (
-            "classifier",
-            LogisticRegression(
-                C=C,
+            model = LogisticRegression(
                 penalty="l2",
                 solver="liblinear",
+                C=C,
                 max_iter=2000,
-                random_state=0
-            )
-        ),
-    ])
-
-
-def inner_cv_score(
-    X,
-    y,
-    groups,
-    C
-):
-
-    group_kfold = GroupKFold(
-        n_splits=N_SPLITS
-    )
-
-    fold_scores = []
-
-    for train_idx, val_idx in group_kfold.split(
-        X,
-        y,
-        groups=groups
-    ):
-
-        y_train_fold = y[
-            train_idx
-        ]
-
-        y_val_fold = y[
-            val_idx
-        ]
-
-        # A one-class validation fold cannot
-        # provide a meaningful BA estimate.
-        if len(
-            np.unique(y_val_fold)
-        ) < 2:
-            continue
-
-        if len(
-            np.unique(y_train_fold)
-        ) < 2:
-            continue
-
-        model = build_model(C)
-
-        model.fit(
-            X[train_idx],
-            y_train_fold
-        )
-
-        y_val_pred = model.predict(
-            X[val_idx]
-        )
-
-        score = balanced_accuracy_score(
-            y_val_fold,
-            y_val_pred
-        )
-
-        fold_scores.append(
-            float(score)
-        )
-
-    # Frozen analysis-plan rule.
-    if len(fold_scores) < 4:
-
-        return None, fold_scores
-
-    return (
-        float(np.mean(fold_scores)),
-        fold_scores
-    )
-
-
-def select_layer_and_C(
-    X_all,
-    y,
-    groups
-):
-
-    layer_results = []
-
-    for layer in LAYERS:
-
-        X_layer = X_all[
-            :,
-            layer,
-            :
-        ]
-
-        best_C = None
-        best_score = -np.inf
-        best_folds = None
-
-        for C in C_GRID:
-
-            cv_score, fold_scores = (
-                inner_cv_score(
-                    X_layer,
-                    y,
-                    groups,
-                    C
-                )
+                random_state=0,
             )
 
-            if cv_score is None:
-                continue
+            model.fit(
+                X_train_scaled,
+                y_train,
+            )
 
-            if cv_score > best_score:
+            pred = model.predict(
+                X_val_scaled
+            )
 
-                best_score = cv_score
-                best_C = C
-                best_folds = fold_scores
+            score = balanced_accuracy_score(
+                y_val,
+                pred,
+            )
 
-        if best_C is None:
+            scores_by_C[float(C)].append(
+                float(score)
+            )
 
-            layer_results.append({
-                "layer": layer,
-                "best_C": None,
-                "inner_cv_balanced_accuracy": None,
-                "valid_folds": 0,
-            })
+    candidates = []
 
-        else:
+    for C in C_grid:
 
-            layer_results.append({
-                "layer": layer,
-                "best_C": float(best_C),
-                "inner_cv_balanced_accuracy": (
-                    float(best_score)
+        scores = scores_by_C[float(C)]
+
+        if len(scores) < MIN_VALID_FOLDS:
+            continue
+
+        candidates.append(
+            {
+                "layer": int(layer),
+                "C": float(C),
+                "inner_cv_balanced_accuracy": float(
+                    np.mean(scores)
                 ),
-                "valid_folds": len(
-                    best_folds
-                ),
-                "fold_scores": best_folds,
-            })
+                "valid_folds": len(scores),
+            }
+        )
 
-    valid_layers = [
-        item
-        for item in layer_results
-        if item[
-            "inner_cv_balanced_accuracy"
-        ] is not None
+    return candidates
+
+
+def select_layer_and_C(X, y, groups, layers, C_grid):
+    """
+    Inner GroupKFold selection with parallel layer evaluation.
+
+    Methodology is unchanged:
+    - GroupKFold(n_splits=5)
+    - StandardScaler
+    - L2 LogisticRegression
+    - liblinear
+    - same C grid
+    - balanced accuracy
+    - highest inner-CV BA
+    - tie: lowest layer, then lowest C
+    """
+
+    unique_groups = np.unique(groups)
+
+    if len(unique_groups) < 5:
+        raise RuntimeError(
+            f"Need at least 5 unique groups for GroupKFold; "
+            f"found {len(unique_groups)}."
+        )
+
+    # Compute the GroupKFold splits once.
+    gkf = GroupKFold(n_splits=5)
+
+    fold_splits = list(
+        gkf.split(
+            X[:, 0, :],
+            y,
+            groups,
+        )
+    )
+
+    # Prepare one job per layer.
+    jobs = []
+
+    for layer in layers:
+        jobs.append(
+            (
+                X[:, layer, :],
+                y,
+                fold_splits,
+                layer,
+                C_grid,
+            )
+        )
+
+    # ----------------------------------------------------------
+    # Parallelize independent layer evaluations.
+    #
+    # n_jobs=3 is deliberate because the Kaggle environment
+    # has 4 CPU cores. BLAS threads are limited to 1 in the
+    # launcher to prevent oversubscription.
+    # ----------------------------------------------------------
+    from joblib import Parallel, delayed
+
+    print(
+        f"Evaluating {len(layers)} layers "
+        f"with 3 parallel workers...",
+        flush=True,
+    )
+
+    results = Parallel(
+        n_jobs=3,
+        backend="loky",
+        verbose=10,
+    )(
+        delayed(_evaluate_one_layer)(job)
+        for job in jobs
+    )
+
+    candidates = [
+        candidate
+        for layer_candidates in results
+        for candidate in layer_candidates
     ]
 
-    if not valid_layers:
-
+    if not candidates:
         raise RuntimeError(
-            "No valid layer passed the "
-            "inner-CV requirement."
+            "No valid layer/C candidate survived inner CV."
         )
 
-    # Highest inner-CV BA.
-    # Lowest layer breaks exact ties.
-    selected = sorted(
-        valid_layers,
-        key=lambda item: (
-            -item[
-                "inner_cv_balanced_accuracy"
-            ],
-            item["layer"],
+    candidates.sort(
+        key=lambda x: (
+            -x["inner_cv_balanced_accuracy"],
+            x["layer"],
+            x["C"],
         )
-    )[0]
+    )
 
-    return selected, layer_results
+    best = candidates[0]
+
+    print(
+        f"Best layer={best['layer']} "
+        f"C={best['C']} "
+        f"inner_BA="
+        f"{best['inner_cv_balanced_accuracy']:.6f}",
+        flush=True,
+    )
+
+    return best, candidates
+
+def evaluate(model, X, y):
+    pred = model.predict(X)
+
+    if hasattr(model, "predict_proba"):
+        prob = model.predict_proba(X)[:, 1]
+    else:
+        prob = model.decision_function(X)
+
+    labels = [0, 1]
+
+    cm = confusion_matrix(
+        y,
+        pred,
+        labels=labels,
+    )
+
+    try:
+        auroc = roc_auc_score(y, prob)
+    except ValueError:
+        auroc = None
+
+    return {
+        "accuracy": float(
+            accuracy_score(y, pred)
+        ),
+        "balanced_accuracy": float(
+            balanced_accuracy_score(y, pred)
+        ),
+        "macro_f1": float(
+            f1_score(
+                y,
+                pred,
+                average="macro",
+            )
+        ),
+        "auroc": None if auroc is None else float(auroc),
+        "confusion_matrix": cm.tolist(),
+    }, pred, prob
 
 
-def parse_args():
+def main():
 
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--hidden-states",
-        default="/kaggle/working/e2_qwen7b_full",
+        "--hidden",
+        required=True,
+        type=Path,
+    )
+
+    parser.add_argument(
+        "--metadata",
+        required=True,
+        type=Path,
     )
 
     parser.add_argument(
         "--splits",
-        default=(
-            "results/E2_probes/splits"
-        ),
+        required=True,
+        type=Path,
     )
 
     parser.add_argument(
         "--output",
-        default=(
-            "results/E2_probes/"
-            "qwen2.5-7b-instruct/"
-            "probe_run"
-        ),
+        required=True,
+        type=Path,
     )
 
-    return parser.parse_args()
-
-
-# ------------------------------------------------------------
-# Main
-# ------------------------------------------------------------
-
-def main():
-
-    args = parse_args()
-
-    hidden_dir = Path(
-        args.hidden_states
+    parser.add_argument(
+        "--representation",
+        choices=[
+            "last_action_token",
+            "mean_action_tokens",
+        ],
+        default="last_action_token",
     )
 
-    split_dir = Path(
-        args.splits
+    args = parser.parse_args()
+
+    # -----------------------------------------------------
+    # Load fresh hidden states
+    # -----------------------------------------------------
+
+    hidden_path = (
+        args.hidden
+        / (
+            "last_action_token.npy"
+            if args.representation == "last_action_token"
+            else "mean_action_tokens.npy"
+        )
     )
 
-    output_dir = Path(
-        args.output
+    X = np.load(
+        hidden_path,
+        mmap_mode="r",
     )
 
-    output_dir.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    # --------------------------------------------------------
-    # Load hidden states
-    # --------------------------------------------------------
-
-    last_hidden = np.load(
-        hidden_dir /
-        "last_action_token.npy",
-        mmap_mode="r"
-    )
-
-    mean_hidden = np.load(
-        hidden_dir /
-        "mean_action_tokens.npy",
-        mmap_mode="r"
-    )
-
-    metadata = load_metadata(
-        hidden_dir /
-        "metadata.jsonl"
-    )
-
-    if len(metadata) != 621:
-
+    if X.ndim != 3:
         raise RuntimeError(
-            f"Expected 621 metadata rows, "
-            f"got {len(metadata)}"
+            f"Expected 3-D hidden-state array, got {X.shape}"
         )
 
-    if last_hidden.shape != (
-        621,
-        29,
-        3584
-    ):
+    n_records, n_layers, hidden_size = X.shape
 
+    print(
+        f"Loaded hidden states: "
+        f"records={n_records}, "
+        f"layers={n_layers}, "
+        f"hidden_size={hidden_size}"
+    )
+
+    # -----------------------------------------------------
+    # Load fresh metadata
+    # -----------------------------------------------------
+
+    with args.metadata.open(
+        "r",
+        encoding="utf-8",
+    ) as f:
+        metadata = [
+            json.loads(line)
+            for line in f
+        ]
+
+    if len(metadata) != n_records:
         raise RuntimeError(
-            "Unexpected last-action hidden-state "
-            f"shape: {last_hidden.shape}"
+            "Metadata length does not match "
+            "hidden-state record count."
         )
 
-    if mean_hidden.shape != (
-        621,
-        29,
-        3584
-    ):
-
-        raise RuntimeError(
-            "Unexpected mean-action hidden-state "
-            f"shape: {mean_hidden.shape}"
-        )
-
-    metadata_id_to_row = {
-        item["id"]: i
-        for i, item in enumerate(metadata)
+    fresh_id_to_row = {
+        record["id"]: i
+        for i, record in enumerate(metadata)
     }
 
-    if len(metadata_id_to_row) != 621:
-
+    if len(fresh_id_to_row) != n_records:
         raise RuntimeError(
-            "Duplicate record IDs in metadata."
+            "Duplicate record IDs detected in metadata."
         )
 
-    positions = {
-        "last_action_token": last_hidden,
-        "mean_action_tokens": mean_hidden,
+    # -----------------------------------------------------
+    # Binary labels
+    # -----------------------------------------------------
+
+    binary_records = []
+
+    for row, record in enumerate(metadata):
+
+        label = record["label"]
+
+        if label == "partially_reversible":
+            continue
+
+        if label not in {
+            "reversible",
+            "irreversible",
+        }:
+            raise RuntimeError(
+                f"Unexpected label: {label}"
+            )
+
+        binary_records.append(
+            {
+                "row": row,
+                "id": record["id"],
+                "label": label,
+                "scenario_id": record["scenario_id"],
+            }
+        )
+
+    label_to_int = {
+        "irreversible": 0,
+        "reversible": 1,
     }
+
+    print(
+        "Binary records:",
+        len(binary_records),
+    )
+
+    print(
+        "Binary label counts:",
+        {
+            label: sum(
+                r["label"] == label
+                for r in binary_records
+            )
+            for label in label_to_int
+        },
+    )
+
+    # -----------------------------------------------------
+    # Run all frozen seeds
+    # -----------------------------------------------------
 
     all_results = []
-
-    # --------------------------------------------------------
-    # Seeds
-    # --------------------------------------------------------
 
     for seed in SEEDS:
 
         split_path = (
-            split_dir /
-            f"split_seed_{seed}.json"
+            args.splits
+            / f"split_seed_{seed}.json"
         )
 
-        with open(
-            split_path,
-            "r",
-            encoding="utf-8"
-        ) as f:
+        split = load_json(split_path)
 
-            split = json.load(f)
+        # IMPORTANT:
+        # split indices refer to canonical dataset ordering,
+        # not fresh hidden-state ordering.
+        #
+        # Load canonical dataset to translate:
+        # canonical index -> record ID -> fresh row.
+        from adnn.dataset.api import load_dataset
 
-        train_scenarios = set(
-            split["train_scenarios"]
+        dataset = load_dataset(
+            Path(
+                "data/production/v1.0"
+            )
         )
 
-        test_scenarios = set(
-            split["test_scenarios"]
+        canonical_records = list(
+            dataset.records
         )
 
-        if train_scenarios & test_scenarios:
-
+        if len(canonical_records) != len(metadata):
             raise RuntimeError(
-                f"Scenario leakage in seed {seed}"
+                "Canonical dataset and fresh metadata "
+                "have different record counts."
             )
 
-        train_rows = []
-        test_rows = []
-
-        for record_id, row in (
-            metadata_id_to_row.items()
-        ):
-
-            label = metadata[row]["label"]
-
-            if label not in LABEL_TO_INT:
-                continue
-
-            scenario_id = (
-                metadata[row]["scenario_id"]
-            )
-
-            if scenario_id in train_scenarios:
-
-                train_rows.append(row)
-
-            elif scenario_id in test_scenarios:
-
-                test_rows.append(row)
-
-            else:
-
-                raise RuntimeError(
-                    f"Unassigned scenario: "
-                    f"{scenario_id}"
-                )
-
-        if len(train_rows) != 311:
-
-            raise RuntimeError(
-                f"Seed {seed}: expected 311 "
-                f"binary train rows, got "
-                f"{len(train_rows)}"
-            )
-
-        if len(test_rows) != 78:
-
-            raise RuntimeError(
-                f"Seed {seed}: expected 78 "
-                f"binary test rows, got "
-                f"{len(test_rows)}"
-            )
-
-        y_train = np.array([
-            LABEL_TO_INT[
-                metadata[row]["label"]
+        train_rows_all = [
+            fresh_id_to_row[
+                canonical_records[i]["id"]
             ]
-            for row in train_rows
-        ])
+            for i in split["train_indices"]
+        ]
 
-        y_test = np.array([
-            LABEL_TO_INT[
-                metadata[row]["label"]
+        test_rows_all = [
+            fresh_id_to_row[
+                canonical_records[i]["id"]
             ]
-            for row in test_rows
-        ])
+            for i in split["test_indices"]
+        ]
 
-        groups_train = np.array([
-            metadata[row]["scenario_id"]
-            for row in train_rows
-        ])
+        # -------------------------------------------------
+        # Keep only binary records.
+        # -------------------------------------------------
 
-        groups_test = np.array([
-            metadata[row]["scenario_id"]
-            for row in test_rows
-        ])
+        binary_row_set = {
+            r["row"]
+            for r in binary_records
+        }
 
-        if set(
-            groups_train
-        ) & set(
-            groups_test
-        ):
+        train_rows = [
+            i
+            for i in train_rows_all
+            if i in binary_row_set
+        ]
 
+        test_rows = [
+            i
+            for i in test_rows_all
+            if i in binary_row_set
+        ]
+
+        # -------------------------------------------------
+        # Scenario groups
+        # -------------------------------------------------
+
+        scenario_by_row = {
+            r["row"]: r["scenario_id"]
+            for r in binary_records
+        }
+
+        label_by_row = {
+            r["row"]: label_to_int[r["label"]]
+            for r in binary_records
+        }
+
+        train_scenarios = {
+            scenario_by_row[i]
+            for i in train_rows
+        }
+
+        test_scenarios = {
+            scenario_by_row[i]
+            for i in test_rows
+        }
+
+        overlap = train_scenarios & test_scenarios
+
+        if overlap:
             raise RuntimeError(
-                f"Scenario leakage in seed {seed}"
+                f"Seed {seed}: scenario leakage after "
+                f"ID-based split translation."
             )
 
-        print()
-        print("=" * 70)
-        print(f"E2 SEED {seed}")
-        print("=" * 70)
+        X_train = np.asarray(
+            X[train_rows],
+            dtype=np.float32,
+        )
 
+        X_test = np.asarray(
+            X[test_rows],
+            dtype=np.float32,
+        )
+
+        y_train = np.asarray(
+            [
+                label_by_row[i]
+                for i in train_rows
+            ],
+            dtype=np.int64,
+        )
+
+        y_test = np.asarray(
+            [
+                label_by_row[i]
+                for i in test_rows
+            ],
+            dtype=np.int64,
+        )
+
+        groups_train = np.asarray(
+            [
+                scenario_by_row[i]
+                for i in train_rows
+            ]
+        )
+
+        print("\n" + "=" * 70)
+        print(f"SEED {seed}")
+        print("=" * 70)
         print(
             "Train:",
             len(train_rows),
-            Counter(y_train)
+            "Test:",
+            len(test_rows),
+        )
+        print(
+            "Train scenarios:",
+            len(train_scenarios),
+        )
+        print(
+            "Test scenarios:",
+            len(test_scenarios),
+        )
+
+        # -------------------------------------------------
+        # Inner CV layer/C selection
+        # -------------------------------------------------
+
+        layers = list(range(n_layers))
+
+        best, candidates = select_layer_and_C(
+            X_train,
+            y_train,
+            groups_train,
+            layers,
+            C_GRID,
+        )
+
+        best_layer = best["layer"]
+        best_C = best["C"]
+
+        print(
+            "Selected layer:",
+            best_layer,
+            "C:",
+            best_C,
+            "inner BA:",
+            best["inner_cv_balanced_accuracy"],
+        )
+
+        # -------------------------------------------------
+        # Fit final model on complete training split
+        # -------------------------------------------------
+
+        model = make_pipeline(
+            StandardScaler(),
+            LogisticRegression(
+                penalty="l2",
+                solver="liblinear",
+                C=best_C,
+                max_iter=2000,
+                random_state=0,
+            ),
+        )
+
+        model.fit(
+            X_train[:, best_layer, :],
+            y_train,
+        )
+
+        metrics, pred, prob = evaluate(
+            model,
+            X_test[:, best_layer, :],
+            y_test,
         )
 
         print(
-            "Test:",
-            len(test_rows),
-            Counter(y_test)
+            "Test accuracy:",
+            metrics["accuracy"],
+        )
+        print(
+            "Test balanced accuracy:",
+            metrics["balanced_accuracy"],
+        )
+        print(
+            "Test macro-F1:",
+            metrics["macro_f1"],
+        )
+        print(
+            "Test AUROC:",
+            metrics["auroc"],
         )
 
-        # ----------------------------------------------------
-        # Representation positions
-        # ----------------------------------------------------
+        result = {
+            "seed": seed,
+            "representation": args.representation,
+            "hidden_shape": [
+                int(n_records),
+                int(n_layers),
+                int(hidden_size),
+            ],
+            "train_count": len(train_rows),
+            "test_count": len(test_rows),
+            "train_scenarios": len(train_scenarios),
+            "test_scenarios": len(test_scenarios),
+            "selected_layer": best_layer,
+            "selected_C": best_C,
+            "inner_cv": best,
+            "test_metrics": metrics,
+            "candidates": candidates,
+        }
 
-        for position_name in POSITIONS:
+        all_results.append(result)
 
-            print()
-            print("-" * 70)
-            print(
-                f"POSITION: {position_name}"
+        # -------------------------------------------------
+        # Save predictions
+        # -------------------------------------------------
+
+        prediction_path = (
+            args.output
+            / (
+                f"predictions_"
+                f"{args.representation}_"
+                f"seed_{seed}.jsonl"
             )
-            print("-" * 70)
+        )
 
-            hidden = positions[
-                position_name
-            ]
+        prediction_path.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
 
-            X_train_all = np.asarray(
-                hidden[train_rows],
-                dtype=np.float32
-            )
+        with prediction_path.open(
+            "w",
+            encoding="utf-8",
+        ) as f:
 
-            X_test_all = np.asarray(
-                hidden[test_rows],
-                dtype=np.float32
-            )
-
-            # ------------------------------------------------
-            # Select layer and C using training only
-            # ------------------------------------------------
-
-            selected, layer_results = (
-                select_layer_and_C(
-                    X_train_all,
-                    y_train,
-                    groups_train
-                )
-            )
-
-            selected_layer = selected[
-                "layer"
-            ]
-
-            selected_C = selected[
-                "best_C"
-            ]
-
-            print(
-                "Selected layer:",
-                selected_layer
-            )
-
-            print(
-                "Selected C:",
-                selected_C
-            )
-
-            print(
-                "Inner-CV BA:",
-                selected[
-                    "inner_cv_balanced_accuracy"
-                ]
-            )
-
-            print(
-                "Valid folds:",
-                selected[
-                    "valid_folds"
-                ]
-            )
-
-            # ------------------------------------------------
-            # Fit final model on ALL training data
-            # ------------------------------------------------
-
-            X_train = X_train_all[
-                :,
-                selected_layer,
-                :
-            ]
-
-            X_test = X_test_all[
-                :,
-                selected_layer,
-                :
-            ]
-
-            final_model = build_model(
-                selected_C
-            )
-
-            final_model.fit(
-                X_train,
-                y_train
-            )
-
-            # ------------------------------------------------
-            # Held-out test evaluation
-            # ------------------------------------------------
-
-            y_pred = final_model.predict(
-                X_test
-            )
-
-            y_probability = (
-                final_model.predict_proba(
-                    X_test
-                )[:, 1]
-            )
-
-            test_metrics = evaluate_binary(
+            for row, true_y, pred_y, p in zip(
+                test_rows,
                 y_test,
-                y_pred,
-                y_probability
-            )
+                pred,
+                prob,
+            ):
 
-            print()
-            print("TEST RESULTS")
+                record = metadata[row]
 
-            print(
-                "Accuracy:",
-                test_metrics[
-                    "accuracy"
-                ]
-            )
+                out = {
+                    "id": record["id"],
+                    "scenario_id": record["scenario_id"],
+                    "true_label": int(true_y),
+                    "predicted_label": int(pred_y),
+                    "probability_reversible": float(p),
+                    "seed": seed,
+                    "representation": args.representation,
+                    "layer": best_layer,
+                }
 
-            print(
-                "Balanced accuracy:",
-                test_metrics[
-                    "balanced_accuracy"
-                ]
-            )
-
-            print(
-                "Macro-F1:",
-                test_metrics[
-                    "macro_f1"
-                ]
-            )
-
-            print(
-                "AUROC:",
-                test_metrics[
-                    "auroc"
-                ]
-            )
-
-            print(
-                "Confusion matrix:"
-            )
-
-            print(
-                np.array(
-                    test_metrics[
-                        "confusion_matrix"
-                    ]
-                )
-            )
-
-            # ------------------------------------------------
-            # Result object
-            # ------------------------------------------------
-
-            result = {
-                "experiment": "E2",
-                "model": (
-                    "Qwen/Qwen2.5-7B-Instruct"
-                ),
-                "seed": seed,
-                "position": position_name,
-                "task": "binary",
-                "labels": [
-                    "reversible",
-                    "irreversible",
-                ],
-                "excluded_label": (
-                    "partially_reversible"
-                ),
-                "selected_layer": (
-                    selected_layer
-                ),
-                "selected_C": (
-                    selected_C
-                ),
-                "inner_cv": {
-                    "balanced_accuracy": (
-                        selected[
-                            "inner_cv_balanced_accuracy"
-                        ]
-                    ),
-                    "valid_folds": (
-                        selected[
-                            "valid_folds"
-                        ]
-                    ),
-                    "fold_scores": (
-                        selected[
-                            "fold_scores"
-                        ]
-                    ),
-                },
-                "test": test_metrics,
-                "n_train": len(train_rows),
-                "n_test": len(test_rows),
-                "train_scenarios": len(
-                    set(groups_train)
-                ),
-                "test_scenarios": len(
-                    set(groups_test)
-                ),
-            }
-
-            all_results.append(
-                result
-            )
-
-            # ------------------------------------------------
-            # Predictions
-            # ------------------------------------------------
-
-            predictions_path = (
-                output_dir /
-                f"predictions_seed_{seed}_"
-                f"{position_name}.jsonl"
-            )
-
-            with open(
-                predictions_path,
-                "w",
-                encoding="utf-8"
-            ) as f:
-
-                for i, row in enumerate(
-                    test_rows
-                ):
-
-                    pred_label = (
-                        "irreversible"
-                        if y_pred[i] == 1
-                        else "reversible"
-                    )
-
-                    prediction = {
-                        "id": metadata[row]["id"],
-                        "scenario_id": (
-                            metadata[row][
-                                "scenario_id"
-                            ]
-                        ),
-                        "true_label": (
-                            metadata[row][
-                                "label"
-                            ]
-                        ),
-                        "true_binary": int(
-                            y_test[i]
-                        ),
-                        "pred_binary": int(
-                            y_pred[i]
-                        ),
-                        "pred_label": pred_label,
-                        "prob_irreversible": (
-                            float(
-                                y_probability[i]
-                            )
-                        ),
-                    }
-
-                    f.write(
-                        json.dumps(
-                            prediction
-                        ) + "\n"
-                    )
-
-            # ------------------------------------------------
-            # Layer selection details
-            # ------------------------------------------------
-
-            selection_path = (
-                output_dir /
-                f"layer_selection_seed_{seed}_"
-                f"{position_name}.json"
-            )
-
-            with open(
-                selection_path,
-                "w",
-                encoding="utf-8"
-            ) as f:
-
-                json.dump(
-                    {
-                        "seed": seed,
-                        "position": position_name,
-                        "selected_layer": (
-                            selected_layer
-                        ),
-                        "selected_C": (
-                            selected_C
-                        ),
-                        "layers": (
-                            layer_results
-                        ),
-                    },
-                    f,
-                    indent=2
+                f.write(
+                    json.dumps(out)
+                    + "\n"
                 )
 
-    # --------------------------------------------------------
-    # Combined metrics
-    # --------------------------------------------------------
+    # -----------------------------------------------------
+    # Save aggregate results
+    # -----------------------------------------------------
 
-    metrics_path = (
-        output_dir /
-        "metrics.json"
+    output_metrics = (
+        args.output
+        / f"metrics_{args.representation}.json"
     )
 
-    with open(
-        metrics_path,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        json.dump(
-            all_results,
-            f,
-            indent=2
-        )
-
-    # --------------------------------------------------------
-    # Run manifest
-    # --------------------------------------------------------
+    save_json(
+        all_results,
+        output_metrics,
+    )
 
     manifest = {
         "experiment": "E2",
-        "model": (
-            "Qwen/Qwen2.5-7B-Instruct"
-        ),
-        "task": "binary",
-        "excluded_label": (
-            "partially_reversible"
-        ),
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "representation": args.representation,
+        "hidden_shape": [
+            int(n_records),
+            int(n_layers),
+            int(hidden_size),
+        ],
         "seeds": SEEDS,
-        "layers": LAYERS,
         "C_grid": C_GRID,
-        "inner_cv_folds": N_SPLITS,
-        "group_key": "scenario_id",
-        "selection_metric": (
-            "balanced_accuracy"
+        "inner_cv": {
+            "method": "GroupKFold",
+            "folds": 5,
+            "minimum_valid_folds": MIN_VALID_FOLDS,
+            "selection_metric": "balanced_accuracy",
+        },
+        "split_mapping": (
+            "canonical_dataset_index -> record_id "
+            "-> fresh_hidden_state_row"
         ),
-        "minimum_valid_folds": 4,
-        "representations": POSITIONS,
-        "hidden_state_manifest_sha256": (
-            sha256_file(
-                hidden_dir /
-                "manifest.json"
-            )
-            if (
-                hidden_dir /
-                "manifest.json"
-            ).exists()
-            else None
-        ),
-        "results": len(all_results),
+        "results_file": str(output_metrics),
     }
 
-    manifest_path = (
-        output_dir /
-        "manifest.json"
+    save_json(
+        manifest,
+        args.output / "manifest.json",
     )
 
-    with open(
-        manifest_path,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        json.dump(
-            manifest,
-            f,
-            indent=2
-        )
-
-    print()
+    print("\n" + "=" * 70)
+    print("BINARY PROBE RUN COMPLETE")
     print("=" * 70)
-    print("E2 PROBE TRAINING COMPLETE")
-    print("=" * 70)
-    print(
-        "Results saved to:",
-        output_dir
-    )
-    print(
-        "Total result rows:",
-        len(all_results)
-    )
+    print("Output:", args.output)
 
 
 if __name__ == "__main__":

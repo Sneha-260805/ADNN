@@ -102,7 +102,7 @@ def main():
     if str(src_path) not in sys.path:
         sys.path.insert(0, str(src_path))
 
-    from adnn.dataset import load_dataset
+    from adnn.dataset.api import load_dataset
     from adnn.dataset.prompting import locate_action
 
     # --------------------------------------------------------
@@ -113,16 +113,22 @@ def main():
         str(dataset_path)
     )
 
-    records = list(
-        ds.iter_split("train")
-    ) + list(
-        ds.iter_split("test")
-    )
+    train_records = list(ds.iter_split("train"))
+    test_records = list(ds.iter_split("test"))
+    records = train_records + test_records
 
-    if len(records) != 621:
-        raise RuntimeError(
-            f"Expected 621 records, got {len(records)}"
-        )
+    if not records:
+        raise RuntimeError("Dataset contains no records")
+
+    record_ids = [r["id"] for r in records]
+
+    if len(record_ids) != len(set(record_ids)):
+        raise RuntimeError("Duplicate record IDs detected")
+
+    print(
+        f"Loaded {len(records)} records "
+        f"(train={len(train_records)}, test={len(test_records)})"
+    )
 
     # --------------------------------------------------------
     # Load model
