@@ -29,7 +29,7 @@ from __future__ import annotations
 import random
 import re
 from collections import Counter, defaultdict
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
@@ -151,9 +151,12 @@ class Unit:
     audit: Mapping[str, Any] | None = None
     tier: str = ""
     reason: str | None = None
+    family_domain: str | None = None  # set by families outside ALL_FAMILIES (ADR-0010)
 
     @property
     def domain(self) -> str:
+        if self.family_domain is not None:
+            return self.family_domain
         if self.family in ALL_FAMILIES:
             return ALL_FAMILIES[self.family].domain
         return slf.DOMAIN
@@ -294,12 +297,15 @@ class Admission:
     candidate_counts: Counter[str]
 
 
-def admit(cfg: ProductionConfig) -> Admission:
+def admit(
+    cfg: ProductionConfig, candidates: Iterable[tuple[str, list[Unit]]] | None = None
+) -> Admission:
+    """Admit candidate groups; ``candidates`` defaults to :func:`candidate_groups` (v1.0)."""
     per: Counter[str] = Counter()
     per_p: Counter[str] = Counter()
     seen: set[str] = set()
     out = Admission([], [], Counter(), Counter(), Counter())
-    for kind, group in candidate_groups(cfg):
+    for kind, group in candidates if candidates is not None else candidate_groups(cfg):
         for u in group:
             u.keys = scenario_keys(u.state.to_dict(), u.call.to_dict())
         exact = [sha256_text(stable_json([u.state.to_dict(), u.call.to_dict()])) for u in group]
@@ -598,8 +604,12 @@ def select_units(units: list[Unit], cfg: ProductionConfig) -> tuple[list[Unit], 
     raise RuntimeError("unit selection did not converge")
 
 
-def build(cfg: ProductionConfig, dataset_version: str) -> Built:
-    adm = admit(cfg)
+def build(
+    cfg: ProductionConfig,
+    dataset_version: str,
+    candidates: Iterable[tuple[str, list[Unit]]] | None = None,
+) -> Built:
+    adm = admit(cfg, candidates)
     units, unit_drops = select_units(adm.units, cfg)
     groups = split_groups(units)
     test = assign_split(units, groups, cfg)
