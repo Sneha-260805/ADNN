@@ -1,0 +1,58 @@
+{
+  "experiment": "qwen_v2_binary_mean_action_tokens_layer18",
+  "task": {
+    "type": "binary",
+    "label_mapping": {
+      "0": "non_irreversible",
+      "1": "irreversible"
+    }
+  },
+  "representation": {
+    "type": "mean_action_tokens",
+    "layer": 18
+  },
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "C": 0.01,
+    "class_weight": "balanced",
+    "solver": "saga",
+    "max_iter": 500,
+    "tol": 0.01,
+    "random_state": 42
+  },
+  "train": {
+    "n": 1709
+  },
+  "test": {
+    "n": 425
+  },
+  "metrics": {
+    "accuracy": 0.8729411764705882,
+    "balanced_accuracy": 0.9007352941176471,
+    "macro_f1": 0.8698979591836735,
+    "auroc": 0.9883217993079585,
+    "per_class": {
+      "non_irreversible": {
+        "precision": 1.0,
+        "recall": 0.8014705882352942,
+        "f1": 0.889795918367347
+      },
+      "irreversible": {
+        "precision": 0.7391304347826086,
+        "recall": 1.0,
+        "f1": 0.85
+      }
+    },
+    "confusion_matrix": [
+      [
+        218,
+        54
+      ],
+      [
+        0,
+        153
+      ]
+    ]
+  }
+}

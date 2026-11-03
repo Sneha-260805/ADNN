@@ -1,0 +1,62 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "status": "FINAL",
+  "primary_binary_result": {
+    "balanced_accuracy": 0.9117647058823529,
+    "macro_f1": 0.8838162930563149,
+    "auroc": 0.9864234909650134
+  },
+  "lexical_baseline": {
+    "accuracy": 0.76,
+    "balanced_accuracy": 0.7438725490196079,
+    "macro_f1": 0.7417429225050043,
+    "auroc": 0.8710351787773933
+  },
+  "mean_action_tokens": {
+    "accuracy": 0.8729411764705882,
+    "balanced_accuracy": 0.9007352941176471,
+    "macro_f1": 0.8698979591836735,
+    "auroc": 0.9883217993079585
+  },
+  "horizon_ablation": {
+    "h1": {
+      "accuracy": 0.8941176470588236,
+      "balanced_accuracy": 0.9172794117647058,
+      "macro_f1": 0.8908072555367145,
+      "auroc": 0.9883938869665513
+    },
+    "h2": {
+      "accuracy": 0.8870588235294118,
+      "balanced_accuracy": 0.9117647058823529,
+      "macro_f1": 0.8838162930563149,
+      "auroc": 0.9864234909650134
+    },
+    "h3": {
+      "accuracy": 0.8871,
+      "balanced_accuracy": 0.9118,
+      "macro_f1": 0.8838,
+      "auroc": 0.9864
+    }
+  },
+  "bootstrap_95_ci": {
+    "balanced_accuracy": {
+      "estimate": 0.9117647058823529,
+      "ci_95": [0.8110891089108911, 1.0]
+    },
+    "macro_f1": {
+      "estimate": 0.8838162930563149,
+      "ci_95": [0.7864901379626347, 1.0]
+    },
+    "auroc": {
+      "estimate": 0.9864234909650134,
+      "ci_95": [0.9424199731247787, 1.0]
+    }
+  },
+  "minimal_pair_evaluation": {
+    "pair_accuracy": 0.31746031746031744,
+    "contrast_preservation_accuracy": 0.31746031746031744,
+    "balanced_accuracy": 0.7345679012345678,
+    "macro_f1": 0.6921087961811944
+  },
+  "interpretation": "Qwen 2.5-7B-Instruct hidden states contain substantial information predictive of action reversibility under the standard evaluation and substantially outperform the lexical action-text baseline. However, performance drops substantially under the controlled minimal-pair evaluation, indicating that aggregate decoding may partly reflect action identity, contextual information, or other correlated cues rather than a robust reversibility-specific representation."
+}
