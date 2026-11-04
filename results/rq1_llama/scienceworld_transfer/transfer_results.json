@@ -1,0 +1,61 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "representation": "last_action_token",
+  "direction_A": {
+    "direction": "Sandbox_to_ScienceWorld",
+    "layer": 11,
+    "C": 1.0,
+    "cv_balanced_accuracy": 0.9151575859063635,
+    "test_balanced_accuracy": 0.575,
+    "test_macro_f1": 0.44958371877890846,
+    "test_auroc": 0.7533333333333334,
+    "confusion_matrix": [
+      [
+        3,
+        17
+      ],
+      [
+        0,
+        15
+      ]
+    ],
+    "predicted_class_counts": [
+      3,
+      32
+    ],
+    "true_class_counts": [
+      20,
+      15
+    ]
+  },
+  "direction_B": {
+    "direction": "ScienceWorld_to_Sandbox",
+    "layer": 13,
+    "C": 0.01,
+    "cv_balanced_accuracy": 1.0,
+    "test_balanced_accuracy": 0.5,
+    "test_macro_f1": 0.19822485207100593,
+    "test_auroc": 0.3295288264559555,
+    "confusion_matrix": [
+      [
+        67,
+        0
+      ],
+      [
+        204,
+        0
+      ]
+    ],
+    "predicted_class_counts": [
+      271,
+      0
+    ],
+    "true_class_counts": [
+      67,
+      204
+    ]
+  },
+  "scienceworld_records": 35,
+  "sandbox_train_records": 1281,
+  "sandbox_test_records": 271
+}

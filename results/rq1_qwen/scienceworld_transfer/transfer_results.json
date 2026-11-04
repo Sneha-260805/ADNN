@@ -1,0 +1,35 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "sandbox_to_scienceworld": {
+    "layer": 20,
+    "C": 0.01,
+    "cv_balanced_accuracy": 0.9132,
+    "test_balanced_accuracy": 0.6333,
+    "test_macro_f1": 0.6329,
+    "test_auroc": 0.6533,
+    "predictions": [
+      24,
+      11
+    ],
+    "true_labels": [
+      20,
+      15
+    ]
+  },
+  "scienceworld_to_sandbox": {
+    "layer": 14,
+    "C": 0.001,
+    "cv_balanced_accuracy": 1.0,
+    "test_balanced_accuracy": 0.5,
+    "test_macro_f1": 0.1982,
+    "test_auroc": 0.4837,
+    "predictions": [
+      271,
+      0
+    ],
+    "true_labels": [
+      67,
+      204
+    ]
+  }
+}
