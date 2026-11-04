@@ -1,0 +1,99 @@
+{
+  "qwen": {
+    "sandbox_to_scienceworld": {
+      "layer": 20,
+      "C": 0.01,
+      "cv_ba": 0.9132,
+      "test_ba": 0.6333,
+      "macro_f1": 0.6329,
+      "auroc": 0.6533
+    },
+    "scienceworld_to_sandbox": {
+      "layer": 14,
+      "C": 0.001,
+      "cv_ba": 1.0,
+      "test_ba": 0.5,
+      "macro_f1": 0.1982,
+      "auroc": 0.4837
+    }
+  },
+  "llama": {
+    "sandbox_to_scienceworld": {
+      "direction": "Sandbox_to_ScienceWorld",
+      "layer": 11,
+      "C": 1.0,
+      "cv_balanced_accuracy": 0.9151575859063635,
+      "test_balanced_accuracy": 0.575,
+      "test_macro_f1": 0.44958371877890846,
+      "test_auroc": 0.7533333333333334,
+      "confusion_matrix": [
+        [
+          3,
+          17
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "predicted_class_counts": [
+        3,
+        32
+      ],
+      "true_class_counts": [
+        20,
+        15
+      ]
+    },
+    "scienceworld_to_sandbox": {
+      "direction": "ScienceWorld_to_Sandbox",
+      "layer": 13,
+      "C": 0.01,
+      "cv_balanced_accuracy": 1.0,
+      "test_balanced_accuracy": 0.5,
+      "test_macro_f1": 0.19822485207100593,
+      "test_auroc": 0.3295288264559555,
+      "confusion_matrix": [
+        [
+          67,
+          0
+        ],
+        [
+          204,
+          0
+        ]
+      ],
+      "predicted_class_counts": [
+        271,
+        0
+      ],
+      "true_class_counts": [
+        67,
+        204
+      ]
+    }
+  },
+  "baselines": {
+    "scienceworld_action_verb": {
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    "bow_sandbox_to_scienceworld": {
+      "balanced_accuracy": 0.10833333333333334,
+      "macro_f1": 0.11138411138411139,
+      "auroc": 0.2
+    },
+    "bow_scienceworld_to_sandbox": {
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.19822485207100593,
+      "auroc": 0.5174495171202809
+    }
+  },
+  "dataset": {
+    "scienceworld_records": 35,
+    "scienceworld_reversible": 20,
+    "scienceworld_partially_reversible": 15,
+    "sandbox_train_records": 1281,
+    "sandbox_test_records": 271
+  }
+}
