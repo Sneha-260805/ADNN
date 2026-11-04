@@ -1,0 +1,211 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S34",
+ "task_description": "Task description:\nYour task is to measure the melting point of chocolate, which is located around the kitchen. First, focus on the thermometer. Next, focus on the chocolate. If the melting point of chocolate is above -10.0 degrees celsius, focus on the blue box. If the melting point of chocolate is below -10.0 degrees celsius, focus on the orange box. The boxes are located around the kitchen.",
+ "actions_already_taken": [
+  "open cupboard",
+  "move metal pot to sink",
+  "activate sink",
+  "deactivate sink",
+  "pick up metal pot",
+  "pick up lighter",
+  "teleport to bedroom",
+  "put down metal pot",
+  "open closet"
+ ],
+ "target_action": "use lighter on closet",
+ "target_objects": [
+  {
+   "role": "lighter",
+   "name": "lighter",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": false,
+   "propMaterial.temperatureC": 10.0896152564551,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "metal",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "inventory",
+    "name": "inventory",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  },
+  {
+   "role": "closet",
+   "name": "closet",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.165356689797964,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "bedroom",
+    "name": "bedroom",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "metal pot",
+   "name": "metal pot",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.084835971689737,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "water in metal pot",
+     "name": "water",
+     "propMaterial.temperatureC": 10.011983776161568,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "water",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "air in bedroom",
+   "name": "air",
+   "propMaterial.temperatureC": 24.272592454725547,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "bed",
+   "name": "bed",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.159464114689317,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "mattress",
+     "name": "mattress",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.010106215279537,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "cloth",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "pillow in mattress",
+       "name": "pillow",
+       "propMaterial.temperatureC": 10.00047558959157,
+       "propMaterial.stateOfMatter": "solid",
+       "propMaterial.substanceName": "cloth",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "table in bedroom",
+   "name": "table",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.165090312012063,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "closet",
+   "name": "closet",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.165356689797964,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "painting in bedroom",
+   "name": "painting",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.165610262176996,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "paper",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "lighter",
+       "name": "lighter",
+       "propContainer.isOpen": false,
+       "propDevice.isActivated": false,
+       "propDevice.isActivable": false,
+       "propMaterial.temperatureC": 10.0896152564551,
+       "propMaterial.stateOfMatter": "solid",
+       "propMaterial.substanceName": "metal",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      },
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "325618302f75d5a2c8807a23c217c2d4760877e4c367a98d724e51f7d776a2b7"
+}

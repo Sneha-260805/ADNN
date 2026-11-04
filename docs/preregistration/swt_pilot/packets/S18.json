@@ -1,0 +1,337 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S18",
+ "task_description": "Task description:\nYour task is to use chemistry to create green-blue paint. When you are part-way done, focus on the intermediate (secondary color) paint you created.  When you are completely done, focus on the green paint.",
+ "actions_already_taken": [],
+ "target_action": "pick up jug",
+ "target_objects": [
+  {
+   "role": "jug in table",
+   "name": "jug",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.00411582966283,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "plastic",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "table in art studio",
+    "name": "table",
+    "propContainer.isOpen": true,
+    "propMaterial.temperatureC": 10.041543132407353,
+    "propMaterial.stateOfMatter": "solid",
+    "propMaterial.substanceName": "wood",
+    "propMaterial.hasCombusted": false,
+    "propMaterial.isCombusting": false,
+    "propMaterial.combustionTicks": 100,
+    "propMoveable.isMovable": true
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "air in art studio",
+   "name": "air",
+   "propMaterial.temperatureC": 24.732752446595573,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "table in art studio",
+   "name": "table",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.041543132407353,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "jug in table",
+     "name": "jug",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.00411582966283,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "plastic",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.043597150820561,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "red paint",
+     "propMaterial.temperatureC": 10.001753113377886,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "redpaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.043562925749846,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "blue paint",
+     "propMaterial.temperatureC": 10.00175080504586,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "bluepaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.043527898766754,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "yellow paint",
+     "propMaterial.temperatureC": 10.001748505349182,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "yellowpaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "large cupboard",
+   "name": "large cupboard",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.032610179126465,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in large cupboard",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.003756221546778,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003516488472922,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "red paint",
+       "propMaterial.temperatureC": 10.00012063287645,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "redpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003394141105671,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "blue paint",
+       "propMaterial.temperatureC": 10.000116248307124,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "bluepaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003276280388356,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "yellow paint",
+       "propMaterial.temperatureC": 10.000112031556789,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "yellowpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "paint cupboard",
+   "name": "paint cupboard",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.026362645846751,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in paint cupboard",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.00297865720762,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.002874658433438,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.002774469334947,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.002677960680744,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "4402e32a33157868bd648a0bc489923d23c002c3c55b06d6da69a4ae7ac2abc3"
+}

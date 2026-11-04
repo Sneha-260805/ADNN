@@ -1,0 +1,296 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S33",
+ "task_description": "Task description:\nYour task is to determine which of the two inclined planes (C, B) has the shallowest angle. After completing your experiment, focus on the inclined plane with the shallowest angle.",
+ "actions_already_taken": [],
+ "target_action": "connect blue wire terminal 2 to orange wire terminal 1",
+ "target_objects": [
+  {
+   "role": "terminal 2 in blue wire",
+   "name": "terminal 2",
+   "propMoveable.isMovable": false,
+   "propElectricalConnection.connectedTo": [],
+   "container": {
+    "role": "blue wire",
+    "name": "blue wire",
+    "propDevice.isActivated": false,
+    "propDevice.isActivable": false,
+    "propMaterial.temperatureC": 10.003951305695814,
+    "propMaterial.stateOfMatter": "solid",
+    "propMaterial.substanceName": "metal",
+    "propMaterial.hasCombusted": false,
+    "propMaterial.isCombusting": false,
+    "propMaterial.combustionTicks": 100,
+    "propMoveable.isMovable": true
+   }
+  },
+  {
+   "role": "terminal 1 in orange wire",
+   "name": "terminal 1",
+   "propMoveable.isMovable": false,
+   "propElectricalConnection.connectedTo": [],
+   "container": {
+    "role": "orange wire",
+    "name": "orange wire",
+    "propDevice.isActivated": false,
+    "propDevice.isActivable": false,
+    "propMaterial.temperatureC": 10.004071293994404,
+    "propMaterial.stateOfMatter": "solid",
+    "propMaterial.substanceName": "metal",
+    "propMaterial.hasCombusted": false,
+    "propMaterial.isCombusting": false,
+    "propMaterial.combustionTicks": 100,
+    "propMoveable.isMovable": true
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": null,
+   "name": "inclined plane",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.042574566269037,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": null,
+   "name": "inclined plane",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.042624945300389,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "wood block",
+   "name": "wood block",
+   "propMaterial.temperatureC": 10.04267793120611,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "stopwatch in workshop",
+   "name": "stopwatch",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "air in workshop",
+   "name": "air",
+   "propMaterial.temperatureC": 24.821207504125688,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "table in workshop",
+   "name": "table",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.038303641137489,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "green light bulb",
+     "name": "green light bulb",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "anode in green light bulb",
+       "name": "anode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      },
+      {
+       "role": "cathode in green light bulb",
+       "name": "cathode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      }
+     ]
+    },
+    {
+     "role": "yellow light bulb",
+     "name": "yellow light bulb",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "anode in yellow light bulb",
+       "name": "anode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      },
+      {
+       "role": "cathode in yellow light bulb",
+       "name": "cathode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      }
+     ]
+    },
+    {
+     "role": "violet light bulb",
+     "name": "violet light bulb",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "anode in violet light bulb",
+       "name": "anode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      },
+      {
+       "role": "cathode in violet light bulb",
+       "name": "cathode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      }
+     ]
+    },
+    {
+     "role": "black wire",
+     "name": "black wire",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMaterial.temperatureC": 10.004193180425842,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "metal",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "orange wire",
+     "name": "orange wire",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMaterial.temperatureC": 10.004071293994404,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "metal",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "blue wire",
+     "name": "blue wire",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": false,
+     "propMaterial.temperatureC": 10.003951305695814,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "metal",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": "switch",
+     "name": "switch",
+     "propDevice.isActivated": false,
+     "propDevice.isActivable": true,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "anode in switch",
+       "name": "anode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      },
+      {
+       "role": "cathode in switch",
+       "name": "cathode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      }
+     ]
+    },
+    {
+     "role": "battery",
+     "name": "battery",
+     "propDevice.isActivated": true,
+     "propDevice.isActivable": false,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": "anode in battery",
+       "name": "anode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      },
+      {
+       "role": "cathode in battery",
+       "name": "cathode",
+       "propMoveable.isMovable": false,
+       "propElectricalConnection.connectedTo": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "ultra low temperature freezer",
+   "name": "ultra low temperature freezer",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": true,
+   "propDevice.isActivable": true,
+   "propMoveable.isMovable": false
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "b5d6459a4ebf86768020c5c42dda6c45938a81c7affc27180e9b8b37fe248f46"
+}

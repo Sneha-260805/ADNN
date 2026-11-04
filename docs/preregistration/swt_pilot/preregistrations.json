@@ -1,0 +1,3111 @@
+[
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r01-open-desk-drawer",
+   "family_id": "living-room-1-2-v0",
+   "task": "1-2",
+   "history": [],
+   "target": "open drawer",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "living-room-1-2-v0",
+   "task": "1-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to living room"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r01-open-desk-drawer",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "drawer in desk",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "f671586c3ef2f2961a590e2854febf10696f89f0177c609a332a84041a480b8a",
+  "property_rationale": [
+   [
+    "drawer in desk.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (open)",
+  "sha256": "00d433363fabe8aa7e6098d80ed3b97d6b02de4500858c109e4e3f0693893530"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r02-open-closet",
+   "family_id": "bedroom-1-3-v0",
+   "task": "1-3",
+   "history": [],
+   "target": "open closet",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-3-v0",
+   "task": "1-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to bedroom"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r02-open-closet",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "closet",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "c91c3ad00c0b6d3138f51845ff8ff661c63aa8b2795e98fb382a424c6ea0bddf",
+  "property_rationale": [
+   [
+    "closet.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (open)",
+  "sha256": "432faaabf664c106b6ad8a807280fc164cc029649ac0dc9c889d6946e71f8831"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r03-open-large-cupboard",
+   "family_id": "art-studio-6-1-v0",
+   "task": "6-1",
+   "history": [],
+   "target": "open cupboard",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "art-studio-6-1-v0",
+   "task": "6-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to art studio"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r03-open-large-cupboard",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "large cupboard",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "75dc800dd19f2667930360abc6d12851fd5975082f60564a056e12efc0f839f9",
+  "property_rationale": [
+   [
+    "large cupboard.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (open)",
+  "sha256": "8d2337ab07c385a5a17faec30344eca001b80d69649d458e209aed7f665ed849"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r04-open-glass-jar",
+   "family_id": "kitchen-2-2-v0",
+   "task": "2-2",
+   "history": [],
+   "target": "open glass jar",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-2-2-v0",
+   "task": "2-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r04-open-glass-jar",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "glass jar",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "30471c6af5f3da2a5e409f1d87433ccc35ce1c37557d48937041dfd84a461be8",
+  "property_rationale": [
+   [
+    "glass jar.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (open)",
+  "sha256": "fa4392736450694908460c6f89cff6fc1a53ea8039af6635508c69ee5305ec68"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r05-open-freezer",
+   "family_id": "kitchen-1-3-v0",
+   "task": "1-3",
+   "history": [],
+   "target": "open freezer",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-3-v0",
+   "task": "1-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r05-open-freezer",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "freezer",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "5af32a907922713503691dc5c21d3ce85219ad02805d38f09066414759d98eeb",
+  "property_rationale": [
+   [
+    "freezer.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism on a cooling device (temperature coupling)",
+  "sha256": "0009ff43c0afa8daeb855216d6bef486dd6c84e9933b7c13c37c64b1a11923ec"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r06-open-ult-freezer",
+   "family_id": "workshop-3-3-v0",
+   "task": "3-3",
+   "history": [],
+   "target": "open freezer",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "workshop-3-3-v0",
+   "task": "3-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to workshop"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r06-open-ult-freezer",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "ultra low temperature freezer",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "7a54588d60ccb319b68174a47fbcdb38be78abe67ac0ad5c22bb66a6622be80a",
+  "property_rationale": [
+   [
+    "ultra low temperature freezer.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism on a cooling device in the workshop",
+  "sha256": "4e81b9bfde4b26346249c928eaef0b87f628fb1af9384362c4808e59f64eb960"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r07-open-paint-cupboard",
+   "family_id": "art-studio-6-2-v0",
+   "task": "6-2",
+   "history": [],
+   "target": "open paint cupboard",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "art-studio-6-2-v0",
+   "task": "6-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to art studio"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r07-open-paint-cupboard",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "paint cupboard",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "bf9c6282670d3abbdc3890f16e93334c0be7f6abfcef314eeab8332b18962dc4",
+  "property_rationale": [
+   [
+    "paint cupboard.propContainer.isOpen",
+    "designed effect of open"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism, task-specific object (6-2)",
+  "sha256": "9208fcfefb0efbed0c188f2cb31415a056d12655a78ad5482c4f93542f5c820f"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r08-close-cupboard",
+   "family_id": "kitchen-1-4-v0",
+   "task": "1-4",
+   "history": [
+    "open cupboard"
+   ],
+   "target": "close cupboard",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-4-v0",
+   "task": "1-4",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r08-close-cupboard",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "cupboard",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "2c909d73e3d486a0299744508e709499f5935d29837d2b1cef4f194c077a74aa",
+  "property_rationale": [
+   [
+    "cupboard.propContainer.isOpen",
+    "designed effect of close"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (close after open)",
+  "sha256": "77002c4131e1f3aa1073ffcedb4b4d4ebf745afe835b6afe014f5530f96a31db"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r09-close-closet",
+   "family_id": "bedroom-1-1-v1",
+   "task": "1-1",
+   "history": [
+    "open closet"
+   ],
+   "target": "close closet",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-1-v1",
+   "task": "1-1",
+   "variation": 1,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to bedroom"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r09-close-closet",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "closet",
+     "field": "propContainer.isOpen",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "4cdb2ecde2575f82fed246a3af83706918c7207015c88b57450d8556d9a6b5f0",
+  "property_rationale": [
+   [
+    "closet.propContainer.isOpen",
+    "designed effect of close"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "container mechanism (close after open)",
+  "sha256": "9be5bdc6dfee21247a930d4792f6e367602d8b8f35bed1ed5b4fc07d72b9d0a9"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r10-move-painting-to-table",
+   "family_id": "bedroom-2-1-v0",
+   "task": "2-1",
+   "history": [],
+   "target": "move painting to table",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-2-1-v0",
+   "task": "2-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to bedroom"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r10-move-painting-to-table",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "painting in bedroom",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "painting in bedroom",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "021d9e38898e21c1e2b2094d5f95b4c9871c04b8c459e0e7c7a3aa230bb7790c",
+  "property_rationale": [
+   [
+    "painting in bedroom.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "painting in bedroom.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation mechanism",
+  "sha256": "94ccd08fbb8e46a40b0ae356616f7ea379fb5e79fb005d63d25ebc66f50ab039"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r11-move-painting-to-chair",
+   "family_id": "living-room-2-3-v0",
+   "task": "2-3",
+   "history": [],
+   "target": "move painting to chair",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "living-room-2-3-v0",
+   "task": "2-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to living room"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r11-move-painting-to-chair",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "painting in living room",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "painting in living room",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "bca090432ba41ef0d3e1989cf68de0ade08068c99d59e936243e534bad3549f3",
+  "property_rationale": [
+   [
+    "painting in living room.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "painting in living room.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation mechanism",
+  "sha256": "c6fdcf56d2e3e623ed5c0c157b3e310df1c13400daf18d73fb2dfeb3b215f5cc"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r12-pick-up-jug",
+   "family_id": "art-studio-6-3-v0",
+   "task": "6-3",
+   "history": [],
+   "target": "pick up jug",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "art-studio-6-3-v0",
+   "task": "6-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to art studio"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r12-pick-up-jug",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "jug in table",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "jug in table",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "43e5ee811a058b92a9b2a3412a4ae2bb417b9b7b2eb47a4e09435bab422bdb5d",
+  "property_rationale": [
+   [
+    "jug in table.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "jug in table.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation mechanism (pick up)",
+  "sha256": "8e7fc548837c9a9525c3c2bcdb65f851c4f46d3998ee4688cbc6427b4f86b7c3"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r13-pick-up-black-wire",
+   "family_id": "workshop-3-2-v0",
+   "task": "3-2",
+   "history": [],
+   "target": "pick up black wire",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "workshop-3-2-v0",
+   "task": "3-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to workshop"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r13-pick-up-black-wire",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "black wire",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "black wire",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "63a8aa49002b416089bd0e73c10340b14917bddd3d2b59f0e47a944551541afc",
+  "property_rationale": [
+   [
+    "black wire.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "black wire.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation mechanism (pick up), electrical part",
+  "sha256": "f9d266cadf94284aa4cd6e40317857fc89bcb1f739e2587defd289c08d34e3ad"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r14-move-bowl-to-table",
+   "family_id": "kitchen-4-2-v0",
+   "task": "4-2",
+   "history": [],
+   "target": "move bowl to table",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-4-2-v0",
+   "task": "4-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r14-move-bowl-to-table",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "bowl",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "bowl",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "fa05767df7ed508597711d74283526aedcffe49aeb69e45c1e7125d4414072f0",
+  "property_rationale": [
+   [
+    "bowl.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "bowl.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation of a container together with its contents",
+  "sha256": "7fea43458c4709b89f35086f9fd7aaa3d72f227d3cdcfa11cdeef644e4bda0b6"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r15-pick-up-drawing",
+   "family_id": "hallway-1-1-v2",
+   "task": "1-1",
+   "history": [],
+   "target": "pick up drawing",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "hallway-1-1-v2",
+   "task": "1-1",
+   "variation": 2,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to hallway"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r15-pick-up-drawing",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "drawing in hallway",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "drawing in hallway",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "b93bbc901d29a7ed7792058e6d12f4f973231f013f4b771145826158d463264c",
+  "property_rationale": [
+   [
+    "drawing in hallway.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "drawing in hallway.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation mechanism (pick up)",
+  "sha256": "358526691fc7c5193dfb3ee546955dfa011f6e88146cb276fa5c7f4d12cdddff"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r16-move-glass-cup-to-sink",
+   "family_id": "bathroom-2-1-v0",
+   "task": "2-1",
+   "history": [],
+   "target": "move cup to sink",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bathroom-2-1-v0",
+   "task": "2-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to bathroom"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r16-move-glass-cup-to-sink",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "glass cup in bathroom",
+     "field": "location",
+     "weight": 1
+    },
+    {
+     "role": "glass cup in bathroom",
+     "field": "propMaterial.temperatureC",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "e92f6306527b499c6158efb0b4c24b806a4ea9f67bbf63ecb89085c524fb56db",
+  "property_rationale": [
+   [
+    "glass cup in bathroom.location",
+    "designed effect of move / pick up"
+   ],
+   [
+    "glass cup in bathroom.propMaterial.temperatureC",
+    "recorded: ambient exchange"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "relocation into an inactive water source",
+  "sha256": "bab60c15855f51d8e3d170f7f731c2ad9fdd6527bc74e38c7d8562973d460e75"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r17-activate-stopwatch",
+   "family_id": "kitchen-1-2-v0",
+   "task": "1-2",
+   "history": [],
+   "target": "activate stopwatch",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-2-v0",
+   "task": "1-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r17-activate-stopwatch",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "stopwatch",
+     "field": "propDevice.isActivated",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "a669d4cd701ed4052adee320587e49104f4143419aaa783f0cbc8abbd073be82",
+  "property_rationale": [
+   [
+    "stopwatch.propDevice.isActivated",
+    "designed effect of activate / deactivate"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "device mechanism without heating or cooling",
+  "sha256": "2febe545358cacbba6e8cbfb2eac7aac973ee95f3f6b31dc298961b98097fd67"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r18-activate-switch",
+   "family_id": "workshop-3-4-v0",
+   "task": "3-4",
+   "history": [],
+   "target": "activate switch",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "workshop-3-4-v0",
+   "task": "3-4",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to workshop"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r18-activate-switch",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "switch",
+     "field": "propDevice.isActivated",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "ee88512d0e4bb9165d6d37a28440fb59ab5dc85164d50e41f33512164ad13f66",
+  "property_rationale": [
+   [
+    "switch.propDevice.isActivated",
+    "designed effect of activate / deactivate"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "device mechanism, switch not in a circuit",
+  "sha256": "1820963b932ca530962e38b142a36359cbaaa97eb6a173d7f09af296fa88d111"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r19-connect-cathode-red",
+   "family_id": "workshop-3-1-v1",
+   "task": "3-1",
+   "history": [],
+   "target": "connect battery cathode to red wire terminal 1",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "workshop-3-1-v1",
+   "task": "3-1",
+   "variation": 1,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to workshop"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r19-connect-cathode-red",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "cathode in battery",
+     "field": "propElectricalConnection.connectedTo",
+     "weight": 1
+    },
+    {
+     "role": "terminal 1 in red wire",
+     "field": "propElectricalConnection.connectedTo",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "8481c8d1a3fe736533f6c7dfef942227330d48b858c4c7b8787ada4f6e665bd5",
+  "property_rationale": [
+   [
+    "cathode in battery.propElectricalConnection.connectedTo",
+    "designed effect (one end)"
+   ],
+   [
+    "terminal 1 in red wire.propElectricalConnection.connectedTo",
+    "designed effect (other end)"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "circuit behaviour (current, device activation) is not serialised"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "electrical mechanism",
+  "sha256": "a8b500f1830da9655df6b6ea6f1689199d7af337319b1d65ca64bd05b89b591c"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-r20-connect-wire-wire",
+   "family_id": "workshop-9-1-v0",
+   "task": "9-1",
+   "history": [],
+   "target": "connect blue wire terminal 2 to orange wire terminal 1",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "workshop-9-1-v0",
+   "task": "9-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to workshop"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-r20-connect-wire-wire",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "terminal 2 in blue wire",
+     "field": "propElectricalConnection.connectedTo",
+     "weight": 1
+    },
+    {
+     "role": "terminal 1 in orange wire",
+     "field": "propElectricalConnection.connectedTo",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "beba1ee017cc20ee50b8e49df278405f67cdd7f9482a6450675aed12938159f1",
+  "property_rationale": [
+   [
+    "terminal 2 in blue wire.propElectricalConnection.connectedTo",
+    "designed effect (one end)"
+   ],
+   [
+    "terminal 1 in orange wire.propElectricalConnection.connectedTo",
+    "designed effect (other end)"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "circuit behaviour (current, device activation) is not serialised"
+  ],
+  "expected_category": "likely_reversible",
+  "selection_rationale": "electrical mechanism (wire to wire, no battery)",
+  "sha256": "1b16134552047448b03d236801a96cf523b4cdcad68080d01ed00869c527d195"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b01-burn-kitchen-table",
+   "family_id": "kitchen-1-2-v0",
+   "task": "1-2",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to counter"
+   ],
+   "target": "use lighter on table",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-2-v0",
+   "task": "1-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b01-burn-kitchen-table",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "table in kitchen",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "table in kitchen",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "table in kitchen",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into table"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "1f0011017f4442099e63e82c5b58e2b63a839ed857524daae130366f2cd577e9",
+  "property_rationale": [
+   [
+    "table in kitchen.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "table in kitchen.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "table in kitchen.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of wooden furniture holding objects; water pot on the counter",
+  "sha256": "2ed0aac5c61c6ed6a6b75196b671f8ba201c1440320d512413f23ce3d82ec9d2"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b02-burn-bowl",
+   "family_id": "kitchen-2-3-v0",
+   "task": "2-3",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to table"
+   ],
+   "target": "use lighter on bowl",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-2-3-v0",
+   "task": "2-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b02-burn-bowl",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "bowl",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "bowl",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "bowl",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into bowl"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "85c97c3813238fac1be19499614d3f08aae805139eea15a21749fdd3642dad6f",
+  "property_rationale": [
+   [
+    "bowl.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "bowl.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "bowl.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of a wooden container with food",
+  "sha256": "e817f777971079a6a69dd5c8e4c441f90d405343c61bbf776cc39206bd1e1d23"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b03-burn-cupboard",
+   "family_id": "kitchen-6-1-v0",
+   "task": "6-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to table"
+   ],
+   "target": "use lighter on cupboard",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-6-1-v0",
+   "task": "6-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b03-burn-cupboard",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "cupboard",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "cupboard",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "cupboard",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into cupboard"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "aae10434fcf449f6894b761dfa0388872b0bad962c61dc28e98f54dd299fe514",
+  "property_rationale": [
+   [
+    "cupboard.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "cupboard.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "cupboard.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of an open wooden storage container",
+  "sha256": "28ea1d0bee6e2189ad30a15fb934028f29e98b557a87521c066313e2f54d8a2c"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b04-burn-soap",
+   "family_id": "kitchen-1-4-v0",
+   "task": "1-4",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to table"
+   ],
+   "target": "use lighter on soap",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-4-v0",
+   "task": "1-4",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b04-burn-soap",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "soap",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "soap",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "soap",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move soap to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "e1b7181a605fd52adb838505e271e6c406a45d6e1f7850070db971290463d627",
+  "property_rationale": [
+   [
+    "soap.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "soap.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "soap.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of a non-wood, non-paper substance",
+  "sha256": "16c975333e8eba45e46695bd3d46ed47e9366a5934976f72f137e8b222cd0bc7"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b05-burn-bedroom-painting",
+   "family_id": "bedroom-1-1-v0",
+   "task": "1-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to bedroom",
+    "put down metal pot"
+   ],
+   "target": "use lighter on painting",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-1-v0",
+   "task": "1-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b05-burn-bedroom-painting",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "painting in bedroom",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "painting in bedroom",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "painting in bedroom",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move painting to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "f1b3c4efacad6bfd88b16c05f3343a2484583ccade99adcdfb991fd1d175aa71",
+  "property_rationale": [
+   [
+    "painting in bedroom.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "painting in bedroom.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "painting in bedroom.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of paper; water carried in",
+  "sha256": "82d4e4fa9042b54a5b15c8126b9b5c8e41fd9d6b046b46a471d955acdcbae25a"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b06-burn-bedroom-table",
+   "family_id": "bedroom-1-3-v0",
+   "task": "1-3",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to bedroom",
+    "put down metal pot"
+   ],
+   "target": "use lighter on table",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-3-v0",
+   "task": "1-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b06-burn-bedroom-table",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "table in bedroom",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "table in bedroom",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "table in bedroom",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into table"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "46e5d0ba0f0434374620cfe813617942c825db81e40ee6c45838bfc3a88f9c86",
+  "property_rationale": [
+   [
+    "table in bedroom.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "table in bedroom.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "table in bedroom.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of wooden furniture; water carried in",
+  "sha256": "fc597d42e53d993e443ebe248a927db6cb6d51a054be919bd990bee0c4735ba2"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b07-burn-finger-painting",
+   "family_id": "bedroom-1-1-v2",
+   "task": "1-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to bedroom",
+    "put down metal pot"
+   ],
+   "target": "use lighter on finger painting",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-1-v2",
+   "task": "1-1",
+   "variation": 2,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b07-burn-finger-painting",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "finger painting",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "finger painting",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "finger painting",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move finger painting to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "8b86ef93b7cd51a84c4aa9c9795a4ebaeb28078fa01aa0efbed3d0435bb4c6f9",
+  "property_rationale": [
+   [
+    "finger painting.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "finger painting.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "finger painting.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of paper, variation-specific object",
+  "sha256": "fda82d067a26a1ee69491c6fc28cf35c780360229aadf9125fde248d48da96df"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b08-burn-closet",
+   "family_id": "bedroom-2-2-v0",
+   "task": "2-2",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to bedroom",
+    "put down metal pot",
+    "open closet"
+   ],
+   "target": "use lighter on closet",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-2-2-v0",
+   "task": "2-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b08-burn-closet",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "closet",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "closet",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "closet",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into closet"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "57e4d98bdf0c043fba0e1d7a84c14bdb570fb457cfbefa83934af1ba65d6e3ba",
+  "property_rationale": [
+   [
+    "closet.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "closet.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "closet.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of a large wooden container",
+  "sha256": "f6765951e84c316cc0d2668641831f0ae95bdc1c85244c199fa738725fca583c"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b09-burn-living-chair",
+   "family_id": "living-room-1-1-v0",
+   "task": "1-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to living room",
+    "put down metal pot"
+   ],
+   "target": "use lighter on chair",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "living-room-1-1-v0",
+   "task": "1-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b09-burn-living-chair",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "chair in living room",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "chair in living room",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "chair in living room",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into chair"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "ba3b829953092ce33f6b0a015b84068ab2d16c4aba2b2e742adff33caf840d3e",
+  "property_rationale": [
+   [
+    "chair in living room.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "chair in living room.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "chair in living room.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of a wooden chair (living room)",
+  "sha256": "c0b85728bf2c1ee47d433dc0cc9b29ef9f24038f4dd9d106a60cdf2633c0da48"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b10-burn-desk",
+   "family_id": "living-room-2-1-v0",
+   "task": "2-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to living room",
+    "put down metal pot"
+   ],
+   "target": "use lighter on desk",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "living-room-2-1-v0",
+   "task": "2-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b10-burn-desk",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "desk",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "desk",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "desk",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into desk"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "71d2ad1011d328bf0f151104800ba3fc98adb4cd9422b22ac6e8bad64e3f4eda",
+  "property_rationale": [
+   [
+    "desk.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "desk.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "desk.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of wooden furniture holding a drawer",
+  "sha256": "b97f374419a0ce4b08efb61682432f19711a82b6090007b268af7c61988a275c"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b11-burn-living-painting",
+   "family_id": "living-room-3-2-v0",
+   "task": "3-2",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to living room",
+    "put down metal pot"
+   ],
+   "target": "use lighter on painting",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "living-room-3-2-v0",
+   "task": "3-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b11-burn-living-painting",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "painting in living room",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "painting in living room",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "painting in living room",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move painting to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "7fecdeb402264a44cb3f591459ea8acd463438e50572bc7ce6ba89d592283dd1",
+  "property_rationale": [
+   [
+    "painting in living room.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "painting in living room.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "painting in living room.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of paper in the living room",
+  "sha256": "473673ec96134254fbd92bc9fc28abd636f4a70a98faceb52dfdd246ed472215"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b12-burn-studio-table",
+   "family_id": "art-studio-6-2-v0",
+   "task": "6-2",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to art studio",
+    "put down metal pot"
+   ],
+   "target": "use lighter on table",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "art-studio-6-2-v0",
+   "task": "6-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b12-burn-studio-table",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "table in art studio",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "table in art studio",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "table in art studio",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into table"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "9d728bd6f171d5568de3f8fe431fcd8c6f53f8eb1d006db474a75865cb425d60",
+  "property_rationale": [
+   [
+    "table in art studio.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "table in art studio.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "table in art studio.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of wooden furniture (studio)",
+  "sha256": "782370e454b833273261fa3a82c1d52c4f13f5e7c4a0199a7f958bcda38a7eae"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b13-burn-studio-cupboard",
+   "family_id": "art-studio-1-2-v0",
+   "task": "1-2",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to art studio",
+    "put down metal pot",
+    "open cupboard"
+   ],
+   "target": "use lighter on cupboard",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "art-studio-1-2-v0",
+   "task": "1-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b13-burn-studio-cupboard",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "large cupboard",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "large cupboard",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "large cupboard",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "pour metal pot into cupboard"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "ed5a848e7eef4437d0394b9660229f3b8dde20e57bdd12f7e17a86472e4d8920",
+  "property_rationale": [
+   [
+    "large cupboard.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "large cupboard.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "large cupboard.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of a large open wooden cupboard (studio)",
+  "sha256": "f23767af68b5730497e8898c1817d6b91186326a5a5428cdb116b0b03e7932f3"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b14-burn-picture",
+   "family_id": "hallway-1-1-v0",
+   "task": "1-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to hallway",
+    "put down metal pot"
+   ],
+   "target": "use lighter on picture",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "hallway-1-1-v0",
+   "task": "1-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b14-burn-picture",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "picture",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "picture",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "picture",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move picture to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "b59cde03e9c4ad4da99c4797f5f0f55e9980c28d02e3b78a1d2926957c070f19",
+  "property_rationale": [
+   [
+    "picture.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "picture.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "picture.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of paper in the hallway",
+  "sha256": "2c9aaac9b4913150020782116a23e990265fe1a68ecc4b8ff2bc9e6a9bc7b6e9"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-b15-burn-drawing",
+   "family_id": "bathroom-1-3-v0",
+   "task": "1-3",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "pick up metal pot",
+    "pick up lighter",
+    "teleport to bathroom",
+    "put down metal pot"
+   ],
+   "target": "use lighter on drawing",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bathroom-1-3-v0",
+   "task": "1-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-b15-burn-drawing",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "drawing in bathroom",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "drawing in bathroom",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "drawing in bathroom",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [
+    [
+     "move drawing to metal pot"
+    ]
+   ],
+   "rationale": "declared paths are hypotheses from Combustion.scala (liquid water inside the object or in its container puts a fire out)",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "d6da1893cccaa0f8d2be22f5855e17b6e169f6edc312938dccfb7fba352f5f75",
+  "property_rationale": [
+   [
+    "drawing in bathroom.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "drawing in bathroom.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "drawing in bathroom.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "fire heats neighbouring objects; temperature is not declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "combustion of paper in a room with standing water (toilet)",
+  "sha256": "587ee047eb804ec717b9df15c2c6d9eaae615421655094d2e6dd16fc6f471a7d"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-c01-activate-stove-pot",
+   "family_id": "kitchen-1-1-v1",
+   "task": "1-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to table",
+    "move metal pot to stove"
+   ],
+   "target": "activate stove",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-1-1-v1",
+   "task": "1-1",
+   "variation": 1,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-c01-activate-stove-pot",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "stove",
+     "field": "propDevice.isActivated",
+     "weight": 1
+    },
+    {
+     "role": "water in metal pot",
+     "field": "propMaterial.temperatureC",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "9d652ad5faf4ae479676bbdfeb477f42738546e3faf8beafe79bd585dd64d3c8",
+  "property_rationale": [
+   [
+    "stove.propDevice.isActivated",
+    "designed effect of activate"
+   ],
+   [
+    "water in metal pot.propMaterial.temperatureC",
+    "practical consequence: the water heats"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "control: thermal device with contents",
+  "sha256": "88fd19b00ffe79b01ea7af9a3fa43bfba01acc61f55113cc1508002d1344543d"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-c02-pour-pot-into-sink",
+   "family_id": "kitchen-2-1-v0",
+   "task": "2-1",
+   "history": [
+    "open cupboard",
+    "move metal pot to sink",
+    "activate sink",
+    "deactivate sink",
+    "move metal pot to table"
+   ],
+   "target": "pour metal pot into sink",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-2-1-v0",
+   "task": "2-1",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-c02-pour-pot-into-sink",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "metal pot",
+     "field": "contents",
+     "weight": 1
+    },
+    {
+     "role": "water in metal pot",
+     "field": "present",
+     "weight": 1
+    },
+    {
+     "role": "sink in kitchen",
+     "field": "contents",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "756676e78298314142026675df833792be11ed7fa2bbf86342bfd5452f58295d",
+  "property_rationale": [
+   [
+    "metal pot.contents",
+    "designed effect: the pot is emptied"
+   ],
+   [
+    "water in metal pot.present",
+    "the water itself (identity)"
+   ],
+   [
+    "sink in kitchen.contents",
+    "recorded: where the liquid went"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared",
+   "liquid drained through a portal leaves the observed tree"
+  ],
+  "expected_category": "potentially_irreversible",
+  "selection_rationale": "control: liquid transfer",
+  "sha256": "65d47562ed70a0fa06b6cfe72c37350ed6d08555a9757fbd0cf122fa08d7eb1f"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-c03-eat-red-apple",
+   "family_id": "kitchen-3-3-v0",
+   "task": "3-3",
+   "history": [],
+   "target": "eat apple",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "kitchen-3-3-v0",
+   "task": "3-3",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-c03-eat-red-apple",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "apple",
+     "field": "present",
+     "weight": 1
+    },
+    {
+     "role": "bowl",
+     "field": "contents",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "5a58e073d9716fd77266d6a0aa90aac9047ac5ddbb3b0a205e09561e51e39af2",
+  "property_rationale": [
+   [
+    "apple.present",
+    "designed effect: the food is consumed"
+   ],
+   [
+    "bowl.contents",
+    "recorded: the bowl's other contents"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "potentially_irreversible",
+  "selection_rationale": "control: consumption",
+  "sha256": "630646aa0abbd6bb1ca0a5f957e23bd3dcd330e8ef67c6ae2c926dc36008a7fd"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-c04-burn-bed-no-water",
+   "family_id": "bedroom-1-4-v0",
+   "task": "1-4",
+   "history": [
+    "pick up lighter",
+    "teleport to bedroom"
+   ],
+   "target": "use lighter on bed",
+   "certificates": [
+    "C-BURN"
+   ],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "bedroom-1-4-v0",
+   "task": "1-4",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to kitchen"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-c04-burn-bed-no-water",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "bed",
+     "field": "propMaterial.hasCombusted",
+     "weight": 1
+    },
+    {
+     "role": "bed",
+     "field": "propMaterial.isCombusting",
+     "weight": 1
+    },
+    {
+     "role": "bed",
+     "field": "present",
+     "weight": 0.0
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "a29a4318383cf74d599397c5dc769d4eff14c9cebe60a67f01668adda953a2d8",
+  "property_rationale": [
+   [
+    "bed.propMaterial.hasCombusted",
+    "burned (flag)"
+   ],
+   [
+    "bed.propMaterial.isCombusting",
+    "burning now"
+   ],
+   [
+    "bed.present",
+    "recorded: deleted only when burned out"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "unknown",
+  "selection_rationale": "control: combustion with no liquid water in reach",
+  "sha256": "5f3678f62f5cebe9e6fb6c5a8a5ba7cede2f37a8295027c4998923b09ff9d132"
+ },
+ {
+  "version": "sw-prereg-1",
+  "pinned": {
+   "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+   "decision_rule": "sw-admission-2",
+   "semantics": "sw-restoration-semantics-1",
+   "evidence": "sw-label-evidence-0.1"
+  },
+  "case": {
+   "case_id": "swt-c05-activate-blast-furnace",
+   "family_id": "foundry-1-2-v0",
+   "task": "1-2",
+   "history": [],
+   "target": "activate blast furnace",
+   "certificates": [],
+   "max_expanded": 20,
+   "purpose": "",
+   "expected": ""
+  },
+  "family": {
+   "family_id": "foundry-1-2-v0",
+   "task": "1-2",
+   "variation": 0,
+   "simplifications": "teleportAction",
+   "base_actions": [
+    "teleport to foundry"
+   ]
+  },
+  "declaration": {
+   "case_id": "swt-c05-activate-blast-furnace",
+   "definition": "B_time_matched_counterfactual",
+   "required": [
+    {
+     "role": "blast furnace",
+     "field": "propDevice.isActivated",
+     "weight": 1
+    },
+    {
+     "role": "blast furnace",
+     "field": "propMaterial.temperatureC",
+     "weight": 1
+    }
+   ],
+   "outcomes": [],
+   "paths": [],
+   "rationale": "",
+   "version": "sw-restoration-semantics-1"
+  },
+  "declaration_sha256": "ba9fc163bd97067baf721b6e6341922d40fc122d58d0b2fb9714951c678bb3fe",
+  "property_rationale": [
+   [
+    "blast furnace.propDevice.isActivated",
+    "designed effect of activate"
+   ],
+   [
+    "blast furnace.propMaterial.temperatureC",
+    "practical consequence: the furnace heats"
+   ]
+  ],
+  "identity_requirements": "every property is evaluated on the S0 uuid bound to its role (identity primary); an equivalent object with a new uuid is structural replacement, never restoration",
+  "horizon": "recovery starts immediately after the target; permitted paths are the inverse-registry 1-step actions, the declared paths and up to 20 object-local verb-stratified 1-step actions; wait/look/focus/inventory/read/task/reset are never recovery actions",
+  "restoration_criterion": "definition B (time-matched counterfactual), identity primary; exact or within 0.01 degC for restoration, stability required at 0.1 degC; partial = meaningful restoration plus a declared residual (ADR-0004 B1)",
+  "observation_limitations": [
+   "canonical state is incomplete: portals, doors outside the room and agent internals (wait counter, focus, goal progress) are not observed",
+   "objects created by the target do not exist in S0 and cannot be declared"
+  ],
+  "expected_category": "likely_partial",
+  "selection_rationale": "control: high-temperature device",
+  "sha256": "345c9a1617ae84ee4cfb3e74ba2342a7cd7a126aaf369d6531ea71936c0d738c"
+ }
+]

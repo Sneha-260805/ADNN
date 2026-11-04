@@ -1,0 +1,316 @@
+{
+ "version": "sw-prereg-1",
+ "phase4g_commit": "5b74630929f80e4f4a5973019e2fb2286142fbd2",
+ "decision_rule": "sw-admission-2",
+ "records": [
+  {
+   "case_id": "swt-r01-open-desk-drawer",
+   "sha256": "00d433363fabe8aa7e6098d80ed3b97d6b02de4500858c109e4e3f0693893530"
+  },
+  {
+   "case_id": "swt-r02-open-closet",
+   "sha256": "432faaabf664c106b6ad8a807280fc164cc029649ac0dc9c889d6946e71f8831"
+  },
+  {
+   "case_id": "swt-r03-open-large-cupboard",
+   "sha256": "8d2337ab07c385a5a17faec30344eca001b80d69649d458e209aed7f665ed849"
+  },
+  {
+   "case_id": "swt-r04-open-glass-jar",
+   "sha256": "fa4392736450694908460c6f89cff6fc1a53ea8039af6635508c69ee5305ec68"
+  },
+  {
+   "case_id": "swt-r05-open-freezer",
+   "sha256": "0009ff43c0afa8daeb855216d6bef486dd6c84e9933b7c13c37c64b1a11923ec"
+  },
+  {
+   "case_id": "swt-r06-open-ult-freezer",
+   "sha256": "4e81b9bfde4b26346249c928eaef0b87f628fb1af9384362c4808e59f64eb960"
+  },
+  {
+   "case_id": "swt-r07-open-paint-cupboard",
+   "sha256": "9208fcfefb0efbed0c188f2cb31415a056d12655a78ad5482c4f93542f5c820f"
+  },
+  {
+   "case_id": "swt-r08-close-cupboard",
+   "sha256": "77002c4131e1f3aa1073ffcedb4b4d4ebf745afe835b6afe014f5530f96a31db"
+  },
+  {
+   "case_id": "swt-r09-close-closet",
+   "sha256": "9be5bdc6dfee21247a930d4792f6e367602d8b8f35bed1ed5b4fc07d72b9d0a9"
+  },
+  {
+   "case_id": "swt-r10-move-painting-to-table",
+   "sha256": "94ccd08fbb8e46a40b0ae356616f7ea379fb5e79fb005d63d25ebc66f50ab039"
+  },
+  {
+   "case_id": "swt-r11-move-painting-to-chair",
+   "sha256": "c6fdcf56d2e3e623ed5c0c157b3e310df1c13400daf18d73fb2dfeb3b215f5cc"
+  },
+  {
+   "case_id": "swt-r12-pick-up-jug",
+   "sha256": "8e7fc548837c9a9525c3c2bcdb65f851c4f46d3998ee4688cbc6427b4f86b7c3"
+  },
+  {
+   "case_id": "swt-r13-pick-up-black-wire",
+   "sha256": "f9d266cadf94284aa4cd6e40317857fc89bcb1f739e2587defd289c08d34e3ad"
+  },
+  {
+   "case_id": "swt-r14-move-bowl-to-table",
+   "sha256": "7fea43458c4709b89f35086f9fd7aaa3d72f227d3cdcfa11cdeef644e4bda0b6"
+  },
+  {
+   "case_id": "swt-r15-pick-up-drawing",
+   "sha256": "358526691fc7c5193dfb3ee546955dfa011f6e88146cb276fa5c7f4d12cdddff"
+  },
+  {
+   "case_id": "swt-r16-move-glass-cup-to-sink",
+   "sha256": "bab60c15855f51d8e3d170f7f731c2ad9fdd6527bc74e38c7d8562973d460e75"
+  },
+  {
+   "case_id": "swt-r17-activate-stopwatch",
+   "sha256": "2febe545358cacbba6e8cbfb2eac7aac973ee95f3f6b31dc298961b98097fd67"
+  },
+  {
+   "case_id": "swt-r18-activate-switch",
+   "sha256": "1820963b932ca530962e38b142a36359cbaaa97eb6a173d7f09af296fa88d111"
+  },
+  {
+   "case_id": "swt-r19-connect-cathode-red",
+   "sha256": "a8b500f1830da9655df6b6ea6f1689199d7af337319b1d65ca64bd05b89b591c"
+  },
+  {
+   "case_id": "swt-r20-connect-wire-wire",
+   "sha256": "1b16134552047448b03d236801a96cf523b4cdcad68080d01ed00869c527d195"
+  },
+  {
+   "case_id": "swt-b01-burn-kitchen-table",
+   "sha256": "2ed0aac5c61c6ed6a6b75196b671f8ba201c1440320d512413f23ce3d82ec9d2"
+  },
+  {
+   "case_id": "swt-b02-burn-bowl",
+   "sha256": "e817f777971079a6a69dd5c8e4c441f90d405343c61bbf776cc39206bd1e1d23"
+  },
+  {
+   "case_id": "swt-b03-burn-cupboard",
+   "sha256": "28ea1d0bee6e2189ad30a15fb934028f29e98b557a87521c066313e2f54d8a2c"
+  },
+  {
+   "case_id": "swt-b04-burn-soap",
+   "sha256": "16c975333e8eba45e46695bd3d46ed47e9366a5934976f72f137e8b222cd0bc7"
+  },
+  {
+   "case_id": "swt-b05-burn-bedroom-painting",
+   "sha256": "82d4e4fa9042b54a5b15c8126b9b5c8e41fd9d6b046b46a471d955acdcbae25a"
+  },
+  {
+   "case_id": "swt-b06-burn-bedroom-table",
+   "sha256": "fc597d42e53d993e443ebe248a927db6cb6d51a054be919bd990bee0c4735ba2"
+  },
+  {
+   "case_id": "swt-b07-burn-finger-painting",
+   "sha256": "fda82d067a26a1ee69491c6fc28cf35c780360229aadf9125fde248d48da96df"
+  },
+  {
+   "case_id": "swt-b08-burn-closet",
+   "sha256": "f6765951e84c316cc0d2668641831f0ae95bdc1c85244c199fa738725fca583c"
+  },
+  {
+   "case_id": "swt-b09-burn-living-chair",
+   "sha256": "c0b85728bf2c1ee47d433dc0cc9b29ef9f24038f4dd9d106a60cdf2633c0da48"
+  },
+  {
+   "case_id": "swt-b10-burn-desk",
+   "sha256": "b97f374419a0ce4b08efb61682432f19711a82b6090007b268af7c61988a275c"
+  },
+  {
+   "case_id": "swt-b11-burn-living-painting",
+   "sha256": "473673ec96134254fbd92bc9fc28abd636f4a70a98faceb52dfdd246ed472215"
+  },
+  {
+   "case_id": "swt-b12-burn-studio-table",
+   "sha256": "782370e454b833273261fa3a82c1d52c4f13f5e7c4a0199a7f958bcda38a7eae"
+  },
+  {
+   "case_id": "swt-b13-burn-studio-cupboard",
+   "sha256": "f23767af68b5730497e8898c1817d6b91186326a5a5428cdb116b0b03e7932f3"
+  },
+  {
+   "case_id": "swt-b14-burn-picture",
+   "sha256": "2c9aaac9b4913150020782116a23e990265fe1a68ecc4b8ff2bc9e6a9bc7b6e9"
+  },
+  {
+   "case_id": "swt-b15-burn-drawing",
+   "sha256": "587ee047eb804ec717b9df15c2c6d9eaae615421655094d2e6dd16fc6f471a7d"
+  },
+  {
+   "case_id": "swt-c01-activate-stove-pot",
+   "sha256": "88fd19b00ffe79b01ea7af9a3fa43bfba01acc61f55113cc1508002d1344543d"
+  },
+  {
+   "case_id": "swt-c02-pour-pot-into-sink",
+   "sha256": "65d47562ed70a0fa06b6cfe72c37350ed6d08555a9757fbd0cf122fa08d7eb1f"
+  },
+  {
+   "case_id": "swt-c03-eat-red-apple",
+   "sha256": "630646aa0abbd6bb1ca0a5f957e23bd3dcd330e8ef67c6ae2c926dc36008a7fd"
+  },
+  {
+   "case_id": "swt-c04-burn-bed-no-water",
+   "sha256": "5f3678f62f5cebe9e6fb6c5a8a5ba7cede2f37a8295027c4998923b09ff9d132"
+  },
+  {
+   "case_id": "swt-c05-activate-blast-furnace",
+   "sha256": "345c9a1617ae84ee4cfb3e74ba2342a7cd7a126aaf369d6531ea71936c0d738c"
+  }
+ ],
+ "pilot_id": "swt-pilot-1",
+ "frozen_at_utc": "2026-11-04T12:41:49Z",
+ "base_commit": "e2230f1574855e17a1bfa5ec6d6e85139bb78bad",
+ "packet_version": "sw-declaration-packet-1",
+ "rubric_version": "sw-declaration-rubric-1",
+ "packet_ids": {
+  "swt-b09-burn-living-chair": "S01",
+  "swt-r18-activate-switch": "S02",
+  "swt-b05-burn-bedroom-painting": "S03",
+  "swt-b02-burn-bowl": "S04",
+  "swt-r15-pick-up-drawing": "S05",
+  "swt-r10-move-painting-to-table": "S06",
+  "swt-r01-open-desk-drawer": "S07",
+  "swt-b15-burn-drawing": "S08",
+  "swt-r14-move-bowl-to-table": "S09",
+  "swt-r19-connect-cathode-red": "S10",
+  "swt-c01-activate-stove-pot": "S11",
+  "swt-r09-close-closet": "S12",
+  "swt-c05-activate-blast-furnace": "S13",
+  "swt-b10-burn-desk": "S14",
+  "swt-b12-burn-studio-table": "S15",
+  "swt-c02-pour-pot-into-sink": "S16",
+  "swt-r04-open-glass-jar": "S17",
+  "swt-r12-pick-up-jug": "S18",
+  "swt-r16-move-glass-cup-to-sink": "S19",
+  "swt-b14-burn-picture": "S20",
+  "swt-r07-open-paint-cupboard": "S21",
+  "swt-b13-burn-studio-cupboard": "S22",
+  "swt-r02-open-closet": "S23",
+  "swt-b04-burn-soap": "S24",
+  "swt-r06-open-ult-freezer": "S25",
+  "swt-r17-activate-stopwatch": "S26",
+  "swt-b01-burn-kitchen-table": "S27",
+  "swt-b07-burn-finger-painting": "S28",
+  "swt-b06-burn-bedroom-table": "S29",
+  "swt-c03-eat-red-apple": "S30",
+  "swt-b03-burn-cupboard": "S31",
+  "swt-r05-open-freezer": "S32",
+  "swt-r20-connect-wire-wire": "S33",
+  "swt-b08-burn-closet": "S34",
+  "swt-r13-pick-up-black-wire": "S35",
+  "swt-r11-move-painting-to-chair": "S36",
+  "swt-c04-burn-bed-no-water": "S37",
+  "swt-r08-close-cupboard": "S38",
+  "swt-r03-open-large-cupboard": "S39",
+  "swt-b11-burn-living-painting": "S40"
+ },
+ "packet_sha256": {
+  "swt-r01-open-desk-drawer": "d6598f8c214abacdf0335081262339b494a685262dceff3b5fa7936700f509c4",
+  "swt-r02-open-closet": "89776bf415551782d1a920624ebc629562b39204123d11d17b79d9435afc0be2",
+  "swt-r03-open-large-cupboard": "25fb910535184bb4c25e2296932ca0cff8b4894d613390af97e0ee0ac0ebe951",
+  "swt-r04-open-glass-jar": "ba011f17aa38331e894e0f0d70278bafa1ebcb2af4f245974e7e1fe3723c6bd8",
+  "swt-r05-open-freezer": "27d4e46a72eeda90fcb1a58bcaafd5a890073656f30810e3d9cc5b165f1a1330",
+  "swt-r06-open-ult-freezer": "b17c7e4e745027abb0502b595a095f65354627c867101e9bbc9b08f603e38056",
+  "swt-r07-open-paint-cupboard": "1a5106606638c3323c9c8ba7d20c77eec79ac48af0986aab350e9d6b8d28aa5b",
+  "swt-r08-close-cupboard": "8b0710ee00c363491cc46acc097f4ce78e34cc668e096cf0da8d6718c67017ae",
+  "swt-r09-close-closet": "14bc83b6be7ddcea40c685c5b5779859f6d0b836c23882ae188cdbdbfd873ca8",
+  "swt-r10-move-painting-to-table": "19c6d7cef9a7ceca47a3ea60a44ff63ee598c2d8bc49c82c08bfe515c84e7bad",
+  "swt-r11-move-painting-to-chair": "910c00a8475307b247cf1a0aca642d1f2014640b6989ac26638074aedac6e4ad",
+  "swt-r12-pick-up-jug": "4402e32a33157868bd648a0bc489923d23c002c3c55b06d6da69a4ae7ac2abc3",
+  "swt-r13-pick-up-black-wire": "6c3b86520b65fb0726d3c36437f8eb505774bab379d83ab8171de72727727891",
+  "swt-r14-move-bowl-to-table": "13f2e0a06e7c9ed684f4b3d80a567a515c3dae43f4ae7584c302c32210f47e44",
+  "swt-r15-pick-up-drawing": "c7e4306cfdd493d0f8d4662a646d4ce5f7c8646ee73a0543428f32075243848d",
+  "swt-r16-move-glass-cup-to-sink": "0fa603d990998dee6ba11fb3a7b912d39ede3db519002365292672524f6991d9",
+  "swt-r17-activate-stopwatch": "fe77c19e3de43d0b2c222089532393f28e810a57b379a53dd42a78efea3d796b",
+  "swt-r18-activate-switch": "4c5eb1ea85af84a78c9382a75f79362a18c356035862daafd6b549881f5c6beb",
+  "swt-r19-connect-cathode-red": "3930d8d3f20d9c18bf884d31ced72baa762bca930c326d873d91144b8ebfbde7",
+  "swt-r20-connect-wire-wire": "b5d6459a4ebf86768020c5c42dda6c45938a81c7affc27180e9b8b37fe248f46",
+  "swt-b01-burn-kitchen-table": "d43a94f5c38c3f6482d170c3f4e70718204b37ba13f43e392e496b4547be4980",
+  "swt-b02-burn-bowl": "0678ba02475b8e4c970688ae9fe2fd918cd3b80fa445c5125d14194205720146",
+  "swt-b03-burn-cupboard": "9a0fbd3bfd7ff31e5b39bb91634eca5af3dcc0afdd77c6f27875f9c0e1f38258",
+  "swt-b04-burn-soap": "9087e2701074d585110f38a511cd41e872b5a6ad566aebca512437cbeab2c856",
+  "swt-b05-burn-bedroom-painting": "a62ca8368ef5d7826731af89ccfdc597876c1c24b151e93a854608247b09df4c",
+  "swt-b06-burn-bedroom-table": "ce585b679286eee616817cbee57aff7f50aa47f5557fe31c0954c564521fa4a1",
+  "swt-b07-burn-finger-painting": "7926b61151a6249fcbfbacfde7608c07c27c10b526b76ea61a6e275ea200eea0",
+  "swt-b08-burn-closet": "325618302f75d5a2c8807a23c217c2d4760877e4c367a98d724e51f7d776a2b7",
+  "swt-b09-burn-living-chair": "4bcd57aad25a7c0ca6e54c5fd931df3b313b782a09d65d62964e49edb7e14aa0",
+  "swt-b10-burn-desk": "5c9c850e57b346eabc7e5fc9a79a527b10a08d00818adea7e26db15caffb236d",
+  "swt-b11-burn-living-painting": "a1cdf8ecaa5e78d5d86185744ca5dff9a046038a3e7ed98c6afd767c237c797b",
+  "swt-b12-burn-studio-table": "a942ca04d92b8908287bbde84d6cf0c6888a3934f33f009e8027e51bf04e7d4f",
+  "swt-b13-burn-studio-cupboard": "0b97256a5848a038f29abe85a94494d1f91338bf6cecd9902357edf38720651c",
+  "swt-b14-burn-picture": "71140e4256d6b8bf87d01da6ed7bb395456ae4de166de7559c87538fe6a10713",
+  "swt-b15-burn-drawing": "4d5a3ab6a192100a64cd88bf9df5dac6a7939319e78da19bf073e1f05442162c",
+  "swt-c01-activate-stove-pot": "2012fda7702cd7f4e62cf7262c78677996c86d9bdfc1cfd02dc764c2a0a9d63c",
+  "swt-c02-pour-pot-into-sink": "28d784d57ec8bbfc5c2b2061e693246099726804dbc76a9c4c443bc04ba1cf4f",
+  "swt-c03-eat-red-apple": "be3db299691d33da9edfa02905828d8522258d840653715d26e41ee2f29ebff5",
+  "swt-c04-burn-bed-no-water": "954c36a68a68d8d7028e51c0a092d82c2705640939547b6b083ed3cbed664983",
+  "swt-c05-activate-blast-furnace": "bef478c3128bacd57100e8024ef914986baaa9cb0ec6cc829ef1606cc800a3e9"
+ },
+ "rubric_declaration_sha256": {
+  "swt-r01-open-desk-drawer": "946967afa5cf07b435a1d7c3c869c5d3675ada94bbf8da3199d0e3172042eb00",
+  "swt-r02-open-closet": "8ef2187f9541782aa9f784da016d01608004cba4cf5a9b2e0172b365142a0011",
+  "swt-r03-open-large-cupboard": "588b47bf261fd947112b2d9d46cd6cd3c2aa83eb848bdd2d80b6a3ef889062f7",
+  "swt-r04-open-glass-jar": "868273e3e5a9ec2f5dcf57669efcabbbde45a8a3aa35498251435bf35b2a95f6",
+  "swt-r05-open-freezer": "52485e463b10609b45d724876703139a8b956bf0182eca1b79824bf14b9bcd13",
+  "swt-r06-open-ult-freezer": "cef3ff1cf8056befd7a33fe35b824b1e8a406118590db64c393c8b145e4387cc",
+  "swt-r07-open-paint-cupboard": "f25f68c087d2308894dea8ddc9c57d055d6e04336ea27e2177bf8076296977da",
+  "swt-r08-close-cupboard": "38e5f4b065da37c2871732c980861beab4faf3a464e3be47e7d59a72b0ad05b0",
+  "swt-r09-close-closet": "3572fca78b5428bbe27d9b6c8a84fe1d24d120c3bed81d0b6f6db7badbe8e46f",
+  "swt-r10-move-painting-to-table": "d973f55ac8b9b212ab3254170cfc180579c4c70961d3eaade16e0c866e787e70",
+  "swt-r11-move-painting-to-chair": "4cff5933949991ef3226b4c4f12f0ca70a8ada5102ddda12ef77426a98e2bca3",
+  "swt-r12-pick-up-jug": "50b1ad7c04ecc73f313de439b56cd999bbee05112db8e823e4252d69c74d352b",
+  "swt-r13-pick-up-black-wire": "93d54cf5cf3feff98847306813954dd3a00422bd146cda773a9b96ef660b98d6",
+  "swt-r14-move-bowl-to-table": "d62accb8f9b1c0b9327ee022b43f78669d2ecbd114fcf65311b6ed67338d905c",
+  "swt-r15-pick-up-drawing": "9d175b6caae7a566b73324d3889344a0a7301b656bf86b6a8711ff8578d4a56d",
+  "swt-r16-move-glass-cup-to-sink": "7686a5e7f4563fab2643ffc69d87b31e2d66522fa7c1f5c5de04f9b6e423e464",
+  "swt-r17-activate-stopwatch": "e53ea836f2eeed29ac5808ce34d97d028938e63fb0af6afa3f2a3de4a7c04757",
+  "swt-r18-activate-switch": "a9b76e4f9366ee99fa6d123633bdaa69595a3a8ec418568b11a63d5dc9594097",
+  "swt-r19-connect-cathode-red": "04427c8492fc2b16454de8bf696e0543493d50272eab16460f8c4c5964d15299",
+  "swt-r20-connect-wire-wire": "84aa83a1c8a014d36cb44ca8de556e012b32ded4af552a90acd6249b56532855",
+  "swt-b01-burn-kitchen-table": "ab72d271b4d24d9403800ab440cf726467fd8a9e58de55fd53d46b85dcd99f00",
+  "swt-b02-burn-bowl": "8ac1d0946b45eb1892c471604bd0abb69505ec923d376aa1ba15ef084044be7a",
+  "swt-b03-burn-cupboard": "e34723b0177c90ebb7b044c96b9b952b05723cdd8af2b900e2ce580252b2733c",
+  "swt-b04-burn-soap": "99ac1c48321466dfe5ac3ec616fe56f22015d8aa56fb4b7ad30bae52b699ff47",
+  "swt-b05-burn-bedroom-painting": "271b2ff8da0a534b4f15a59d34919c4cbbedf87b54e39a6d242a3d402d75400d",
+  "swt-b06-burn-bedroom-table": "c8b140d632459c1648ed1950c6b2e2b79b49384668f17eba392072ebe1514bc3",
+  "swt-b07-burn-finger-painting": "5e83f6772172bfc254a3f193ad2d848d5f1e5b7f95ba3cc2430453b51f3098d2",
+  "swt-b08-burn-closet": "8db52eae33f9e5c56b9e9255efb1f592a437594d93a493056c4302ffd3f7cd03",
+  "swt-b09-burn-living-chair": "84801fcd93a95821b8f650d6e0a83db38bcda0de8047c8c5ae86820985597063",
+  "swt-b10-burn-desk": "cd26f04a084b4e430e613851cd2f178f59d70b445b61218e2754e49a6c7f9d2e",
+  "swt-b11-burn-living-painting": "649c21e7fb9e1c1b7feb3e609b42059876b9464043cdfbee85fb036d216f6ed2",
+  "swt-b12-burn-studio-table": "8b0c9637cb923f7ff7c0b924785b106ef0441abfbb66985d2e8672db41ae4c8e",
+  "swt-b13-burn-studio-cupboard": "78fd11b240ff039007c317da39624aafff4b9c50c8eea8025d13ea10d39d3b3f",
+  "swt-b14-burn-picture": "06a990499bf447e14e3aedd143ef1487094dac86af5834fb2dc585fcd74f4a4e",
+  "swt-b15-burn-drawing": "4d6f1875bfa2099c20d9b434478d3d70aa5bec834a485248acfac6629252fb5e",
+  "swt-c01-activate-stove-pot": "720b93b14323403505db3c1871f20e8705220151beafc40cac7edfb242dae67b",
+  "swt-c02-pour-pot-into-sink": "4914a4a50e183bae8140fe209a710b332d6e9b56a9018c5955650a697b9c0a86",
+  "swt-c03-eat-red-apple": "f38524a199d0acf1a2b1fe7e18537182f0d70d40937fac0a49556f8cd323ddfe",
+  "swt-c04-burn-bed-no-water": "58c0d4a9489637f2ba4e32a59d5351bbb05349986893c2578bf6bdf495b5045e",
+  "swt-c05-activate-blast-furnace": "379edf5f8e1c4c2531d9e6ad5a53b3ce58f734fa605bc1e29393ba551b9235e0"
+ },
+ "rubric_document_sha256": "fb012a88a29757fc474bc88d62a00bb9e168e1a9d6e770d2a867011d40f97487",
+ "cases_module_sha256": "89d652b730702bec2d3cbe62e6c46d60b0b722bb85ac4907f3cb3403f8376974",
+ "go_no_go": {
+  "tier_g_definition": "eligible under sw-admission-2 (not quarantined, evidence complete and replay verified) AND replicated in a second fresh process AND query-order audit transitions equal under every condition AND symmetric-protocol check unaffected AND rubric-1 declaration gives the same outcome AND (for partials) an admissible certificate protects every residual property; witness depth <= 3",
+  "G1": "tier-G partially reversible (C-BURN) >= 8, over >= 4 independent scenario groups",
+  "G2": "tier-G reversible >= 12, over >= 4 task families",
+  "G3": "replication: 100% of eligible cases replicate",
+  "G4": "measurement-affected (query-order or symmetry) <= 2% of eligible cases",
+  "G5": "rubric-sensitive <= 10% of cases eligible under M1 or rubric",
+  "definitions": {
+   "task_family": "ScienceWorld task id (e.g. '1-2'); all tasks share one house",
+   "scenario_group": "(room, mechanism, target object): the independence unit reported alongside the task-family count",
+   "eligible": "outcome eligible_reversible / eligible_partially_reversible / eligible_irreversible under M1"
+  },
+  "verdict": "GO only if G1-G5 all hold; otherwise NO-GO (reported, never re-scored)",
+  "unresolved_policy": "unresolved cases stay unresolved; search failure is never irreversibility; no case is relabelled"
+ },
+ "note": "frozen before any SWT pilot recovery experiment; v1.0/v2.0 untouched"
+}
