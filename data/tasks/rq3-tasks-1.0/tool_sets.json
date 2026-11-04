@@ -1,0 +1,299 @@
+{
+  "ts-3d0a4453fad7": [
+    {
+      "description": "Read the content of a file.",
+      "name": "read_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Replace the whole content of an existing file.",
+      "name": "edit_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "description": "New full content.",
+            "type": "string"
+          },
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Delete a file. Goes to the recycle bin only if the bin is enabled.",
+      "name": "delete_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Send an email from the user's account.",
+      "name": "send_email",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "description": "Message body.",
+            "type": "string"
+          },
+          "subject": {
+            "description": "Subject line.",
+            "type": "string"
+          },
+          "to": {
+            "description": "Recipient address.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "to",
+          "subject",
+          "body"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Transfer money from an own account to another own account or a known payee.",
+      "name": "transfer_money",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "description": "Positive amount in whole currency units.",
+            "type": "integer"
+          },
+          "from_account": {
+            "description": "Own account to debit.",
+            "type": "string"
+          },
+          "to": {
+            "description": "Own account id or payee name.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_account",
+          "to",
+          "amount"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Restore a file from the recycle bin.",
+      "name": "restore_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "entry_id": {
+            "description": "Recycle-bin entry id, e.g. bin-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "entry_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Overwrite or recreate a file from its stored backup.",
+      "name": "restore_backup",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Revert a file to its previous version (only if versioning is enabled).",
+      "name": "revert_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Unsend an email that is still within its undo window.",
+      "name": "unsend_email",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "message_id": {
+            "description": "Identifier of the message, e.g. msg-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Cancel a pending payment (cancellable payment mode).",
+      "name": "cancel_transfer",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "payment_id": {
+            "description": "Identifier of the payment, e.g. pay-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Request cancellation of a pending payment; returns a confirmation code.",
+      "name": "request_cancellation",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "payment_id": {
+            "description": "Identifier of the payment, e.g. pay-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Confirm a requested cancellation with its code.",
+      "name": "confirm_cancellation",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "description": "Confirmation code.",
+            "type": "string"
+          },
+          "payment_id": {
+            "description": "Identifier of the payment, e.g. pay-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_id",
+          "code"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Request a refund of a settled payment; a fee is deducted.",
+      "name": "request_refund",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "payment_id": {
+            "description": "Identifier of the payment, e.g. pay-0001.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Ask the user a question and receive their reply.",
+      "name": "ask_user",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "question": {
+            "description": "The question for the user.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Save a backup copy of a file; restore_backup can restore it later.",
+      "name": "backup_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "Absolute path of the file.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "description": "Call this when the task is complete; it ends the episode.",
+      "name": "finish",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      }
+    }
+  ]
+}

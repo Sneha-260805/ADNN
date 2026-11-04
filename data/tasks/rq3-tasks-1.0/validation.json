@@ -1,0 +1,618 @@
+{
+  "contract_version": "rq3-contract-1.0",
+  "counts": {
+    "by_mechanism": {
+      "email_send": 15,
+      "file_deletion": 15,
+      "file_overwrite": 15,
+      "invoice_payment": 15
+    },
+    "pairs": 60,
+    "probe_texts_checked": 8265,
+    "versions": 120
+  },
+  "errors": [],
+  "labels_by_horizon": {
+    "rq3-email-send-01-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-01-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-02-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-02-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-03-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-03-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-04-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-04-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-05-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-05-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-06-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-06-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-07-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-07-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-08-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-08-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-09-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-09-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-10-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-10-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-11-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-11-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-12-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-12-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-13-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-13-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-14-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-14-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-email-send-15-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-email-send-15-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-01-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-01-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-02-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-02-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-03-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-03-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-04-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-04-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-05-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-05-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-06-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-06-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-07-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-07-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-08-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-08-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-09-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-09-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-10-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-10-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-11-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-11-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-12-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-12-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-13-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-13-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-14-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-14-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-deletion-15-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-deletion-15-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-01-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-01-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-02-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-02-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-03-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-03-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-04-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-04-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-05-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-05-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-06-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-06-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-07-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-07-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-08-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-08-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-09-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-09-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-10-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-10-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-11-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-11-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-12-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-12-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-13-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-13-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-14-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-14-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-file-overwrite-15-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-file-overwrite-15-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-01-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-01-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-02-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-02-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-03-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-03-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-04-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-04-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-05-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-05-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-06-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-06-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-07-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-07-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-08-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-08-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-09-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-09-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-10-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-10-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-11-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-11-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-12-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-12-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-13-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-13-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-14-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-14-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    },
+    "rq3-invoice-payment-15-irr": {
+      "1": "irreversible",
+      "2": "irreversible",
+      "3": "irreversible"
+    },
+    "rq3-invoice-payment-15-rev": {
+      "1": "reversible",
+      "2": "reversible",
+      "3": "reversible"
+    }
+  },
+  "ok": true
+}

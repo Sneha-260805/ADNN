@@ -9,8 +9,8 @@ restoration search. Design: docs/10_SANDBOX_DESIGN.md.
 Safety (REQ-SAFE-01): nothing in this package touches the real file system,
 network, email or any account. All effects are changes to immutable values.
 
-Not yet implemented here (later phases): ``ask_user`` (OQ-06), backup-creation
-and listing tools, surface-form rendering variants, task success predicates.
+RQ3 task tools (``ask_user``, ``backup_file``, ``finish``) are a separate group in
+``tools.TASK_SPECS``; task files and success rules are in :mod:`adnn.tasks` (docs/42).
 """
 
 from adnn.sandbox.engine import ActionRecord, Sandbox, Snapshot

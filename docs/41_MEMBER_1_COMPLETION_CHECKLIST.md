@@ -41,8 +41,8 @@
 
 | REQ | What is missing | Effort |
 |---|---|---|
-| **M-05 (M1 part)** | **≥ 60 paired sandbox task environments for RQ3** (`data/tasks/` does not exist) | Large. **Highest risk:** Member 3 depends on it |
-| **M-06** | **`ask_user` tool**, not implemented (`src/adnn/sandbox/__init__.py`; OQ-06 open) | Small |
+| ~~M-05 (M1 part)~~ | **Done 2026-11-04:** 60 pairs / 120 versions frozen in `data/tasks/rq3-tasks-1.0/` (docs/42, preregistration `rq3_tasks_v1.md`) | — |
+| ~~M-06~~ | **Done 2026-11-04:** `ask_user`, `backup_file` and `finish`, a separate RQ3 tool group (OQ-06 decided) | — |
 | STAT-01 (M1 provides splits) | Three frozen scenario-grouped split files. v2.0 has one split | Small (pure, no simulator) |
 | ENV-09 | Re-check licences, with a date, before release | Small |
 | SW-02 | Lock file of exact library versions (`ENVIRONMENT_SETUP.md`: "there is no lock file yet") | Small |
