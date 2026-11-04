@@ -1,0 +1,23 @@
+{
+  "experiment": "random_fixed_action_verb_control",
+  "method": "Hewitt-Liang-style fixed random binary labels per action verb",
+  "layer": 18,
+  "C": 0.01,
+  "shared_verb_test_records": 424,
+  "shared_verbs": [
+    "delete_file",
+    "edit_file",
+    "restore_backup",
+    "revert_file",
+    "revoke_share_link",
+    "transfer_money"
+  ],
+  "actual_task_balanced_accuracy": 0.896678966789668,
+  "random_verb_control_balanced_accuracy": 1.0,
+  "matched_selectivity": -0.10332103321033204,
+  "unseen_verb_test_records": 1,
+  "unseen_verbs": [
+    "connect"
+  ],
+  "interpretation": "The random action-verb control achieved perfect balanced accuracy on shared verbs, indicating strong decodability of action-verb identity. Matched selectivity is negative; this does not support a positive selectivity claim for the irreversibility task."
+}

@@ -1,0 +1,101 @@
+{
+  "experiment": "ADNN_RQ1_Qwen_vs_Llama_Final_Comparison",
+  "dataset": "adnn-dataset-2.0",
+  "training_records": 1709,
+  "original_test_records": 425,
+  "split": "official scenario-grouped frozen split",
+  "models": {
+    "Qwen": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "status": "final_v2",
+      "primary_result": {
+        "three_class": {
+          "layer": 20,
+          "C": 0.1,
+          "balanced_accuracy": 0.9216,
+          "macro_f1": 0.9209,
+          "macro_auroc": 0.9951
+        },
+        "binary": {
+          "layer": 18,
+          "C": 0.01,
+          "accuracy": 0.8870588,
+          "balanced_accuracy": 0.9117647,
+          "macro_f1": 0.8838163,
+          "auroc": 0.9864235
+        }
+      },
+      "critical_diagnostics": {
+        "random_action_verb_balanced_accuracy": 1.0,
+        "canonical_24_minimal_pair_accuracy": 0.3472222,
+        "cross_environment_generalisation": "not established",
+        "within_action_verb_binary": {
+          "restore_backup_balanced_accuracy": 0.5,
+          "transfer_money_balanced_accuracy": 0.8564
+        }
+      },
+      "interpretation": "Strong aggregate decoding, but action-verb identity and rendering/context factors are important confounds. Results do not establish action-identity-independent reversibility representation."
+    },
+    "Llama": {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "status": "final_v2",
+      "primary_result": {
+        "three_class": {
+          "layer": 17,
+          "C": 1.0,
+          "accuracy": 0.9411765,
+          "balanced_accuracy": 0.9074074,
+          "macro_f1": 0.9248882,
+          "macro_auroc": 0.9917534
+        },
+        "binary": {
+          "layer": 16,
+          "C": 0.1,
+          "accuracy": 0.8847059,
+          "balanced_accuracy": 0.9099265,
+          "macro_f1": 0.881491,
+          "auroc": 0.9930075
+        }
+      },
+      "critical_diagnostics": {
+        "random_action_verb_balanced_accuracy": 1.0,
+        "canonical_24_minimal_pair_accuracy": 0.5416667,
+        "cross_environment_generalisation": "not established",
+        "within_action_verb_binary": {
+          "restore_backup_balanced_accuracy": 0.5714,
+          "transfer_money_balanced_accuracy": 0.9202
+        }
+      },
+      "interpretation": "Strong aggregate decoding, but action-verb identity and rendering/context factors are important confounds. Results do not establish action-identity-independent reversibility representation."
+    }
+  },
+  "comparative_findings": {
+    "three_class_balanced_accuracy": {
+      "Qwen": 0.9216,
+      "Llama": 0.9074074
+    },
+    "three_class_macro_f1": {
+      "Qwen": 0.9209,
+      "Llama": 0.9248882
+    },
+    "binary_balanced_accuracy": {
+      "Qwen": 0.9117647,
+      "Llama": 0.9099265
+    },
+    "binary_macro_f1": {
+      "Qwen": 0.8838163,
+      "Llama": 0.881491
+    },
+    "binary_auroc": {
+      "Qwen": 0.9864235,
+      "Llama": 0.9930075
+    }
+  },
+  "shared_limitations": [
+    "Random action-verb control achieves 100% balanced accuracy, indicating a serious action-identity confound.",
+    "Minimal-pair performance is substantially lower than aggregate test performance.",
+    "Only two action verbs contain both binary classes in the official test set.",
+    "Current ScienceWorld data is insufficient to establish cross-environment generalisation."
+  ],
+  "interpretation": "Both models show strong aggregate reversibility decoding. Their overall performance is similar, but diagnostic controls indicate that action identity, context, and rendering factors may contribute substantially. The results do not establish action-identity-independent reversibility representations."
+}

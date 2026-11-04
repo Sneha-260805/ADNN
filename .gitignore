@@ -51,8 +51,19 @@ data/*
 # Large artifacts (hidden states) live outside git and are referenced by SHA-256
 # in run manifests (docs/03_SYSTEM_ARCHITECTURE.md §6). Small result files needed
 # for the submission are added deliberately with `git add -f`.
+# Ignore other generated results
 results/*
 !results/README.md
+# Include RQ1 research results
+!results/rq1_qwen/
+!results/rq1_llama/
+!results/rq1_comparison/
+
+# Include all files inside RQ1 folders
+!results/rq1_qwen/**
+!results/rq1_llama/**
+!results/rq1_comparison/**
+
 *.npy
 *.npz
 *.h5
@@ -69,3 +80,10 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# Exclude duplicate result formats from GitHub
+results/**/*.pdf
+results/**/*.xlsx
+
+results/rq1_llama/config/extraction_checkpoint.json
+results/rq1_llama/probes/*_progress.json

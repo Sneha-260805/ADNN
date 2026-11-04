@@ -1,0 +1,26 @@
+{
+  "dataset_version": "adnn-dataset-2.0",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "split_source": "official split.json",
+  "split_type": "scenario_level",
+  "total_records": 2134,
+  "train_records": 1709,
+  "test_records": 425,
+  "train_scenarios_in_records": 124,
+  "test_scenarios_in_records": 25,
+  "official_train_scenarios": 124,
+  "official_test_scenarios": 27,
+  "metadata_only_test_scenarios": [
+    "grp-0cc4fd8f73a6",
+    "grp-f8673bb166d9"
+  ],
+  "label_mapping": {
+    "reversible": 0,
+    "partially_reversible": 1,
+    "irreversible": 2
+  },
+  "representations": [
+    "last_action_token",
+    "mean_action_tokens"
+  ]
+}

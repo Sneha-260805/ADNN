@@ -1,0 +1,34 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "task": "binary_irreversibility",
+  "method": "scenario_level_bootstrap",
+  "n_bootstraps": 1000,
+  "seed": 42,
+  "successful_resamples": 1000,
+  "skipped_resamples": 0,
+  "n_records": 425,
+  "n_scenarios": 25,
+  "metrics": {
+    "balanced_accuracy": {
+      "estimate": 0.9099264705882353,
+      "ci_95": [
+        0.8202224014536286,
+        0.9930944394600546
+      ]
+    },
+    "macro_f1": {
+      "estimate": 0.8814909659980082,
+      "ci_95": [
+        0.7766615333811282,
+        0.9866284994776876
+      ]
+    },
+    "auroc": {
+      "estimate": 0.9930074971164937,
+      "ci_95": [
+        0.9838534927361499,
+        1.0
+      ]
+    }
+  }
+}

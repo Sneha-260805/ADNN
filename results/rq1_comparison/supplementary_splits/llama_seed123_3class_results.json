@@ -1,0 +1,62 @@
+{
+  "model": "Llama",
+  "task": "3-class",
+  "seed": 123,
+  "evaluation": "supplementary fixed-hyperparameter evaluation",
+  "layer": 17,
+  "C": 1.0,
+  "test_records": 401,
+  "accuracy": 0.8603491271820449,
+  "balanced_accuracy": 0.8618551740382956,
+  "macro_f1": 0.8596239837398375,
+  "confusion_matrix": [
+    [
+      108,
+      20,
+      13
+    ],
+    [
+      2,
+      131,
+      0
+    ],
+    [
+      5,
+      16,
+      106
+    ]
+  ],
+  "classification_report": {
+    "reversible": {
+      "precision": 0.9391304347826087,
+      "recall": 0.7659574468085106,
+      "f1-score": 0.84375,
+      "support": 141.0
+    },
+    "partially_reversible": {
+      "precision": 0.7844311377245509,
+      "recall": 0.9849624060150376,
+      "f1-score": 0.8733333333333333,
+      "support": 133.0
+    },
+    "irreversible": {
+      "precision": 0.8907563025210085,
+      "recall": 0.8346456692913385,
+      "f1-score": 0.8617886178861789,
+      "support": 127.0
+    },
+    "accuracy": 0.8603491271820449,
+    "macro avg": {
+      "precision": 0.8714392916760559,
+      "recall": 0.8618551740382956,
+      "f1-score": 0.8596239837398375,
+      "support": 401.0
+    },
+    "weighted avg": {
+      "precision": 0.8725007058401025,
+      "recall": 0.8603491271820449,
+      "f1-score": 0.8592749072440848,
+      "support": 401.0
+    }
+  }
+}

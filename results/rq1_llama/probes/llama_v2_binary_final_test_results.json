@@ -1,0 +1,56 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "dataset": "adnn-dataset-2.0",
+  "task": "binary_irreversibility",
+  "selected_layer": 16,
+  "selected_C": 0.1,
+  "selection_cv_balanced_accuracy": 0.921,
+  "selection_cv_std": 0.0438,
+  "train_records": 1709,
+  "test_records": 425,
+  "test_balanced_accuracy": 0.9099264705882353,
+  "test_accuracy": 0.8847058823529412,
+  "test_f1": 0.8619718309859155,
+  "test_auroc": 0.9930074971164937,
+  "classification_report": {
+    "non_irreversible": {
+      "precision": 1.0,
+      "recall": 0.8198529411764706,
+      "f1-score": 0.901010101010101,
+      "support": 272.0
+    },
+    "irreversible": {
+      "precision": 0.7574257425742574,
+      "recall": 1.0,
+      "f1-score": 0.8619718309859155,
+      "support": 153.0
+    },
+    "accuracy": 0.8847058823529412,
+    "macro avg": {
+      "precision": 0.8787128712871287,
+      "recall": 0.9099264705882353,
+      "f1-score": 0.8814909659980082,
+      "support": 425.0
+    },
+    "weighted avg": {
+      "precision": 0.9126732673267326,
+      "recall": 0.8847058823529412,
+      "f1-score": 0.8869563238013942,
+      "support": 425.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      223,
+      49
+    ],
+    [
+      0,
+      153
+    ]
+  ],
+  "class_order": [
+    "non_irreversible",
+    "irreversible"
+  ]
+}

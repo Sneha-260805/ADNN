@@ -1,0 +1,32 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "status": "final_v2",
+  "primary_result": {
+    "three_class": {
+      "layer": 17,
+      "C": 1.0,
+      "accuracy": 0.9411765,
+      "balanced_accuracy": 0.9074074,
+      "macro_f1": 0.9248882,
+      "macro_auroc": 0.9917534
+    },
+    "binary": {
+      "layer": 16,
+      "C": 0.1,
+      "accuracy": 0.8847059,
+      "balanced_accuracy": 0.9099265,
+      "macro_f1": 0.881491,
+      "auroc": 0.9930075
+    }
+  },
+  "critical_diagnostics": {
+    "random_action_verb_balanced_accuracy": 1.0,
+    "canonical_24_minimal_pair_accuracy": 0.5416667,
+    "cross_environment_generalisation": "not established",
+    "within_action_verb_binary": {
+      "restore_backup_balanced_accuracy": 0.5714,
+      "transfer_money_balanced_accuracy": 0.9202
+    }
+  },
+  "interpretation": "Strong aggregate decoding, but action-verb identity and rendering/context factors are important confounds. Results do not establish action-identity-independent reversibility representation."
+}

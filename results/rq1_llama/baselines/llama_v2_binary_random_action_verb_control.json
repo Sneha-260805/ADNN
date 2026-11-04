@@ -1,0 +1,42 @@
+{
+  "experiment": "llama_v2_binary_random_action_verb_control",
+  "seed": 42,
+  "representation": "last_action_token",
+  "layer": 18,
+  "C": 0.01,
+  "target": "fixed_random_label_per_action_verb",
+  "n_action_verbs": 13,
+  "random_mapping": {
+    "connect": 0,
+    "create_share_link": 1,
+    "delete_file": 1,
+    "edit_file": 0,
+    "move": 0,
+    "open": 1,
+    "restore_backup": 0,
+    "restore_file": 1,
+    "revert_file": 0,
+    "revoke_share_link": 0,
+    "send_email": 1,
+    "transfer_money": 1,
+    "use": 1
+  },
+  "train_records": 1709,
+  "test_records": 425,
+  "metrics": {
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "auroc": 1.0,
+    "confusion_matrix": [
+      [
+        262,
+        0
+      ],
+      [
+        0,
+        163
+      ]
+    ]
+  }
+}

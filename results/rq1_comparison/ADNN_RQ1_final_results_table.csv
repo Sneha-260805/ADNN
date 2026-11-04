@@ -1,0 +1,5 @@
+Model,Task,Layer,C,Official Accuracy,Official Balanced Accuracy,Official Macro F1,Official AUROC,Supplementary Accuracy,Supplementary Balanced Accuracy,Supplementary Macro F1,Supplementary AUROC
+Qwen,3-class,20,0.1,0.9365,0.9216,0.9209,0.9951,0.8970 ± 0.0740,0.9037 ± 0.0694,0.8975 ± 0.0741,Not calculated
+Llama,3-class,17,1.0,0.9412,0.9074,0.9249,0.9918,0.8961 ± 0.0806,0.9010 ± 0.0791,0.8963 ± 0.0802,Not calculated
+Qwen,binary,18,0.01,0.8871,0.9118,0.8838,0.9864,0.9144 ± 0.0337,0.9192 ± 0.0415,0.9016 ± 0.0365,0.9695 ± 0.0203
+Llama,binary,16,0.1,0.8847,0.9099,0.8815,0.993,0.9365 ± 0.0424,0.9305 ± 0.0457,0.9258 ± 0.0484,0.9605 ± 0.0423

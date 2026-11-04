@@ -1,0 +1,964 @@
+{
+  "experiment": "llama_v2_bow_canonical_minimal_pairs",
+  "canonical_family_count": 24,
+  "pair_render_instances": 72,
+  "correct_pairs": 0,
+  "pair_accuracy": 0.0,
+  "record_level_balanced_accuracy": 0.5,
+  "record_level_macro_f1": 0.5,
+  "render_style_results": {
+    "compact": {
+      "n": 24,
+      "correct": 0,
+      "pair_accuracy": 0.0
+    },
+    "kv": {
+      "n": 24,
+      "correct": 0,
+      "pair_accuracy": 0.0
+    },
+    "prose": {
+      "n": 24,
+      "correct": 0,
+      "pair_accuracy": 0.0
+    }
+  },
+  "pair_results": [
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "compact",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "kv",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "prose",
+      "true_labels": [
+        0,
+        1
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        0,
+        0
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "compact",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "kv",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "prose",
+      "true_labels": [
+        1,
+        0
+      ],
+      "predicted_labels": [
+        1,
+        1
+      ],
+      "correct": false
+    }
+  ]
+}

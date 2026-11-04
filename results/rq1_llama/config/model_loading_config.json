@@ -1,0 +1,25 @@
+{
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "torch_dtype": "float16",
+    "device_map": "auto",
+    "low_cpu_mem_usage": true,
+    "output_hidden_states": true,
+    "use_cache": false,
+    "gpu_count": 2,
+    "gpu_memory": [
+        {
+            "gpu": 0,
+            "name": "Tesla T4",
+            "total_gb": 14.56,
+            "free_gb": 14.46,
+            "used_gb": 0.1
+        },
+        {
+            "gpu": 1,
+            "name": "Tesla T4",
+            "total_gb": 14.56,
+            "free_gb": 14.46,
+            "used_gb": 0.1
+        }
+    ]
+}

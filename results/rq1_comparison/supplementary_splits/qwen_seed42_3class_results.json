@@ -1,0 +1,63 @@
+{
+  "model": "Qwen",
+  "task": "3-class",
+  "seed": 42,
+  "evaluation": "supplementary fixed-hyperparameter evaluation",
+  "hyperparameters_source": "official frozen split",
+  "layer": 20,
+  "C": 0.1,
+  "test_records": 511,
+  "accuracy": 0.8532289628180039,
+  "balanced_accuracy": 0.8706945342239459,
+  "macro_f1": 0.8558234104688194,
+  "confusion_matrix": [
+    [
+      166,
+      18,
+      37
+    ],
+    [
+      0,
+      128,
+      12
+    ],
+    [
+      7,
+      1,
+      142
+    ]
+  ],
+  "classification_report": {
+    "reversible": {
+      "precision": 0.9595375722543352,
+      "recall": 0.751131221719457,
+      "f1-score": 0.8426395939086294,
+      "support": 221.0
+    },
+    "partially_reversible": {
+      "precision": 0.8707482993197279,
+      "recall": 0.9142857142857143,
+      "f1-score": 0.89198606271777,
+      "support": 140.0
+    },
+    "irreversible": {
+      "precision": 0.743455497382199,
+      "recall": 0.9466666666666667,
+      "f1-score": 0.8328445747800587,
+      "support": 150.0
+    },
+    "accuracy": 0.8532289628180039,
+    "macro avg": {
+      "precision": 0.8579137896520873,
+      "recall": 0.8706945342239459,
+      "f1-score": 0.8558234104688194,
+      "support": 511.0
+    },
+    "weighted avg": {
+      "precision": 0.8717825635622306,
+      "recall": 0.8532289628180039,
+      "f1-score": 0.8532839241708488,
+      "support": 511.0
+    }
+  }
+}

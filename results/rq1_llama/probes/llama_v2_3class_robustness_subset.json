@@ -1,0 +1,41 @@
+{
+  "experiment": "llama_v2_3class_robustness_subset",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "probe": {
+    "layer": 17,
+    "C": 1.0,
+    "training_partition": "original_1709_record_train"
+  },
+  "evaluation": {
+    "subset_total_records": 707,
+    "subset_train_records": 580,
+    "subset_test_records": 127,
+    "retrained_on_subset": false,
+    "accuracy": 0.9291338582677166,
+    "balanced_accuracy": 0.9122710622710622,
+    "macro_f1": 0.9210258315514609,
+    "class_support": {
+      "reversible": 28,
+      "partially_reversible": 60,
+      "irreversible": 39
+    },
+    "confusion_matrix": [
+      [
+        23,
+        1,
+        4
+      ],
+      [
+        0,
+        58,
+        2
+      ],
+      [
+        0,
+        2,
+        37
+      ]
+    ]
+  },
+  "note": "Secondary evaluation on robustness-subset test records. Probe trained only on the original full training partition. The official full test set remains the primary evaluation."
+}

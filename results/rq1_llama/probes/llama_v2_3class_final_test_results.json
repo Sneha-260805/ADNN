@@ -1,0 +1,69 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "dataset": "adnn-dataset-2.0",
+  "task": "3-class",
+  "selected_layer": 17,
+  "selected_C": 1.0,
+  "selection_cv_balanced_accuracy": 0.8807,
+  "selection_cv_std": 0.0374,
+  "train_records": 1709,
+  "test_records": 425,
+  "test_balanced_accuracy": 0.9074074074074074,
+  "test_macro_f1": 0.9248881505628962,
+  "test_macro_auroc_ovr": 0.9917534007066879,
+  "classification_report": {
+    "reversible": {
+      "precision": 1.0,
+      "recall": 0.7794117647058824,
+      "f1-score": 0.8760330578512396,
+      "support": 68.0
+    },
+    "partially_reversible": {
+      "precision": 0.9660194174757282,
+      "recall": 0.9754901960784313,
+      "f1-score": 0.9707317073170731,
+      "support": 204.0
+    },
+    "irreversible": {
+      "precision": 0.891566265060241,
+      "recall": 0.9673202614379085,
+      "f1-score": 0.9278996865203761,
+      "support": 153.0
+    },
+    "accuracy": 0.9411764705882353,
+    "macro avg": {
+      "precision": 0.9525285608453231,
+      "recall": 0.9074074074074074,
+      "f1-score": 0.9248881505628962,
+      "support": 425.0
+    },
+    "weighted avg": {
+      "precision": 0.9446531758100363,
+      "recall": 0.9411764705882353,
+      "f1-score": 0.940160395915729,
+      "support": 425.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      53,
+      2,
+      13
+    ],
+    [
+      0,
+      199,
+      5
+    ],
+    [
+      0,
+      5,
+      148
+    ]
+  ],
+  "class_order": [
+    "reversible",
+    "partially_reversible",
+    "irreversible"
+  ]
+}

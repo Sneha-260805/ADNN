@@ -1,0 +1,48 @@
+{
+  "model": "Qwen",
+  "task": "3-class",
+  "evaluation": "three supplementary scenario-grouped splits",
+  "hyperparameters": {
+    "layer": 20,
+    "C": 0.1
+  },
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "test_records_per_seed": {
+    "42": 511,
+    "123": 401,
+    "2026": 342
+  },
+  "metrics": {
+    "accuracy": {
+      "individual_scores": [
+        0.8532289628180039,
+        0.8553615960099751,
+        0.9824561403508771
+      ],
+      "mean": 0.8970155663929521,
+      "sample_std": 0.07400139045840712
+    },
+    "balanced_accuracy": {
+      "individual_scores": [
+        0.8706945342239459,
+        0.8570086353987386,
+        0.983444542364346
+      ],
+      "mean": 0.9037159039956769,
+      "sample_std": 0.06938528510249826
+    },
+    "macro_f1": {
+      "individual_scores": [
+        0.8558234104688194,
+        0.8535506944213228,
+        0.9830737482065066
+      ],
+      "mean": 0.8974826176988829,
+      "sample_std": 0.07413280330419146
+    }
+  }
+}

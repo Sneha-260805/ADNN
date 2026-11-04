@@ -1,0 +1,173 @@
+{
+  "title": "ADNN RQ1 - Qwen vs Llama Supplementary Split Comparison",
+  "evaluation_type": "Three scenario-grouped supplementary splits with fixed hyperparameters selected on the official frozen split",
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "models": {
+    "Qwen": {
+      "3-class": {
+        "hyperparameters": {
+          "layer": 20,
+          "C": 0.1
+        },
+        "metrics": {
+          "accuracy": {
+            "individual_scores": [
+              0.8532289628180039,
+              0.8553615960099751,
+              0.9824561403508771
+            ],
+            "mean": 0.8970155663929521,
+            "sample_std": 0.07400139045840712
+          },
+          "balanced_accuracy": {
+            "individual_scores": [
+              0.8706945342239459,
+              0.8570086353987386,
+              0.983444542364346
+            ],
+            "mean": 0.9037159039956769,
+            "sample_std": 0.06938528510249826
+          },
+          "macro_f1": {
+            "individual_scores": [
+              0.8558234104688194,
+              0.8535506944213228,
+              0.9830737482065066
+            ],
+            "mean": 0.8974826176988829,
+            "sample_std": 0.07413280330419146
+          }
+        }
+      },
+      "binary": {
+        "hyperparameters": {
+          "layer": 18,
+          "C": 0.01
+        },
+        "metrics": {
+          "accuracy": {
+            "individual_scores": [
+              0.8923679060665362,
+              0.8977556109725686,
+              0.9532163742690059
+            ],
+            "mean": 0.9144466304360369,
+            "sample_std": 0.033683476938910994
+          },
+          "balanced_accuracy": {
+            "individual_scores": [
+              0.910184672206833,
+              0.8829386746364734,
+              0.9644389155799589
+            ],
+            "mean": 0.9191874208077552,
+            "sample_std": 0.04148926885641758
+          },
+          "macro_f1": {
+            "individual_scores": [
+              0.8789730472265644,
+              0.8821306950568162,
+              0.9437985292305164
+            ],
+            "mean": 0.9016340905046324,
+            "sample_std": 0.036549591034053974
+          },
+          "macro_auroc": {
+            "individual_scores": [
+              0.9623268698060942,
+              0.9538479222943848,
+              0.9924502402196294
+            ],
+            "mean": 0.969541677440036,
+            "sample_std": 0.02028730697250143
+          }
+        }
+      }
+    },
+    "Llama": {
+      "3-class": {
+        "hyperparameters": {
+          "layer": 17,
+          "C": 1.0
+        },
+        "metrics": {
+          "accuracy": {
+            "individual_scores": [
+              0.8395303326810176,
+              0.8603491271820449,
+              0.9883040935672515
+            ],
+            "mean": 0.8960611844767713,
+            "sample_std": 0.08056004753738007
+          },
+          "balanced_accuracy": {
+            "individual_scores": [
+              0.8491101055806939,
+              0.8618551740382956,
+              0.9921104536489151
+            ],
+            "mean": 0.9010252444226349,
+            "sample_std": 0.07913909082965054
+          },
+          "macro_f1": {
+            "individual_scores": [
+              0.8409802757628845,
+              0.8596239837398375,
+              0.9883325454354449
+            ],
+            "mean": 0.8963122683127223,
+            "sample_std": 0.08023525106266868
+          }
+        }
+      },
+      "binary": {
+        "hyperparameters": {
+          "layer": 16,
+          "C": 0.1
+        },
+        "metrics": {
+          "accuracy": {
+            "individual_scores": [
+              0.913894324853229,
+              0.9102244389027432,
+              0.9853801169590644
+            ],
+            "mean": 0.9364996269050122,
+            "sample_std": 0.042371496866001966
+          },
+          "balanced_accuracy": {
+            "individual_scores": [
+              0.9215235457063712,
+              0.8899505718719467,
+              0.9800102951269732
+            ],
+            "mean": 0.930494804235097,
+            "sample_std": 0.04569519720807559
+          },
+          "macro_f1": {
+            "individual_scores": [
+              0.900906142021014,
+              0.8949283801094678,
+              0.9816008349562617
+            ],
+            "mean": 0.9258117856955813,
+            "sample_std": 0.04840709578590478
+          },
+          "macro_auroc": {
+            "individual_scores": [
+              0.9693074792243768,
+              0.9144778435542273,
+              0.9977693891557996
+            ],
+            "mean": 0.9605182373114679,
+            "sample_std": 0.04233566430596576
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "experiment": "Qwen v2 three-class robustness subset",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "representation": "last_action_token",
+  "layer": 20,
+  "C": 0.1,
+  "training_records": 1709,
+  "robustness_test_records": 127,
+  "test_metrics": {
+    "accuracy": 0.9291338582677166,
+    "balanced_accuracy": 0.9279609279609279,
+    "macro_f1": 0.9237665626554517
+  },
+  "confusion_matrix": [
+    [
+      25,
+      2,
+      1
+    ],
+    [
+      2,
+      55,
+      3
+    ],
+    [
+      1,
+      0,
+      38
+    ]
+  ],
+  "per_class": {
+    "reversible": {
+      "precision": 0.8928571428571429,
+      "recall": 0.8928571428571429,
+      "f1-score": 0.8928571428571429,
+      "support": 28.0
+    },
+    "partially_reversible": {
+      "precision": 0.9649122807017544,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9401709401709402,
+      "support": 60.0
+    },
+    "irreversible": {
+      "precision": 0.9047619047619048,
+      "recall": 0.9743589743589743,
+      "f1-score": 0.9382716049382716,
+      "support": 39.0
+    }
+  },
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "solver": "saga",
+    "class_weight": "balanced",
+    "multi_class": "multinomial",
+    "max_iter": 500,
+    "tol": 0.01,
+    "random_state": 0
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "model": "Llama",
+  "task": "binary",
+  "evaluation": "three supplementary scenario-grouped splits",
+  "hyperparameters": {
+    "layer": 16,
+    "C": 0.1
+  },
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "metrics": {
+    "accuracy": {
+      "individual_scores": [
+        0.913894324853229,
+        0.9102244389027432,
+        0.9853801169590644
+      ],
+      "mean": 0.9364996269050122,
+      "sample_std": 0.042371496866001966
+    },
+    "balanced_accuracy": {
+      "individual_scores": [
+        0.9215235457063712,
+        0.8899505718719467,
+        0.9800102951269732
+      ],
+      "mean": 0.930494804235097,
+      "sample_std": 0.04569519720807559
+    },
+    "macro_f1": {
+      "individual_scores": [
+        0.900906142021014,
+        0.8949283801094678,
+        0.9816008349562617
+      ],
+      "mean": 0.9258117856955813,
+      "sample_std": 0.04840709578590478
+    },
+    "macro_auroc": {
+      "individual_scores": [
+        0.9693074792243768,
+        0.9144778435542273,
+        0.9977693891557996
+      ],
+      "mean": 0.9605182373114679,
+      "sample_std": 0.04233566430596576
+    }
+  }
+}

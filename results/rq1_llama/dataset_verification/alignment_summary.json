@@ -1,0 +1,11 @@
+{
+  "total_records": 2134,
+  "manifest_records": 2134,
+  "failed_records": 0,
+  "sequence_length_min": 160,
+  "sequence_length_max": 336,
+  "mean_sequence_length": 223.6237113402062,
+  "mean_action_tokens": 27.267104029990627,
+  "manifest_path": "/kaggle/working/ADNN_RQ1_Llama_v2/dataset_verification/alignment_manifest.jsonl",
+  "failure_path": "/kaggle/working/ADNN_RQ1_Llama_v2/dataset_verification/alignment_failures.jsonl"
+}

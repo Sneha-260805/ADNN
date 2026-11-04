@@ -1,0 +1,50 @@
+{
+  "model": "Llama",
+  "task": "binary",
+  "seed": 2026,
+  "evaluation": "supplementary fixed-hyperparameter evaluation",
+  "layer": 16,
+  "C": 0.1,
+  "test_records": 342,
+  "accuracy": 0.9853801169590644,
+  "balanced_accuracy": 0.9800102951269732,
+  "macro_f1": 0.9816008349562617,
+  "macro_auroc": 0.9977693891557996,
+  "confusion_matrix": [
+    [
+      246,
+      2
+    ],
+    [
+      3,
+      91
+    ]
+  ],
+  "classification_report": {
+    "non_irreversible": {
+      "precision": 0.9879518072289156,
+      "recall": 0.9919354838709677,
+      "f1-score": 0.9899396378269618,
+      "support": 248.0
+    },
+    "irreversible": {
+      "precision": 0.978494623655914,
+      "recall": 0.9680851063829787,
+      "f1-score": 0.9732620320855615,
+      "support": 94.0
+    },
+    "accuracy": 0.9853801169590644,
+    "macro avg": {
+      "precision": 0.9832232154424148,
+      "recall": 0.9800102951269732,
+      "f1-score": 0.9816008349562617,
+      "support": 342.0
+    },
+    "weighted avg": {
+      "precision": 0.9853524643755175,
+      "recall": 0.9853801169590644,
+      "f1-score": 0.9853557344945302,
+      "support": 342.0
+    }
+  }
+}

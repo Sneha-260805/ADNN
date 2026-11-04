@@ -1,0 +1,58 @@
+[
+  {
+    "Model": "Qwen",
+    "Task": "3-class",
+    "Layer": 20,
+    "C": 0.1,
+    "Official Accuracy": 0.9365,
+    "Official Balanced Accuracy": 0.9216,
+    "Official Macro F1": 0.9209,
+    "Official AUROC": 0.9951,
+    "Supplementary Accuracy": "0.8970 \u00b1 0.0740",
+    "Supplementary Balanced Accuracy": "0.9037 \u00b1 0.0694",
+    "Supplementary Macro F1": "0.8975 \u00b1 0.0741",
+    "Supplementary AUROC": "Not calculated"
+  },
+  {
+    "Model": "Llama",
+    "Task": "3-class",
+    "Layer": 17,
+    "C": 1.0,
+    "Official Accuracy": 0.9412,
+    "Official Balanced Accuracy": 0.9074,
+    "Official Macro F1": 0.9249,
+    "Official AUROC": 0.9918,
+    "Supplementary Accuracy": "0.8961 \u00b1 0.0806",
+    "Supplementary Balanced Accuracy": "0.9010 \u00b1 0.0791",
+    "Supplementary Macro F1": "0.8963 \u00b1 0.0802",
+    "Supplementary AUROC": "Not calculated"
+  },
+  {
+    "Model": "Qwen",
+    "Task": "binary",
+    "Layer": 18,
+    "C": 0.01,
+    "Official Accuracy": 0.8871,
+    "Official Balanced Accuracy": 0.9118,
+    "Official Macro F1": 0.8838,
+    "Official AUROC": 0.9864,
+    "Supplementary Accuracy": "0.9144 \u00b1 0.0337",
+    "Supplementary Balanced Accuracy": "0.9192 \u00b1 0.0415",
+    "Supplementary Macro F1": "0.9016 \u00b1 0.0365",
+    "Supplementary AUROC": "0.9695 \u00b1 0.0203"
+  },
+  {
+    "Model": "Llama",
+    "Task": "binary",
+    "Layer": 16,
+    "C": 0.1,
+    "Official Accuracy": 0.8847,
+    "Official Balanced Accuracy": 0.9099,
+    "Official Macro F1": 0.8815,
+    "Official AUROC": 0.993,
+    "Supplementary Accuracy": "0.9365 \u00b1 0.0424",
+    "Supplementary Balanced Accuracy": "0.9305 \u00b1 0.0457",
+    "Supplementary Macro F1": "0.9258 \u00b1 0.0484",
+    "Supplementary AUROC": "0.9605 \u00b1 0.0423"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "task": "three_class",
+  "layer": 17,
+  "C": 1.0,
+  "training_styles": {
+    "kv": 858,
+    "prose": 851,
+    "compact": 0
+  },
+  "test_results": {
+    "all_styles": {
+      "n": 425,
+      "accuracy": 0.9412,
+      "balanced_accuracy": 0.9074,
+      "macro_f1": 0.9249
+    },
+    "kv_prose": {
+      "n": 283,
+      "accuracy": 0.9611,
+      "balanced_accuracy": 0.9284,
+      "macro_f1": 0.944
+    },
+    "compact_only": {
+      "n": 142,
+      "accuracy": 0.9014,
+      "balanced_accuracy": 0.8657,
+      "macro_f1": 0.8867
+    }
+  }
+}
