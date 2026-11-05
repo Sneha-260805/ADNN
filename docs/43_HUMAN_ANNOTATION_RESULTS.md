@@ -274,3 +274,26 @@ with:
   for byte. The e-mail addresses in the state texts are synthetic `example.org`/`example.com`
   dataset content.
 - **Originals.** The original returned workbooks stay unchanged at the repository root.
+
+**Archive as built** (2026-11-05, from code commit `bc14b8caa341bf7fc9c53cede81707c11fa7be38`,
+with no uncommitted changes to tracked files):
+
+| | |
+|---|---|
+| File | `ADNN_REQ-LBL-05_Human_Agreement_Archive.zip` (25 entries, 594,108 bytes) |
+| SHA-256 | `1db30aced999a6e065ed5af2b0420a24908b869bcf66b93c375695b90cd89675` |
+| Archived Annotator 1 workbook | `6affad17c459966235c8c1e9af12bb1bf02ec5c8165dcdef4cd07bc60870dd42` (`lastModifiedBy` neutralised; original `6ac7b350…`) |
+| Archived Annotator 2 workbook | `e146d1c0…209b5`, byte-identical to the returned file |
+
+**Reproduction check (passed).** The code was exported from commit `bc14b8c` with
+`git archive` into an empty folder, and the ZIP was extracted into it; nothing else from the
+working copy was used. The command was then run from that folder:
+
+- without the flag it fails strict validation as expected (exit 1);
+- with `--accept-uncertain-no` it gives κ 0.6206 / 0.8169 / 0.7339 with the same CIs;
+- `human_disagreements.csv`, `human_disagreements_detailed.csv`, `disagreement_groups.json`
+  and `human_vs_automatic.csv` are byte-identical to the archived results;
+- `summary.json` differs only in `computed_utc`, the input paths, and the Annotator 1 input
+  hash (the redacted copy). `code_sha256` is identical;
+- all archived files match the SHA-256 values in `ARCHIVE_MANIFEST.json`, and the ZIP
+  contains no personal name.
