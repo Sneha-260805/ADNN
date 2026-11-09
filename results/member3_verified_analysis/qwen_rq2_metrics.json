@@ -1,0 +1,73 @@
+{
+  "n": 425,
+  "accuracy": 0.2635294117647059,
+  "balanced_accuracy": 0.2848583877995643,
+  "macro_f1": 0.22092687674083022,
+  "unparseable": 0,
+  "confusion_labels": [
+    "reversible",
+    "partially_reversible",
+    "irreversible",
+    "UNPARSEABLE"
+  ],
+  "confusion_matrix": [
+    [
+      16,
+      3,
+      49,
+      0
+    ],
+    [
+      2,
+      5,
+      197,
+      0
+    ],
+    [
+      43,
+      19,
+      91,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "per_class": {
+    "reversible": {
+      "precision": 0.26229508196721313,
+      "recall": 0.23529411764705882,
+      "f1": 0.24806201550387597,
+      "support": 68
+    },
+    "partially_reversible": {
+      "precision": 0.18518518518518517,
+      "recall": 0.024509803921568627,
+      "f1": 0.04329004329004329,
+      "support": 204
+    },
+    "irreversible": {
+      "precision": 0.27002967359050445,
+      "recall": 0.5947712418300654,
+      "f1": 0.37142857142857144,
+      "support": 153
+    }
+  },
+  "ci95": {
+    "accuracy": [
+      0.07684426229508197,
+      0.39461228537779697
+    ],
+    "balanced_accuracy": [
+      0.1007881162250839,
+      0.39293454996573546
+    ],
+    "macro_f1": [
+      0.06783970858663786,
+      0.33188632685908065
+    ]
+  }
+}

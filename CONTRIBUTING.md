@@ -78,6 +78,8 @@ The spec requires an individual contribution log with one paragraph per member i
 | 2026-10-30 | Sneha (M1) | Phase 04B: shared versioned prompt builder (RQ1/RQ2/RQ3), state rendering styles, 210-example pilot dataset generator with provenance, dataset validator with fault-injection tests, docs 12–14. Drafted with AI assistance (Claude Code); **pending Sneha's review** | 6b6a3e4 |
 | 2026-10-30 | Sneha (M1) | Team handoff: read-only consumer API (`adnn.dataset.api`), consumer integration smoke tests on a from-scratch pilot, docs 15. Drafted with AI assistance (Claude Code); **pending Sneha's review** | — (uncommitted, `m1/sandbox-core`) |
 
+| 2026-11-09 | Member 3 | RQ2 and RQ3 execution workflow, Qwen and Llama experiment runs, raw logs, validation, post hoc comparison analysis and results draft. Prepared with AI assistance; pending team review. | m3/feat/rq2-rq3-results |
+
 ### Final paragraphs (to be written at the end)
 
 - **Sneha (M1):** —

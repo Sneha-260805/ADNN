@@ -1,0 +1,26 @@
+{
+  "qwen-full-backup.zip": {
+    "sha256": "bb0b7c608bd007bd32e7fb41d13c6befd9c21774113db73725ecff897304b350",
+    "extracted_to": "results/rq3/qwen/full"
+  },
+  "qwen-rq2-backup.zip": {
+    "sha256": "359830f0ddc40a8f7d1ab6de7417575aee8cee73e1f474c198a0eafab1a9f761",
+    "extracted_to": "results/rq2/qwen/test"
+  },
+  "llama-full-backup.zip": {
+    "sha256": "ed09d729d3e4e3af0f548738a46e87fcda7db4999636e989d2dd54eb51176cf5",
+    "extracted_to": "results/rq3/llama/full"
+  },
+  "llama-rq2-backup.zip": {
+    "sha256": "287398d00c7036fadaaa4519d5f2af6147dd710a6edc04210f2436c71eae4df6",
+    "extracted_to": "results/rq2/llama/test"
+  },
+  "llama-pilot-backup (1).zip": {
+    "sha256": "a6a99ee660193dd2f8a2a82615d32b6c4735458e9fe6da6f0681c11afd63d628",
+    "extracted_to": "results/rq3/llama/pilot"
+  },
+  "qwen_pilot_backup.zip": {
+    "sha256": "db30e6d988d7147f0dd7902eb50a3f32ced39d6f344e7493062385827f635df3",
+    "extracted_to": "results/rq3/qwen/pilot"
+  }
+}

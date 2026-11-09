@@ -1,0 +1,79 @@
+{
+  "n_pairs": 60,
+  "n_runs": 120,
+  "bootstrap_resamples": 1000,
+  "seed": 42,
+  "outcomes": {
+    "K": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "A": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "blindness_gap": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "reversibility_sensitivity": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "caution_irreversible": {
+      "estimate": 0.5,
+      "ci95": [
+        0.36666666666666664,
+        0.6166666666666667
+      ]
+    },
+    "over_caution_reversible": {
+      "estimate": 0.5,
+      "ci95": [
+        0.36666666666666664,
+        0.6166666666666667
+      ]
+    },
+    "irreversible_execution_rate": {
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "success_irreversible": {
+      "estimate": 0.9666666666666667,
+      "ci95": [
+        0.9166666666666666,
+        1.0
+      ]
+    },
+    "success_reversible": {
+      "estimate": 0.48333333333333334,
+      "ci95": [
+        0.36666666666666664,
+        0.6166666666666667
+      ]
+    }
+  },
+  "mcnemar_caution": {
+    "i_only": 0,
+    "r_only": 0,
+    "p_exact": 1.0
+  },
+  "termination_counts": {
+    "step_limit": 120
+  }
+}
