@@ -1,0 +1,59 @@
+{
+  "n": 142,
+  "accuracy": 0.2676056338028169,
+  "balanced_accuracy": 0.4153209109730849,
+  "macro_f1": 0.23492063492063495,
+  "unparseable": 0,
+  "confusion_labels": [
+    "reversible",
+    "partially_reversible",
+    "irreversible",
+    "UNPARSEABLE"
+  ],
+  "confusion_matrix": [
+    [
+      10,
+      0,
+      36,
+      0
+    ],
+    [
+      16,
+      2,
+      52,
+      0
+    ],
+    [
+      0,
+      0,
+      26,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "per_class": {
+    "reversible": {
+      "precision": 0.38461538461538464,
+      "recall": 0.21739130434782608,
+      "f1": 0.2777777777777778,
+      "support": 46
+    },
+    "partially_reversible": {
+      "precision": 1.0,
+      "recall": 0.02857142857142857,
+      "f1": 0.05555555555555555,
+      "support": 70
+    },
+    "irreversible": {
+      "precision": 0.22807017543859648,
+      "recall": 1.0,
+      "f1": 0.37142857142857144,
+      "support": 26
+    }
+  }
+}

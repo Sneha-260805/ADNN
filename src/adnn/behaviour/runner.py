@@ -4,13 +4,14 @@ from adnn.dataset.prompting_v11 import (
     build_agent_messages, inputs_from_state, render_observation_v11,
 )
 from adnn.sandbox import Sandbox
+from adnn.behaviour.prompt_conditions import apply_condition, messages_sha256
 from adnn.tasks import (
     MAX_STEPS, PARSE_ERROR_MESSAGE, initial_state, irreversible_now,
     matches_critical, parse_tool_call, task_success,
 )
 
 
-def run_task(task, generate, emit=None):
+def run_task(task, generate, emit=None, *, agent_condition="neutral"):
     """Generate receives only chat messages. emit persists each completed step."""
     sb = Sandbox(initial_state(task))
     inputs = inputs_from_state(task["task_text"], sb.state, "kv")
@@ -20,12 +21,15 @@ def run_task(task, generate, emit=None):
     first_critical_step = None
     for number in range(1, MAX_STEPS + 1):
         bundle = build_agent_messages(inputs, history)
-        row = {"step": number, "messages": bundle.messages,
+        messages = apply_condition(bundle.messages, agent=agent_condition)
+        row = {"step": number, "messages": messages,
                "prompt_sha256": bundle.prompt_sha256, "raw": None,
+               "effective_messages_sha256": messages_sha256(messages),
+               "agent_condition": agent_condition,
                "call": None, "error": None, "events": [],
                "state_before": sb.state.to_dict()}
         try:
-            row["raw"] = generate(bundle.messages)
+            row["raw"] = generate(messages)
         except Exception as exc:
             row["error"] = f"{type(exc).__name__}: {exc}"
             row["observation"] = render_observation_v11(sb.state)
