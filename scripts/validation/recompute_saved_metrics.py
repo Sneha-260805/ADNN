@@ -259,7 +259,7 @@ def rq2_rq3(root: Path) -> list[dict[str, Any]]:
                 mismatches=mismatches[:20],
                 n_mismatches=len(mismatches),
             )
-        # RQ2 runs record v2.0 only by path: check IDs and labels against the frozen bundle.
+        # RQ2 runs record the v2.0 manifest hash; also check IDs and labels row by row.
         v2 = root / "data/production/v2.0"
         if kind == "RQ2" and (v2 / "split.json").exists():
             split = json.loads((v2 / "split.json").read_text("utf-8"))

@@ -146,11 +146,19 @@ def run(root: Path) -> list[dict[str, Any]]:
         matched = [
             name for name, p in candidates.items() if p.exists() and sha256_file(p) == recorded
         ]
+        # RQ3 runs record the task manifest, RQ2 runs the v2.0 manifest. If a candidate is
+        # absent (e.g. the git-ignored v2.0 bundle in CI) a non-match is unverifiable.
+        if matched:
+            status = "OK"
+        elif all(p.exists() for p in candidates.values()):
+            status = "UNMATCHED"
+        else:
+            status = "MISSING"
         results.append(
             {
                 "artifact": "run config dataset_manifest_sha256",
                 "file": str(cfg_path.relative_to(root)),
-                "status": "OK" if matched else "UNMATCHED",
+                "status": status,
                 "matched": matched,
             }
         )

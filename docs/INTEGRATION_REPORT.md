@@ -62,9 +62,15 @@ branch was modified.
 | 2 | `6991423` Merge `m3/feat/rq2-rq3-results` | `4eddb75` + `b15e9b1` | none (the m1 commits were already shared) |
 | 3 | `baadb86` Merge `m2/rq1_qwen_llama` | `6991423` + `650f176` | none |
 
-Then come the integration commits (documentation, validation scripts, CI). They change **no
-file under `results/` or `data/`, and no research code** under `src/adnn/behaviour`,
-`scripts/rq1` or `scripts/behaviour`.
+Then come the integration commits:
+- `05887fd`: validation scripts;
+- `a7e4f23`: CI;
+- `8226058`: documentation;
+- a final fix-up commit, which corrects the run-config manifest attribution found by the
+  local CI dry-run.
+
+They change **no file under `results/` or `data/`, and no research code** under
+`src/adnn/behaviour`, `scripts/rq1` or `scripts/behaviour`.
 
 ## 3. Phase 3: artifact protection check
 

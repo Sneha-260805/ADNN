@@ -65,10 +65,11 @@ apply all passed.
 | | returned workbooks | A1 `6ac7b350…615ad`, A2 `e146d1c0…209b5` (match docs/43) |
 
 Cross-links were also verified:
-- The `dataset_manifest_sha256` recorded in all 15 Member 3 run configs equals the sha256 of
-  `data/tasks/rq3-tasks-1.0/manifest.json`. The RQ2 runs record the task manifest as well,
-  but they load v2.0 by path.
+- The `dataset_manifest_sha256` in all 15 Member 3 run configs matches a frozen manifest.
+  - The 7 RQ3 runs (4 original, 3 format follow-ups) match `data/tasks/rq3-tasks-1.0/manifest.json`.
+  - The 8 RQ2 runs (2 original, 6 follow-ups) match `data/production/v2.0/manifest.json`.
 - The RQ3 task manifest and the annotation manifest both cite the v2.0 records hash.
+- Without the git-ignored bundle (as in CI), the 8 RQ2 checks report MISSING, not a mismatch.
 
 ## 5. RQ1: saved-prediction recomputation (Member 2)
 
@@ -107,8 +108,8 @@ compared field by field with `metrics.json` (tolerance 1e-9):
 | `member3_followups/{qwen,llama}-dev-neutral`, `{qwen,llama}-dev-recovery`, `llama-test-recovery-v1` (exploratory) | **match** |
 | `member3_followups/qwen-test-recovery-v1` | no `metrics.json` saved in the run folder. Its figures are in `results/member3_verified_analysis` / `member3_followups` CSVs (REPORTED) |
 
-**Dataset alignment (EXECUTED).** The RQ2 run configs record v2.0 only by path, so the
-outcome rows were checked directly against the frozen bundle.
+**Dataset alignment (EXECUTED).** The RQ2 run configs record the v2.0 manifest hash (§4). In
+addition, the outcome rows were checked one by one against the frozen bundle.
 - **Test runs:** all four (two original, two recovery follow-ups) contain exactly the 425
   official test IDs, with 0 duplicates and 0 gold-label mismatches.
 - **Dev runs:** all four contain 0 test-split IDs, so there is no test leakage into prompt

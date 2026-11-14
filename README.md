@@ -158,7 +158,8 @@ reversible and irreversible tasks.
 
 ## Installation
 
-Python 3.11. Tested on Windows during integration; CI runs Ubuntu.
+Python 3.11. These commands were tested on Windows during integration. The CI workflow
+(`.github/workflows/ci.yml`, Ubuntu) has been dry-run locally but has not run on GitHub yet.
 
 ```bash
 python -m venv .venv
