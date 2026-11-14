@@ -1,0 +1,48 @@
+{
+  "experiment": "Qwen v2 binary robustness subset",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "representation": "last_action_token",
+  "layer": 18,
+  "C": 0.01,
+  "training_records": 1709,
+  "robustness_test_records": 127,
+  "test_metrics": {
+    "accuracy": 0.8661417322834646,
+    "balanced_accuracy": 0.9034090909090908,
+    "macro_f1": 0.8570671962926184,
+    "auroc": 0.9874708624708625
+  },
+  "confusion_matrix": [
+    [
+      71,
+      17
+    ],
+    [
+      0,
+      39
+    ]
+  ],
+  "per_class": {
+    "non_irreversible": {
+      "precision": 1.0,
+      "recall": 0.8068181818181818,
+      "f1-score": 0.8930817610062893,
+      "support": 88.0
+    },
+    "irreversible": {
+      "precision": 0.6964285714285714,
+      "recall": 1.0,
+      "f1-score": 0.8210526315789474,
+      "support": 39.0
+    }
+  },
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "solver": "saga",
+    "class_weight": "balanced",
+    "max_iter": 500,
+    "tol": 0.01,
+    "random_state": 42
+  }
+}

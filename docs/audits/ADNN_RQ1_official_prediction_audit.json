@@ -1,0 +1,170 @@
+{
+  "audit_type": "official_RQ1_prediction_metric_recalculation",
+  "scope": "Official 425-record test predictions only",
+  "method": {
+    "accuracy": "sklearn accuracy_score",
+    "balanced_accuracy": "sklearn balanced_accuracy_score",
+    "macro_f1": "sklearn f1_score(average='macro')",
+    "binary_auroc": "sklearn roc_auc_score using probability_irreversible",
+    "multiclass_macro_auroc": "sklearn roc_auc_score(multi_class='ovr', average='macro') using saved class probabilities",
+    "confusion_matrix": "Rows=true labels; columns=predicted labels; label order specified per task"
+  },
+  "results": {
+    "Qwen 3-class": {
+      "source_file": "qwen_v2_3class_test_predictions.jsonl",
+      "n_predictions": 425,
+      "unique_record_ids": 425,
+      "unique_scenarios": 25,
+      "true_class_counts": {
+        "partially_reversible": 204,
+        "reversible": 68,
+        "irreversible": 153
+      },
+      "accuracy": 0.9364705882352942,
+      "balanced_accuracy": 0.9215686274509803,
+      "macro_f1": 0.9209225337956681,
+      "auroc": 0.99508087548745,
+      "confusion_matrix": {
+        "label_order": [
+          "reversible",
+          "partially_reversible",
+          "irreversible"
+        ],
+        "rows_true_columns_predicted": [
+          [
+            58,
+            2,
+            8
+          ],
+          [
+            5,
+            190,
+            9
+          ],
+          [
+            3,
+            0,
+            150
+          ]
+        ]
+      }
+    },
+    "Qwen binary": {
+      "source_file": "qwen_v2_binary_predictions.jsonl",
+      "n_predictions": 425,
+      "unique_record_ids": 425,
+      "unique_scenarios": 25,
+      "true_class_counts": {
+        "0": 272,
+        "1": 153
+      },
+      "accuracy": 0.8870588235294118,
+      "balanced_accuracy": 0.9117647058823529,
+      "macro_f1": 0.8838162930563149,
+      "auroc": 0.9864234909650134,
+      "confusion_matrix": {
+        "label_order": [
+          "non_irreversible",
+          "irreversible"
+        ],
+        "rows_true_columns_predicted": [
+          [
+            224,
+            48
+          ],
+          [
+            0,
+            153
+          ]
+        ]
+      }
+    },
+    "Llama binary": {
+      "source_file": "llama_v2_binary_predictions.jsonl",
+      "n_predictions": 425,
+      "unique_record_ids": 425,
+      "unique_scenarios": 25,
+      "true_class_counts": {
+        "0": 272,
+        "1": 153
+      },
+      "accuracy": 0.8847058823529412,
+      "balanced_accuracy": 0.9099264705882353,
+      "macro_f1": 0.8814909659980082,
+      "auroc": 0.9930074971164937,
+      "confusion_matrix": {
+        "label_order": [
+          "non_irreversible",
+          "irreversible"
+        ],
+        "rows_true_columns_predicted": [
+          [
+            223,
+            49
+          ],
+          [
+            0,
+            153
+          ]
+        ]
+      }
+    },
+    "Llama 3-class": {
+      "source_file": "llama_v2_3class_predictions(1).jsonl",
+      "n_predictions": 425,
+      "unique_record_ids": 425,
+      "unique_scenarios": 25,
+      "true_class_counts": {
+        "partially_reversible": 204,
+        "reversible": 68,
+        "irreversible": 153
+      },
+      "accuracy": 0.9411764705882353,
+      "balanced_accuracy": 0.9074074074074074,
+      "macro_f1": 0.9248881505628962,
+      "auroc": 0.9917534007066879,
+      "confusion_matrix": {
+        "label_order": [
+          "reversible",
+          "partially_reversible",
+          "irreversible"
+        ],
+        "rows_true_columns_predicted": [
+          [
+            53,
+            2,
+            13
+          ],
+          [
+            0,
+            199,
+            5
+          ],
+          [
+            0,
+            5,
+            148
+          ]
+        ]
+      }
+    }
+  },
+  "cross_file_alignment": {
+    "Qwen 3-class": {
+      "same_ordered_record_ids_as_qwen_3class": true,
+      "same_ordered_scenario_ids_as_qwen_3class": true
+    },
+    "Qwen binary": {
+      "same_ordered_record_ids_as_qwen_3class": true,
+      "same_ordered_scenario_ids_as_qwen_3class": true
+    },
+    "Llama binary": {
+      "same_ordered_record_ids_as_qwen_3class": true,
+      "same_ordered_scenario_ids_as_qwen_3class": true
+    },
+    "Llama 3-class": {
+      "same_ordered_record_ids_as_qwen_3class": true,
+      "same_ordered_scenario_ids_as_qwen_3class": true
+    }
+  }
+}

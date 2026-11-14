@@ -1,0 +1,100 @@
+{
+  "artifact": "ADNN RQ1 Qwen handoff",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "status": "preliminary_v1.0",
+  "created_at": "2026-11-03T08:16:42.068633+00:00",
+  "dataset": {
+    "version": "adnn-dataset-2.0",
+    "records": 2134,
+    "scenarios": 149,
+    "train_records": 1709,
+    "test_records": 425,
+    "split": "scenario_grouped_frozen"
+  },
+  "hidden_states": {
+    "dtype": "float16",
+    "layers": 29,
+    "hidden_size": 3584,
+    "representations": [
+      "last_action_token",
+      "mean_action_tokens"
+    ]
+  },
+  "probe_pipeline": {
+    "scaler": "StandardScaler",
+    "classifier": "L2 LogisticRegression",
+    "class_weight": "balanced",
+    "group_cv": "scenario_id",
+    "layer_selection": "inner CV only",
+    "C_selection": "inner CV only",
+    "test_usage": "single final evaluation"
+  },
+  "files": [
+    {
+      "path": "hidden_states/last_action_token.npy",
+      "size_bytes": 443598976,
+      "sha256": "372ae3c8df1c07b294b0261f240abad0dd610aeeab709e1252b2c9d022101f29"
+    },
+    {
+      "path": "hidden_states/mean_action_tokens.npy",
+      "size_bytes": 443598976,
+      "sha256": "7290c882533a6ed9915a45da3c136d412c01aa14a9c5493857830a5f403979fb"
+    },
+    {
+      "path": "hidden_states/extraction_index.jsonl",
+      "size_bytes": 1256425,
+      "sha256": "0a631fe6fd012f9bdf129432a005d59119a0be7d9c3f3d9942c3656dde57065c"
+    },
+    {
+      "path": "hidden_states/extraction_metadata.json",
+      "size_bytes": 844,
+      "sha256": "27f724e4c5bf31bcef6fc0d46b19963df64f48273abd7b08e967f94f8686e2be"
+    },
+    {
+      "path": "probes/qwen_v2_final_3class_results.json",
+      "size_bytes": 1022,
+      "sha256": "b65db46b487d4090335d9d3c7778db515633e24db6d5af262e493b19aed39e25"
+    },
+    {
+      "path": "probes/qwen_v2_final_binary_results.json",
+      "size_bytes": 1558,
+      "sha256": "f974957a07c9f5927a6c778d07c291167dfdc9bc950c51fbc8043ad0b2b259d6"
+    },
+    {
+      "path": "probes/qwen_v2_binary_predictions.jsonl",
+      "size_bytes": 113848,
+      "sha256": "769949fcb3c307e799c688931aefc708483a0372d8f17895350c46260f02b0a5"
+    },
+    {
+      "path": "probes/qwen_v2_binary_bootstrap_ci.json",
+      "size_bytes": 803,
+      "sha256": "d9b38909aec39ed83b7dc137692851835cef982a3954149579cad2378152b590"
+    },
+    {
+      "path": "probes/best_layers.json",
+      "size_bytes": 485,
+      "sha256": "c5362de2a6b49a067d4b7b7d8b2e46e9ac95d3df36d6646a6c256de7caad2271"
+    },
+    {
+      "path": "probes/metrics.json",
+      "size_bytes": 18964,
+      "sha256": "a68c0a448d1d0e7757220b80aa69fd56e0f4572097d67d801ebe38b348e9a8b0"
+    },
+    {
+      "path": "analysis/qwen_v2_canonical_24_minimal_pairs.json",
+      "size_bytes": 34518,
+      "sha256": "588e1e234434587f16a25dfc7adccfe95aac81764715d73a0d601753dc4fa343"
+    },
+    {
+      "path": "analysis/qwen_v2_minimal_pair_render_style.json",
+      "size_bytes": 659,
+      "sha256": "39dc85ad20a503b87ad5d9343629c564c2cccceb6d00b3a763bfd170f4dc94f0"
+    },
+    {
+      "path": "analysis/qwen_v2_binary_environment_breakdown.json",
+      "size_bytes": 480,
+      "sha256": "d3a8b7571074d21503ca7774ae5abe2d43e12046d2bc7f0eb5629e59ba20d7c9"
+    }
+  ],
+  "missing_files": []
+}

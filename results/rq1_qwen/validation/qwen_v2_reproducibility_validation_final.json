@@ -1,0 +1,29 @@
+{
+  "experiment": "ADNN_RQ1_Qwen_v2_reproducibility_validation",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "dataset_version": "adnn-dataset-2.0",
+  "cross_run_test": {
+    "num_records_tested": 10,
+    "prompt_hashes_match": true,
+    "last_action_token_vectors_match": false,
+    "mean_action_token_vectors_match": false,
+    "maximum_last_action_token_abs_difference": 116.5,
+    "maximum_mean_action_tokens_abs_difference": 4.0625,
+    "interpretation": "Prompt construction, tokenization, sequence length, and action span were reproduced, but hidden-state numerical values from the original extraction were not reproduced exactly in the later inference run."
+  },
+  "same_session_test": {
+    "same_input_run_twice": true,
+    "maximum_last_action_token_abs_difference": 0.0,
+    "maximum_mean_action_tokens_abs_difference": 0.0,
+    "deterministic_within_current_runtime": true,
+    "interpretation": "Two identical forward passes using the same model, same inputs, and same runtime produced exactly identical hidden-state representations."
+  },
+  "alignment_checks": {
+    "prompt_hashes_match": true,
+    "sequence_lengths_match": true,
+    "action_token_counts_match": false
+  },
+  "final_status": "PASS_WITH_CROSS_RUN_NUMERICAL_LIMITATION",
+  "conclusion": "The Qwen extraction pipeline is deterministic within a fixed runtime. A separate re-extraction reproduced the prompt hashes, sequence lengths, and action spans, but did not reproduce the original hidden-state numerical values exactly. Therefore the validation passes for pipeline alignment and within-runtime determinism, while cross-runtime numerical reproducibility remains a documented limitation.",
+  "timestamp_utc": "2026-11-03T10:25:38.882492Z"
+}

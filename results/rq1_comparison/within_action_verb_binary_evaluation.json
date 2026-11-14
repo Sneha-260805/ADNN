@@ -1,0 +1,52 @@
+{
+  "experiment": "within_action_verb_binary_evaluation",
+  "evaluation": "official_frozen_test_set",
+  "retrained": false,
+  "models": {
+    "Qwen": {
+      "restore_backup": {
+        "n": 78,
+        "class_counts": {
+          "non_irreversible": 21,
+          "irreversible": 57
+        },
+        "accuracy": 0.7308,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4222
+      },
+      "transfer_money": {
+        "n": 151,
+        "class_counts": {
+          "non_irreversible": 94,
+          "irreversible": 57
+        },
+        "accuracy": 0.8212,
+        "balanced_accuracy": 0.8564,
+        "macro_f1": 0.8204
+      }
+    },
+    "Llama": {
+      "restore_backup": {
+        "n": 78,
+        "class_counts": {
+          "non_irreversible": 21,
+          "irreversible": 57
+        },
+        "accuracy": 0.7692,
+        "balanced_accuracy": 0.5714,
+        "macro_f1": 0.5568
+      },
+      "transfer_money": {
+        "n": 151,
+        "class_counts": {
+          "non_irreversible": 94,
+          "irreversible": 57
+        },
+        "accuracy": 0.9007,
+        "balanced_accuracy": 0.9202,
+        "macro_f1": 0.8985
+      }
+    }
+  },
+  "limitation": "Only two action verbs contain both binary classes in the official test set. Results are diagnostic and do not establish generalization across action verbs."
+}

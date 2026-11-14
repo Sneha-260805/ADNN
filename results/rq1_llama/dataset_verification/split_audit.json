@@ -1,0 +1,18 @@
+{
+  "dataset_version": "adnn-dataset-2.0",
+  "total_records": 2134,
+  "unique_record_ids": 2134,
+  "duplicate_record_ids": 0,
+  "train_records": 1709,
+  "test_records": 425,
+  "train_scenarios_listed": 124,
+  "train_scenarios_present": 124,
+  "test_scenarios_listed": 27,
+  "test_scenarios_present": 25,
+  "test_scenarios_without_records": [
+    "grp-0cc4fd8f73a6",
+    "grp-f8673bb166d9"
+  ],
+  "split_modified": false,
+  "note": "Two test scenario IDs listed in split.json have no corresponding records in the loaded production dataset. No records were added, removed, or reassigned."
+}

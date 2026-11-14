@@ -1,0 +1,64 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "dataset": "adnn-dataset-2.0",
+  "task": "binary_irreversibility",
+  "evaluation": "robustness_subset_official_test",
+  "selected_layer": 16,
+  "selected_C": 0.1,
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "solver": "saga",
+    "max_iter": 500,
+    "tol": 0.01,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "train_records": 1709,
+  "test_records": 127,
+  "test_accuracy": 0.8503937007874016,
+  "test_balanced_accuracy": 0.8920454545454546,
+  "test_macro_f1": 0.8415523015299757,
+  "test_auroc": 0.9924242424242424,
+  "confusion_matrix": [
+    [
+      69,
+      19
+    ],
+    [
+      0,
+      39
+    ]
+  ],
+  "classification_report": {
+    "non_irreversible": {
+      "precision": 1.0,
+      "recall": 0.7840909090909091,
+      "f1-score": 0.8789808917197452,
+      "support": 88.0
+    },
+    "irreversible": {
+      "precision": 0.6724137931034483,
+      "recall": 1.0,
+      "f1-score": 0.8041237113402062,
+      "support": 39.0
+    },
+    "accuracy": 0.8503937007874016,
+    "macro avg": {
+      "precision": 0.8362068965517242,
+      "recall": 0.8920454545454546,
+      "f1-score": 0.8415523015299757,
+      "support": 127.0
+    },
+    "weighted avg": {
+      "precision": 0.8994026608742872,
+      "recall": 0.8503937007874016,
+      "f1-score": 0.855993253650438,
+      "support": 127.0
+    }
+  },
+  "class_order": [
+    "non_irreversible",
+    "irreversible"
+  ]
+}

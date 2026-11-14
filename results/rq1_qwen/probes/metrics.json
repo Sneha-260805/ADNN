@@ -1,0 +1,814 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "primary_three_class": {
+    "layer": 20,
+    "C": 0.1,
+    "balanced_accuracy": 0.9216,
+    "macro_f1": 0.9209,
+    "auroc": 0.9951,
+    "per_class": {
+      "reversible": {
+        "precision": 0.8788,
+        "recall": 0.8529,
+        "f1": 0.8657,
+        "support": 68
+      },
+      "partially_reversible": {
+        "precision": 0.9896,
+        "recall": 0.9314,
+        "f1": 0.9596,
+        "support": 204
+      },
+      "irreversible": {
+        "precision": 0.8982,
+        "recall": 0.9804,
+        "f1": 0.9375,
+        "support": 153
+      }
+    },
+    "confusion_matrix": [
+      [
+        58,
+        2,
+        8
+      ],
+      [
+        5,
+        190,
+        9
+      ],
+      [
+        3,
+        0,
+        150
+      ]
+    ]
+  },
+  "primary_binary": {
+    "layer": 18,
+    "C": 0.01,
+    "accuracy": 0.8870588235294118,
+    "balanced_accuracy": 0.9117647058823529,
+    "macro_f1": 0.8838162930563149,
+    "auroc": 0.9864234909650134,
+    "per_class": {
+      "non_irreversible": {
+        "precision": 1.0,
+        "recall": 0.8235294117647058,
+        "f1": 0.9032258064516129
+      },
+      "irreversible": {
+        "precision": 0.7611940298507462,
+        "recall": 1.0,
+        "f1": 0.864406779661017
+      }
+    },
+    "confusion_matrix": [
+      [
+        224,
+        48
+      ],
+      [
+        0,
+        153
+      ]
+    ]
+  },
+  "bootstrap_95_ci": {
+    "experiment": "qwen_v2_final_binary_probe",
+    "bootstrap": {
+      "method": "scenario_level_bootstrap",
+      "n_resamples_requested": 1000,
+      "n_resamples_successful": 1000,
+      "n_resamples_skipped": 0,
+      "confidence_level": 0.95,
+      "interval_method": "percentile",
+      "seed": 42,
+      "resampling_unit": "scenario_id"
+    },
+    "test": {
+      "n_records": 425,
+      "n_scenarios": 25
+    },
+    "metrics": {
+      "balanced_accuracy": {
+        "estimate": 0.9117647058823529,
+        "ci_95": [
+          0.8110891089108911,
+          1.0
+        ]
+      },
+      "macro_f1": {
+        "estimate": 0.8838162930563149,
+        "ci_95": [
+          0.7864901379626347,
+          1.0
+        ]
+      },
+      "auroc": {
+        "estimate": 0.9864234909650134,
+        "ci_95": [
+          0.9424199731247787,
+          1.0
+        ]
+      }
+    }
+  },
+  "controls": {
+    "majority": {
+      "experiment": "qwen_v2_binary_majority_baseline",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "train": {
+        "n": 1709,
+        "class_0": 1285,
+        "class_1": 424
+      },
+      "test": {
+        "n": 425
+      },
+      "majority_class": {
+        "label": 0,
+        "name": "non_irreversible"
+      },
+      "metrics": {
+        "accuracy": 0.64,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.3902439024390244,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 0.64,
+            "recall": 1.0,
+            "f1": 0.7804878048780488
+          },
+          "irreversible": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            272,
+            0
+          ],
+          [
+            153,
+            0
+          ]
+        ]
+      }
+    },
+    "bow_action_text": {
+      "experiment": "qwen_v2_binary_bow_action_text",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "features": {
+        "source": "action_text",
+        "vectorizer": "TfidfVectorizer",
+        "lowercase": true,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "sublinear_tf": true
+      },
+      "selection": {
+        "method": "GroupKFold",
+        "n_splits": 5,
+        "group": "scenario_id",
+        "C_grid": [
+          0.001,
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "selected_C": 10.0,
+        "inner_cv_balanced_accuracy": 0.6639182377989292,
+        "inner_cv_sd": 0.046402217754449075
+      },
+      "classifier": {
+        "penalty": "l2",
+        "C": 10.0,
+        "class_weight": "balanced",
+        "solver": "liblinear",
+        "max_iter": 1000,
+        "random_state": 42
+      },
+      "test": {
+        "n": 425
+      },
+      "metrics": {
+        "accuracy": 0.76,
+        "balanced_accuracy": 0.7438725490196079,
+        "macro_f1": 0.7417429225050043,
+        "auroc": 0.8710351787773933,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 0.8195488721804511,
+            "recall": 0.8014705882352942,
+            "f1": 0.8104089219330854
+          },
+          "irreversible": {
+            "precision": 0.660377358490566,
+            "recall": 0.6862745098039216,
+            "f1": 0.6730769230769231
+          }
+        },
+        "confusion_matrix": [
+          [
+            218,
+            54
+          ],
+          [
+            48,
+            105
+          ]
+        ]
+      }
+    },
+    "bow_state_action": {
+      "experiment": "qwen_v2_binary_bow_state_action",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "features": {
+        "source": "state_text + action_text",
+        "vectorizer": "TfidfVectorizer",
+        "lowercase": true,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "sublinear_tf": true
+      },
+      "selection": {
+        "method": "GroupKFold",
+        "n_splits": 5,
+        "group": "scenario_id",
+        "C_grid": [
+          0.001,
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "selected_C": 1.0,
+        "inner_cv_balanced_accuracy": 0.695892179601252,
+        "inner_cv_sd": 0.05428853203098836
+      },
+      "classifier": {
+        "penalty": "l2",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "solver": "liblinear",
+        "max_iter": 1000,
+        "random_state": 42
+      },
+      "test": {
+        "n": 425
+      },
+      "metrics": {
+        "accuracy": 0.8423529411764706,
+        "balanced_accuracy": 0.8439542483660131,
+        "macro_f1": 0.833499979534677,
+        "auroc": 0.9400350826605153,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 0.9083665338645418,
+            "recall": 0.8382352941176471,
+            "f1": 0.8718929254302104
+          },
+          "irreversible": {
+            "precision": 0.7471264367816092,
+            "recall": 0.8496732026143791,
+            "f1": 0.7951070336391437
+          }
+        },
+        "confusion_matrix": [
+          [
+            228,
+            44
+          ],
+          [
+            23,
+            130
+          ]
+        ]
+      }
+    },
+    "shuffled_labels": {
+      "experiment": "qwen_v2_binary_shuffled_label_control",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "representation": {
+        "type": "last_action_token",
+        "layer": 18
+      },
+      "classifier": {
+        "scaler": "StandardScaler",
+        "penalty": "l2",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "solver": "saga",
+        "max_iter": 500,
+        "tol": 0.01,
+        "random_state": 42
+      },
+      "label_shuffle": {
+        "scope": "training_labels_only",
+        "seed": 42,
+        "test_labels_shuffled": false
+      },
+      "train": {
+        "n": 1709,
+        "original_class_0": 1285,
+        "original_class_1": 424,
+        "shuffled_class_0": 1285,
+        "shuffled_class_1": 424
+      },
+      "test": {
+        "n": 425
+      },
+      "metrics": {
+        "accuracy": 0.5035294117647059,
+        "balanced_accuracy": 0.5263480392156863,
+        "macro_f1": 0.5013650947225605,
+        "auroc": 0.5509900038446751,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 0.6685082872928176,
+            "recall": 0.44485294117647056,
+            "f1": 0.5342163355408388
+          },
+          "irreversible": {
+            "precision": 0.38114754098360654,
+            "recall": 0.6078431372549019,
+            "f1": 0.46851385390428213
+          }
+        },
+        "confusion_matrix": [
+          [
+            121,
+            151
+          ],
+          [
+            60,
+            93
+          ]
+        ]
+      }
+    },
+    "random_action_verb": {
+      "experiment": "qwen_v2_binary_random_action_verb_control",
+      "task": {
+        "type": "binary",
+        "target": "fixed_random_label_per_action_verb"
+      },
+      "representation": {
+        "type": "last_action_token",
+        "layer": 18
+      },
+      "classifier": {
+        "scaler": "StandardScaler",
+        "penalty": "l2",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "solver": "saga",
+        "max_iter": 500,
+        "tol": 0.01,
+        "random_state": 42
+      },
+      "random_mapping": {
+        "seed": 42,
+        "n_action_verbs": 13,
+        "mapping": {
+          "connect": 0,
+          "create_share_link": 1,
+          "delete_file": 1,
+          "edit_file": 0,
+          "move": 0,
+          "open": 1,
+          "restore_backup": 0,
+          "restore_file": 1,
+          "revert_file": 0,
+          "revoke_share_link": 0,
+          "send_email": 1,
+          "transfer_money": 1,
+          "use": 1
+        }
+      },
+      "train": {
+        "n": 1709,
+        "class_0": 529,
+        "class_1": 1180
+      },
+      "test": {
+        "n": 425,
+        "class_0": 262,
+        "class_1": 163
+      },
+      "metrics": {
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auroc": 1.0,
+        "per_class": {
+          "random_label_0": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "random_label_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            262,
+            0
+          ],
+          [
+            0,
+            163
+          ]
+        ]
+      }
+    },
+    "layer0": {
+      "experiment": "qwen_v2_binary_layer0_embedding_baseline",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "representation": {
+        "type": "last_action_token",
+        "layer": 0
+      },
+      "classifier": {
+        "scaler": "StandardScaler",
+        "penalty": "l2",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "solver": "saga",
+        "max_iter": 500,
+        "tol": 0.01,
+        "random_state": 42
+      },
+      "train": {
+        "n": 1709
+      },
+      "test": {
+        "n": 425
+      },
+      "metrics": {
+        "accuracy": 0.3623529411764706,
+        "balanced_accuracy": 0.5018382352941176,
+        "macro_f1": 0.26882764837704176,
+        "auroc": 0.5018382352941176,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 1.0,
+            "recall": 0.003676470588235294,
+            "f1": 0.007326007326007326
+          },
+          "irreversible": {
+            "precision": 0.3608490566037736,
+            "recall": 1.0,
+            "f1": 0.5303292894280762
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            271
+          ],
+          [
+            0,
+            153
+          ]
+        ]
+      }
+    }
+  },
+  "ablations": {
+    "mean_action_tokens": {
+      "experiment": "qwen_v2_binary_mean_action_tokens_layer18",
+      "task": {
+        "type": "binary",
+        "label_mapping": {
+          "0": "non_irreversible",
+          "1": "irreversible"
+        }
+      },
+      "representation": {
+        "type": "mean_action_tokens",
+        "layer": 18
+      },
+      "classifier": {
+        "scaler": "StandardScaler",
+        "penalty": "l2",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "solver": "saga",
+        "max_iter": 500,
+        "tol": 0.01,
+        "random_state": 42
+      },
+      "train": {
+        "n": 1709
+      },
+      "test": {
+        "n": 425
+      },
+      "metrics": {
+        "accuracy": 0.8729411764705882,
+        "balanced_accuracy": 0.9007352941176471,
+        "macro_f1": 0.8698979591836735,
+        "auroc": 0.9883217993079585,
+        "per_class": {
+          "non_irreversible": {
+            "precision": 1.0,
+            "recall": 0.8014705882352942,
+            "f1": 0.889795918367347
+          },
+          "irreversible": {
+            "precision": 0.7391304347826086,
+            "recall": 1.0,
+            "f1": 0.85
+          }
+        },
+        "confusion_matrix": [
+          [
+            218,
+            54
+          ],
+          [
+            0,
+            153
+          ]
+        ]
+      }
+    },
+    "horizon": {
+      "experiment": "qwen_v2_binary_horizon_ablations",
+      "representation": {
+        "type": "last_action_token",
+        "layer": 18
+      },
+      "classifier": {
+        "scaler": "StandardScaler",
+        "penalty": "l2",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "solver": "saga",
+        "max_iter": 500,
+        "tol": 0.01,
+        "random_state": 42
+      },
+      "label_mapping": {
+        "0": "non_irreversible",
+        "1": "irreversible"
+      },
+      "h1": {
+        "horizon": 1,
+        "representation": {
+          "type": "last_action_token",
+          "layer": 18
+        },
+        "classifier": {
+          "scaler": "StandardScaler",
+          "penalty": "l2",
+          "C": 0.01,
+          "class_weight": "balanced",
+          "solver": "saga",
+          "max_iter": 500,
+          "tol": 0.01,
+          "random_state": 42
+        },
+        "train_n": 1709,
+        "test_n": 425,
+        "train_class_counts": {
+          "0": 1267,
+          "1": 442
+        },
+        "test_class_counts": {
+          "0": 272,
+          "1": 153
+        },
+        "metrics": {
+          "accuracy": 0.8941176470588236,
+          "balanced_accuracy": 0.9172794117647058,
+          "macro_f1": 0.8908072555367145,
+          "auroc": 0.9883938869665513,
+          "per_class": {
+            "non_irreversible": {
+              "precision": 1.0,
+              "recall": 0.8345588235294118,
+              "f1": 0.9098196392785571
+            },
+            "irreversible": {
+              "precision": 0.7727272727272727,
+              "recall": 1.0,
+              "f1": 0.8717948717948718
+            }
+          },
+          "confusion_matrix": [
+            [
+              227,
+              45
+            ],
+            [
+              0,
+              153
+            ]
+          ]
+        }
+      },
+      "h2": {
+        "horizon": 2,
+        "representation": {
+          "type": "last_action_token",
+          "layer": 18
+        },
+        "classifier": {
+          "scaler": "StandardScaler",
+          "penalty": "l2",
+          "C": 0.01,
+          "class_weight": "balanced",
+          "solver": "saga",
+          "max_iter": 500,
+          "tol": 0.01,
+          "random_state": 42
+        },
+        "train_n": 1709,
+        "test_n": 425,
+        "train_class_counts": {
+          "0": 1285,
+          "1": 424
+        },
+        "test_class_counts": {
+          "0": 272,
+          "1": 153
+        },
+        "metrics": {
+          "accuracy": 0.8870588235294118,
+          "balanced_accuracy": 0.9117647058823529,
+          "macro_f1": 0.8838162930563149,
+          "auroc": 0.9864234909650134,
+          "per_class": {
+            "non_irreversible": {
+              "precision": 1.0,
+              "recall": 0.8235294117647058,
+              "f1": 0.9032258064516129
+            },
+            "irreversible": {
+              "precision": 0.7611940298507462,
+              "recall": 1.0,
+              "f1": 0.864406779661017
+            }
+          },
+          "confusion_matrix": [
+            [
+              224,
+              48
+            ],
+            [
+              0,
+              153
+            ]
+          ]
+        }
+      },
+      "h3": {
+        "horizon": 3,
+        "representation": {
+          "type": "last_action_token",
+          "layer": 18
+        },
+        "metrics": {
+          "accuracy": 0.8871,
+          "balanced_accuracy": 0.9118,
+          "macro_f1": 0.8838,
+          "auroc": 0.9864,
+          "per_class": {
+            "non_irreversible": {
+              "precision": 1.0,
+              "recall": 0.8235,
+              "f1": 0.9032
+            },
+            "irreversible": {
+              "precision": 0.7612,
+              "recall": 1.0,
+              "f1": 0.8644
+            }
+          },
+          "confusion_matrix": [
+            [
+              224,
+              48
+            ],
+            [
+              0,
+              153
+            ]
+          ]
+        }
+      },
+      "comparison": {
+        "h1_minus_h3_balanced_accuracy": 0.005499999999999949,
+        "h2_minus_h3_balanced_accuracy": 0.0
+      }
+    }
+  },
+  "diagnostics": {
+    "canonical_24_minimal_pairs": {
+      "underlying_families": 24,
+      "valid_pair_render_instances": 72,
+      "correct": 25,
+      "pair_accuracy": 0.3472222222222222,
+      "contrast_preservation_accuracy": 0.3472222222222222,
+      "record_level_balanced_accuracy": 0.6736111111111112,
+      "record_level_macro_f1": 0.6346953095482268
+    },
+    "render_style": {
+      "source": "qwen_v2_minimal_pair_24_results.json",
+      "render_style_results": {
+        "compact": {
+          "valid_pair_instances": 21,
+          "correct": 2,
+          "failed": 19,
+          "pair_accuracy": 0.09523809523809523
+        },
+        "kv": {
+          "valid_pair_instances": 21,
+          "correct": 11,
+          "failed": 10,
+          "pair_accuracy": 0.5238095238095238
+        },
+        "prose": {
+          "valid_pair_instances": 21,
+          "correct": 7,
+          "failed": 14,
+          "pair_accuracy": 0.3333333333333333
+        }
+      },
+      "differences": {
+        "kv_minus_compact": 0.4285714285714286,
+        "prose_minus_compact": 0.23809523809523808,
+        "kv_minus_prose": 0.19047619047619052
+      }
+    },
+    "environment": {
+      "sandbox": {
+        "n": 424,
+        "accuracy": 0.8867924528301887,
+        "balanced_accuracy": 0.9114391143911439,
+        "macro_f1": 0.8836203938790914,
+        "class_counts": {
+          "non_irreversible": 271,
+          "irreversible": 153
+        },
+        "auroc": 0.9863733931456962
+      },
+      "scienceworld": {
+        "n": 1,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "class_counts": {
+          "non_irreversible": 1,
+          "irreversible": 0
+        },
+        "auroc": null
+      }
+    }
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "qwen_3class": {
+    "experiment": "Qwen v2 three-class robustness subset",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "representation": "last_action_token",
+    "layer": 20,
+    "C": 0.1,
+    "training_records": 1709,
+    "robustness_test_records": 127,
+    "test_metrics": {
+      "accuracy": 0.9291338582677166,
+      "balanced_accuracy": 0.9279609279609279,
+      "macro_f1": 0.9237665626554517
+    },
+    "confusion_matrix": [
+      [
+        25,
+        2,
+        1
+      ],
+      [
+        2,
+        55,
+        3
+      ],
+      [
+        1,
+        0,
+        38
+      ]
+    ],
+    "per_class": {
+      "reversible": {
+        "precision": 0.8928571428571429,
+        "recall": 0.8928571428571429,
+        "f1-score": 0.8928571428571429,
+        "support": 28.0
+      },
+      "partially_reversible": {
+        "precision": 0.9649122807017544,
+        "recall": 0.9166666666666666,
+        "f1-score": 0.9401709401709402,
+        "support": 60.0
+      },
+      "irreversible": {
+        "precision": 0.9047619047619048,
+        "recall": 0.9743589743589743,
+        "f1-score": 0.9382716049382716,
+        "support": 39.0
+      }
+    },
+    "classifier": {
+      "scaler": "StandardScaler",
+      "penalty": "l2",
+      "solver": "saga",
+      "class_weight": "balanced",
+      "multi_class": "multinomial",
+      "max_iter": 500,
+      "tol": 0.01,
+      "random_state": 0
+    }
+  },
+  "llama_3class": {
+    "experiment": "llama_v2_3class_robustness_subset",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "probe": {
+      "layer": 17,
+      "C": 1.0,
+      "training_partition": "original_1709_record_train"
+    },
+    "evaluation": {
+      "subset_total_records": 707,
+      "subset_train_records": 580,
+      "subset_test_records": 127,
+      "retrained_on_subset": false,
+      "accuracy": 0.9291338582677166,
+      "balanced_accuracy": 0.9122710622710622,
+      "macro_f1": 0.9210258315514609,
+      "class_support": {
+        "reversible": 28,
+        "partially_reversible": 60,
+        "irreversible": 39
+      },
+      "confusion_matrix": [
+        [
+          23,
+          1,
+          4
+        ],
+        [
+          0,
+          58,
+          2
+        ],
+        [
+          0,
+          2,
+          37
+        ]
+      ]
+    },
+    "note": "Secondary evaluation on robustness-subset test records. Probe trained only on the original full training partition. The official full test set remains the primary evaluation."
+  },
+  "qwen_binary": {
+    "experiment": "Qwen v2 binary robustness subset",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "representation": "last_action_token",
+    "layer": 18,
+    "C": 0.01,
+    "training_records": 1709,
+    "robustness_test_records": 127,
+    "test_metrics": {
+      "accuracy": 0.8661417322834646,
+      "balanced_accuracy": 0.9034090909090908,
+      "macro_f1": 0.8570671962926184,
+      "auroc": 0.9874708624708625
+    },
+    "confusion_matrix": [
+      [
+        71,
+        17
+      ],
+      [
+        0,
+        39
+      ]
+    ],
+    "per_class": {
+      "non_irreversible": {
+        "precision": 1.0,
+        "recall": 0.8068181818181818,
+        "f1-score": 0.8930817610062893,
+        "support": 88.0
+      },
+      "irreversible": {
+        "precision": 0.6964285714285714,
+        "recall": 1.0,
+        "f1-score": 0.8210526315789474,
+        "support": 39.0
+      }
+    },
+    "classifier": {
+      "scaler": "StandardScaler",
+      "penalty": "l2",
+      "solver": "saga",
+      "class_weight": "balanced",
+      "max_iter": 500,
+      "tol": 0.01,
+      "random_state": 42
+    }
+  },
+  "llama_binary": {
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "dataset": "adnn-dataset-2.0",
+    "task": "binary_irreversibility",
+    "evaluation": "robustness_subset_official_test",
+    "selected_layer": 16,
+    "selected_C": 0.1,
+    "classifier": {
+      "scaler": "StandardScaler",
+      "penalty": "l2",
+      "solver": "saga",
+      "max_iter": 500,
+      "tol": 0.01,
+      "class_weight": "balanced",
+      "random_state": 42
+    },
+    "train_records": 1709,
+    "test_records": 127,
+    "test_accuracy": 0.8503937007874016,
+    "test_balanced_accuracy": 0.8920454545454546,
+    "test_macro_f1": 0.8415523015299757,
+    "test_auroc": 0.9924242424242424,
+    "confusion_matrix": [
+      [
+        69,
+        19
+      ],
+      [
+        0,
+        39
+      ]
+    ],
+    "classification_report": {
+      "non_irreversible": {
+        "precision": 1.0,
+        "recall": 0.7840909090909091,
+        "f1-score": 0.8789808917197452,
+        "support": 88.0
+      },
+      "irreversible": {
+        "precision": 0.6724137931034483,
+        "recall": 1.0,
+        "f1-score": 0.8041237113402062,
+        "support": 39.0
+      },
+      "accuracy": 0.8503937007874016,
+      "macro avg": {
+        "precision": 0.8362068965517242,
+        "recall": 0.8920454545454546,
+        "f1-score": 0.8415523015299757,
+        "support": 127.0
+      },
+      "weighted avg": {
+        "precision": 0.8994026608742872,
+        "recall": 0.8503937007874016,
+        "f1-score": 0.855993253650438,
+        "support": 127.0
+      }
+    },
+    "class_order": [
+      "non_irreversible",
+      "irreversible"
+    ]
+  }
+}

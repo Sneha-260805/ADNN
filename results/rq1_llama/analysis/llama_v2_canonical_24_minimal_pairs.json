@@ -1,0 +1,1432 @@
+{
+  "analysis": "llama_v2_canonical_24_minimal_pairs",
+  "selection_basis": "7 restore_backup families + 17 second_payment_policy families",
+  "canonical_family_count": 24,
+  "canonical_families": [
+    "v2a1_restore_backup_fresh-0001-primary",
+    "v2a1_restore_backup_fresh-0005-primary",
+    "v2a1_restore_backup_fresh-0006-primary",
+    "v2a1_restore_backup_fresh-0008-primary",
+    "v2a1_restore_backup_fresh-0010-primary",
+    "v2a1_restore_backup_fresh-0016-primary",
+    "v2a1_restore_backup_fresh-0124-primary",
+    "v2b4_second_payment_policy-0000-primary",
+    "v2b4_second_payment_policy-0003-primary",
+    "v2b4_second_payment_policy-0004-primary",
+    "v2b4_second_payment_policy-0005-primary",
+    "v2b4_second_payment_policy-0007-primary",
+    "v2b4_second_payment_policy-0010-primary",
+    "v2b4_second_payment_policy-0011-primary",
+    "v2b4_second_payment_policy-0012-primary",
+    "v2b4_second_payment_policy-0013-primary",
+    "v2b4_second_payment_policy-0017-primary",
+    "v2b4_second_payment_policy-0023-primary",
+    "v2b4_second_payment_policy-0024-primary",
+    "v2b4_second_payment_policy-0073-primary",
+    "v2b4_second_payment_policy-0079-primary",
+    "v2b4_second_payment_policy-0097-primary",
+    "v2b4_second_payment_policy-0141-primary",
+    "v2b4_second_payment_policy-0187-primary"
+  ],
+  "excluded_families": [
+    "s01_link_revoke_address_kind-0000-link",
+    "s01_link_revoke_address_kind-0001-link",
+    "s01_link_revoke_address_kind-0002-link"
+  ],
+  "valid_pair_render_instances": 72,
+  "correct_pair_render_instances": 39,
+  "pair_accuracy": 0.5416666666666666,
+  "contrast_preservation_accuracy": 0.5416666666666666,
+  "record_level_balanced_accuracy": 0.7708333333333333,
+  "record_level_macro_f1": 0.7581310123683005,
+  "render_style_results": {
+    "compact": {
+      "n": 24,
+      "correct": 7,
+      "failed": 17,
+      "pair_accuracy": 0.2916666666666667
+    },
+    "kv": {
+      "n": 24,
+      "correct": 17,
+      "failed": 7,
+      "pair_accuracy": 0.7083333333333334
+    },
+    "prose": {
+      "n": 24,
+      "correct": 15,
+      "failed": 9,
+      "pair_accuracy": 0.625
+    }
+  },
+  "pair_results": [
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0001-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0001-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0001-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0001-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0001-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0001-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0001-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0005-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0005-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0005-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0005-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        0,
+        1
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0005-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0005-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0005-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        0,
+        1
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0006-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0006-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0006-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0006-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0006-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0006-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0006-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0008-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0008-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0008-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0008-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0008-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0008-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0008-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0010-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0010-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0010-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0010-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0010-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0010-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0010-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0016-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0016-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0016-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0016-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        0,
+        1
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0016-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0016-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0016-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2a1_restore_backup_fresh-0124-primary-fresh-compact",
+        "v2a1_restore_backup_fresh-0124-primary-stale-compact"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2a1_restore_backup_fresh-0124-primary-fresh-kv",
+        "v2a1_restore_backup_fresh-0124-primary-stale-kv"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2a1_restore_backup_fresh-0124-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2a1_restore_backup_fresh-0124-primary-fresh-prose",
+        "v2a1_restore_backup_fresh-0124-primary-stale-prose"
+      ],
+      "true_labels": [
+        0,
+        1
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0000-primary-final-compact",
+        "v2b4_second_payment_policy-0000-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0000-primary-final-kv",
+        "v2b4_second_payment_policy-0000-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0000-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0000-primary-final-prose",
+        "v2b4_second_payment_policy-0000-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0003-primary-final-compact",
+        "v2b4_second_payment_policy-0003-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0003-primary-final-kv",
+        "v2b4_second_payment_policy-0003-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0003-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0003-primary-final-prose",
+        "v2b4_second_payment_policy-0003-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0004-primary-final-compact",
+        "v2b4_second_payment_policy-0004-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0004-primary-final-kv",
+        "v2b4_second_payment_policy-0004-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0004-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0004-primary-final-prose",
+        "v2b4_second_payment_policy-0004-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0005-primary-final-compact",
+        "v2b4_second_payment_policy-0005-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0005-primary-final-kv",
+        "v2b4_second_payment_policy-0005-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0005-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0005-primary-final-prose",
+        "v2b4_second_payment_policy-0005-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0007-primary-final-compact",
+        "v2b4_second_payment_policy-0007-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0007-primary-final-kv",
+        "v2b4_second_payment_policy-0007-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0007-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0007-primary-final-prose",
+        "v2b4_second_payment_policy-0007-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0010-primary-final-compact",
+        "v2b4_second_payment_policy-0010-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0010-primary-final-kv",
+        "v2b4_second_payment_policy-0010-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0010-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0010-primary-final-prose",
+        "v2b4_second_payment_policy-0010-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0011-primary-final-compact",
+        "v2b4_second_payment_policy-0011-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0011-primary-final-kv",
+        "v2b4_second_payment_policy-0011-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0011-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0011-primary-final-prose",
+        "v2b4_second_payment_policy-0011-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0012-primary-final-compact",
+        "v2b4_second_payment_policy-0012-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0012-primary-final-kv",
+        "v2b4_second_payment_policy-0012-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0012-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0012-primary-final-prose",
+        "v2b4_second_payment_policy-0012-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0013-primary-final-compact",
+        "v2b4_second_payment_policy-0013-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0013-primary-final-kv",
+        "v2b4_second_payment_policy-0013-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0013-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0013-primary-final-prose",
+        "v2b4_second_payment_policy-0013-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0017-primary-final-compact",
+        "v2b4_second_payment_policy-0017-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0017-primary-final-kv",
+        "v2b4_second_payment_policy-0017-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0017-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0017-primary-final-prose",
+        "v2b4_second_payment_policy-0017-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0023-primary-final-compact",
+        "v2b4_second_payment_policy-0023-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0023-primary-final-kv",
+        "v2b4_second_payment_policy-0023-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0023-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0023-primary-final-prose",
+        "v2b4_second_payment_policy-0023-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0024-primary-final-compact",
+        "v2b4_second_payment_policy-0024-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0024-primary-final-kv",
+        "v2b4_second_payment_policy-0024-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0024-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0024-primary-final-prose",
+        "v2b4_second_payment_policy-0024-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0073-primary-final-compact",
+        "v2b4_second_payment_policy-0073-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0073-primary-final-kv",
+        "v2b4_second_payment_policy-0073-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0073-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0073-primary-final-prose",
+        "v2b4_second_payment_policy-0073-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0079-primary-final-compact",
+        "v2b4_second_payment_policy-0079-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0079-primary-final-kv",
+        "v2b4_second_payment_policy-0079-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0079-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0079-primary-final-prose",
+        "v2b4_second_payment_policy-0079-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0097-primary-final-compact",
+        "v2b4_second_payment_policy-0097-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0097-primary-final-kv",
+        "v2b4_second_payment_policy-0097-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0097-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0097-primary-final-prose",
+        "v2b4_second_payment_policy-0097-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0141-primary-final-compact",
+        "v2b4_second_payment_policy-0141-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        1
+      ],
+      "valid_pair": true,
+      "correct": false,
+      "contrast_preserved": false
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0141-primary-final-kv",
+        "v2b4_second_payment_policy-0141-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0141-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0141-primary-final-prose",
+        "v2b4_second_payment_policy-0141-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "compact",
+      "ids": [
+        "v2b4_second_payment_policy-0187-primary-final-compact",
+        "v2b4_second_payment_policy-0187-primary-refundable_with_fee-compact"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "kv",
+      "ids": [
+        "v2b4_second_payment_policy-0187-primary-final-kv",
+        "v2b4_second_payment_policy-0187-primary-refundable_with_fee-kv"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    },
+    {
+      "family": "v2b4_second_payment_policy-0187-primary",
+      "render_style": "prose",
+      "ids": [
+        "v2b4_second_payment_policy-0187-primary-final-prose",
+        "v2b4_second_payment_policy-0187-primary-refundable_with_fee-prose"
+      ],
+      "true_labels": [
+        1,
+        0
+      ],
+      "pred_labels": [
+        1,
+        0
+      ],
+      "valid_pair": true,
+      "correct": true,
+      "contrast_preserved": true
+    }
+  ]
+}

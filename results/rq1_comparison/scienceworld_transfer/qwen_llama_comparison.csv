@@ -1,0 +1,5 @@
+Model,Direction,Layer,C,CV BA,Test BA,Macro-F1,AUROC
+Qwen,Sandbox → ScienceWorld,20,0.01,0.9132,0.6333,0.6329,0.6533
+Llama,Sandbox → ScienceWorld,11,1.0,0.9151575859063635,0.575,0.44958371877890846,0.7533333333333334
+Qwen,ScienceWorld → Sandbox,14,0.001,1.0,0.5,0.1982,0.4837
+Llama,ScienceWorld → Sandbox,13,0.01,1.0,0.5,0.19822485207100593,0.3295288264559555

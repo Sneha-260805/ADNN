@@ -1,0 +1,146 @@
+{
+  "experiment": "llama_v2_binary_horizon_ablations",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "dataset": "adnn-dataset-2.0",
+  "representation": {
+    "type": "last_action_token",
+    "layer": 18
+  },
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "C": 0.01,
+    "class_weight": "balanced",
+    "solver": "saga",
+    "max_iter": 500,
+    "tol": 0.01,
+    "random_state": 42
+  },
+  "label_mapping": {
+    "0": "non_irreversible",
+    "1": "irreversible"
+  },
+  "h1": {
+    "horizon": 1,
+    "train_n": 1709,
+    "test_n": 425,
+    "train_class_counts": {
+      "non_irreversible": 1267,
+      "irreversible": 442
+    },
+    "test_class_counts": {
+      "non_irreversible": 272,
+      "irreversible": 153
+    },
+    "metrics": {
+      "accuracy": 0.8682352941176471,
+      "balanced_accuracy": 0.8941993464052288,
+      "macro_f1": 0.8648771403915156,
+      "auroc": 0.9863754325259515,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 0.990909090909091,
+          "recall": 0.8014705882352942,
+          "f1": 0.8861788617886179
+        },
+        "irreversible": {
+          "precision": 0.7365853658536585,
+          "recall": 0.9869281045751634,
+          "f1": 0.8435754189944135
+        }
+      },
+      "confusion_matrix": [
+        [
+          218,
+          54
+        ],
+        [
+          2,
+          151
+        ]
+      ]
+    }
+  },
+  "h2": {
+    "horizon": 2,
+    "train_n": 1709,
+    "test_n": 425,
+    "train_class_counts": {
+      "non_irreversible": 1285,
+      "irreversible": 424
+    },
+    "test_class_counts": {
+      "non_irreversible": 272,
+      "irreversible": 153
+    },
+    "metrics": {
+      "accuracy": 0.8658823529411764,
+      "balanced_accuracy": 0.8952205882352942,
+      "macro_f1": 0.8629660427308364,
+      "auroc": 0.9869761630142253,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 1.0,
+          "recall": 0.7904411764705882,
+          "f1": 0.8829568788501027
+        },
+        "irreversible": {
+          "precision": 0.7285714285714285,
+          "recall": 1.0,
+          "f1": 0.8429752066115702
+        }
+      },
+      "confusion_matrix": [
+        [
+          215,
+          57
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    }
+  },
+  "h3": {
+    "horizon": 3,
+    "train_n": 1709,
+    "test_n": 425,
+    "train_class_counts": {
+      "non_irreversible": 1285,
+      "irreversible": 424
+    },
+    "test_class_counts": {
+      "non_irreversible": 272,
+      "irreversible": 153
+    },
+    "metrics": {
+      "accuracy": 0.8658823529411764,
+      "balanced_accuracy": 0.8952205882352942,
+      "macro_f1": 0.8629660427308364,
+      "auroc": 0.9869761630142253,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 1.0,
+          "recall": 0.7904411764705882,
+          "f1": 0.8829568788501027
+        },
+        "irreversible": {
+          "precision": 0.7285714285714285,
+          "recall": 1.0,
+          "f1": 0.8429752066115702
+        }
+      },
+      "confusion_matrix": [
+        [
+          215,
+          57
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    }
+  }
+}

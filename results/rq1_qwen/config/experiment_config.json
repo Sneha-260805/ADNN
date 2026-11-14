@@ -1,0 +1,35 @@
+{
+  "experiment": "ADNN_RQ1_Qwen_v2_final",
+  "dataset_version": "v2.0",
+  "model_family": "Qwen",
+  "research_question": "RQ1",
+  "representation": "last_action_token",
+  "probe": "L2_logistic_regression",
+  "splitting": "scenario_level",
+  "num_random_splits": 3,
+  "bootstrap_resamples": 1000,
+  "metrics": [
+    "balanced_accuracy",
+    "macro_f1",
+    "auroc"
+  ],
+  "required_probe_tasks": [
+    "binary",
+    "three_class"
+  ],
+  "required_controls": [
+    "majority_class_baseline",
+    "lexical_action_text_baseline",
+    "shuffled_label_probe",
+    "random_label_control_selectivity",
+    "embedding_layer_baseline"
+  ],
+  "required_ablations": [
+    "last_token_vs_mean_action_tokens",
+    "minimal_pairs_only_vs_all_data",
+    "cross_environment_transfer"
+  ],
+  "save_incrementally": true,
+  "resume_completed_work": true,
+  "created_at": "2026-11-03T06:15:10.926864"
+}

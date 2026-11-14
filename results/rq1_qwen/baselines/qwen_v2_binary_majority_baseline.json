@@ -1,0 +1,49 @@
+{
+  "experiment": "qwen_v2_binary_majority_baseline",
+  "task": {
+    "type": "binary",
+    "label_mapping": {
+      "0": "non_irreversible",
+      "1": "irreversible"
+    }
+  },
+  "train": {
+    "n": 1709,
+    "class_0": 1285,
+    "class_1": 424
+  },
+  "test": {
+    "n": 425
+  },
+  "majority_class": {
+    "label": 0,
+    "name": "non_irreversible"
+  },
+  "metrics": {
+    "accuracy": 0.64,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3902439024390244,
+    "per_class": {
+      "non_irreversible": {
+        "precision": 0.64,
+        "recall": 1.0,
+        "f1": 0.7804878048780488
+      },
+      "irreversible": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        272,
+        0
+      ],
+      [
+        153,
+        0
+      ]
+    ]
+  }
+}
