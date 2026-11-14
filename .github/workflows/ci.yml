@@ -1,0 +1,67 @@
+# Lightweight CPU-only CI. No model weights are downloaded and no GPU inference is run.
+name: ci
+
+on:
+  push:
+    branches: [main, "integration/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install (CPU extras only; no torch/transformers/scienceworld)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,data,probes,annotation]" "ruff==0.17.3"
+
+      # Blocking lint: everything except Kaggle notebooks, archived result files and the
+      # Member 2/3 experiment code, which is kept byte-identical to what produced the results
+      # (see docs/INTEGRATION_REPORT.md, finding F4).
+      - name: Ruff (blocking scope)
+        run: |
+          EXCLUDE="notebooks,results,src/adnn/behaviour,scripts/behaviour,scripts/rq1,tests/test_member3_followup.py,tests/test_member3_behaviour.py"
+          ruff check --extend-exclude "$EXCLUDE" .
+          ruff format --check --extend-exclude "$EXCLUDE,*.md" .
+
+      - name: Ruff (full repository, report only)
+        continue-on-error: true
+        run: ruff check --extend-exclude notebooks,results --statistics .
+
+      # The three deselected tests read git-ignored data/pilot/ (finding F7).
+      # ScienceWorld integration tests skip automatically without the pinned runtime.
+      - name: Pytest (CPU)
+        run: >
+          python -m pytest -q
+          --deselect tests/test_share_link_dataset.py::test_v10_prompt_hashes_of_the_historical_pilot_still_rebuild
+          --deselect tests/test_share_link_pilot_readiness.py::test_legacy_pilot_loads_exactly_as_before
+          --deselect tests/test_share_link_pilot_readiness.py::test_pilot_diversity_reports_both_levels_and_flags_sd1_inflation
+
+      - name: Sandbox demo
+        run: python -m adnn.demo > /dev/null
+
+      - name: Tracked result files match artifacts/SHA256SUMS_tracked_results.txt
+        run: sha256sum -c --quiet artifacts/SHA256SUMS_tracked_results.txt
+
+      # Exit 2 means git-ignored artifacts (dataset bundle) are absent, which is expected in CI;
+      # exit 1 (checksum mismatch) fails the job.
+      - name: Frozen artifact checksums (tracked RQ3 tasks; bundle absent in CI)
+        run: |
+          set +e
+          python scripts/validation/verify_frozen_artifacts.py
+          code=$?
+          if [ "$code" -eq 1 ]; then exit 1; fi
+
+      - name: Recompute RQ1/RQ2/RQ3 metrics from saved outputs and replay RQ3 traces
+        run: python scripts/validation/recompute_saved_metrics.py
