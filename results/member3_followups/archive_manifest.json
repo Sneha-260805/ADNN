@@ -1,0 +1,87 @@
+{
+  "source_bundles_sha256": {
+    "ADNN_Member3_Run_Package.zip": "bad8a62cb0b329b7cdfe8ffd31aa615fc302cf15b189c67b1388ffd0429ed4e8",
+    "ADNN_Member3_Followup_Update.zip": "31f6f843db5080b917b86d2d7227fc9146f06901e5b80ad1ad34d8950a93f62a"
+  },
+  "archives": {
+    "member3-followups-backup.zip": {
+      "sha256": "b6e793d6cc37462e5610f5c61831feb1ad1c7c681c477fe65238309f8359b009",
+      "runs": {
+        "qwen-dev-neutral": {
+          "mode": "rq2-dev",
+          "outcomes": 142,
+          "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "source_hashes_match_bundle_overlay": true
+        },
+        "qwen-dev-recovery": {
+          "mode": "rq2-dev",
+          "outcomes": 142,
+          "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "source_hashes_match_bundle_overlay": true
+        }
+      }
+    },
+    "llama-development-backup.zip": {
+      "sha256": "a88c96de928494015fddb0a6eb4694be18938b58419132dcd162e18c757c59a3",
+      "runs": {
+        "llama-dev-neutral": {
+          "mode": "rq2-dev",
+          "outcomes": 142,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        },
+        "llama-dev-recovery": {
+          "mode": "rq2-dev",
+          "outcomes": 142,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        }
+      }
+    },
+    "llama-format-followup-backup.zip": {
+      "sha256": "59ffa2cd38783cc9d999c4d45746e4affaca0fc6f7d22e8932aefbd1b4214b6c",
+      "runs": {
+        "llama-format-smoke": {
+          "mode": "smoke",
+          "outcomes": 2,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        },
+        "llama-format-pilot": {
+          "mode": "pilot",
+          "outcomes": 20,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        },
+        "llama-format-full": {
+          "mode": "full",
+          "outcomes": 120,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        }
+      }
+    },
+    "qwen-test-recovery-v1-backup.zip": {
+      "sha256": "b952edc6bb5f881cc403290efb780f6c1e4dc208d67539535df3f4548a1e95f4",
+      "runs": {
+        "qwen-test-recovery-v1": {
+          "mode": "rq2-test",
+          "outcomes": 425,
+          "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "source_hashes_match_bundle_overlay": true
+        }
+      }
+    },
+    "llama-test-recovery-v1-backup.zip": {
+      "sha256": "de26d472a0f715a74db4777376370c36e22a1dc10dde3fd9e21679dc07647a17",
+      "runs": {
+        "llama-test-recovery-v1": {
+          "mode": "rq2-test",
+          "outcomes": 425,
+          "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+          "source_hashes_match_bundle_overlay": true
+        }
+      }
+    }
+  }
+}
