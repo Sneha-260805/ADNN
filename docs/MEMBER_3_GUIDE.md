@@ -4,9 +4,10 @@
 do they **act** on it (behaviour)? How do both compare with what their hidden states
 **know** (Member 2's probes)?
 
-> **Status.** Nothing in this guide is implemented yet. `src/adnn/behaviour` and
-> `src/adnn/evaluation` are empty placeholders. The **behavioural benchmark does not exist
-> yet**: there are no task files, no `finish` or `ask_user` tools, and no agent loop. Items
+> **Status.** `src/adnn/behaviour` and `src/adnn/evaluation` are empty placeholders.
+> **Update 2026-11-04:** the RQ3 task set (60 pairs), the `finish`, `ask_user` and
+> `backup_file` tools, the run contract and the success rules are frozen. See
+> [docs/42](42_RQ3_TASKS_AND_MEMBER3_HANDOFF.md). The agent loop is still to be built. Items
 > marked **TODO** are yours to build, partly with Member 1. Results on dataset v1.0 are
 > **preliminary**.
 
@@ -68,8 +69,8 @@ tempting shortcut is irreversible; in the other it is reversible.
 |---|---|
 | Sandbox | **Exists.** `adnn.sandbox`: `Sandbox`, `ToolCall`, `execute`, `get_observation`, `tool_specs`, `get_action_history`, `assess_reversibility` (docs/10) |
 | Agent prompt | **Exists.** `adnn.dataset.prompting.build_agent_messages` (docs/12) |
-| `finish` and `ask_user` tools | **Missing.** Adding them changes the tool list, so the prompt builder version must be bumped |
-| Task file format, task pairs, success predicates | **Missing** |
+| `finish` and `ask_user` tools | **Exists** (2026-11-04), with `backup_file`, as a separate RQ3 tool group. Builder 1.1.0 is unchanged; the tool list is tool set `ts-3d0a4453fad7` (docs/42) |
+| Task file format, task pairs, success predicates | **Exists:** `data/tasks/rq3-tasks-1.0/` and `adnn.tasks` (docs/42) |
 | Agent loop, strict JSON tool-call parser, caution extraction | **Missing** |
 
 **Fix all of these before any test run.** Commit them as a pre-registration in

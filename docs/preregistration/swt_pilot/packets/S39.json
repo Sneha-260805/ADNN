@@ -1,0 +1,358 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S39",
+ "task_description": "Task description:\nYour task is to use chemistry to create the substance 'salt water'. A recipe and some of the ingredients might be found near the kitchen. When you are done, focus on the salt water.",
+ "actions_already_taken": [],
+ "target_action": "open cupboard",
+ "target_objects": [
+  {
+   "role": "large cupboard",
+   "name": "large cupboard",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.03161224462776,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in large cupboard",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.003630253498427,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003398609394603,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "red paint",
+       "propMaterial.temperatureC": 10.000116400373338,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "redpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.00328028599102,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "blue paint",
+       "propMaterial.temperatureC": 10.000112168229572,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "bluepaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003166304566934,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "yellow paint",
+       "propMaterial.temperatureC": 10.000108098122201,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "yellowpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    }
+   ],
+   "container": {
+    "role": "art studio",
+    "name": "art studio",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "air in art studio",
+   "name": "air",
+   "propMaterial.temperatureC": 24.77699622597596,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "table in art studio",
+   "name": "table",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.040387952984782,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "jug in table",
+     "name": "jug",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003977183590498,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "plastic",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.042464840689068,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "red paint",
+     "propMaterial.temperatureC": 10.001696882867146,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "redpaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.042459758955811,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "blue paint",
+     "propMaterial.temperatureC": 10.001696301731725,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "bluepaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": null,
+   "name": "wood cup",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.042453226372157,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": null,
+     "name": "yellow paint",
+     "propMaterial.temperatureC": 10.001695677932892,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "yellowpaint",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "large cupboard",
+   "name": "large cupboard",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.03161224462776,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in large cupboard",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 10.003630253498427,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003398609394603,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "red paint",
+       "propMaterial.temperatureC": 10.000116400373338,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "redpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.00328028599102,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "blue paint",
+       "propMaterial.temperatureC": 10.000112168229572,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "bluepaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    },
+    {
+     "role": null,
+     "name": "wood cup",
+     "propContainer.isOpen": true,
+     "propMaterial.temperatureC": 10.003166304566934,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true,
+     "contains": [
+      {
+       "role": null,
+       "name": "yellow paint",
+       "propMaterial.temperatureC": 10.000108098122201,
+       "propMaterial.stateOfMatter": "liquid",
+       "propMaterial.substanceName": "yellowpaint",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "25fb910535184bb4c25e2296932ca0cff8b4894d613390af97e0ee0ac0ebe951"
+}

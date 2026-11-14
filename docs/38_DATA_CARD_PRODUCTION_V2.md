@@ -71,9 +71,66 @@
   restore, so R at h3 is correct. See docs/37 §5.
 - **ScienceWorld.** Labels come from the frozen `sw-admission-2` decisions; the records equal
   v1.0's.
-- **No human annotation has been done.** All labels are oracle-derived.
+- **All dataset labels are automated.** They are simulator (oracle) labels. The human study
+  below did not change or replace any label; see *Human agreement*.
 - **Not gold.** 26 OQ-21-sensitive records are in `sensitivity_oq21.jsonl`, tier P. They are
   for robustness analysis only.
+
+## Human agreement (REQ-LBL-05)
+
+Full report: docs/43. Added 2026-11-05. The dataset itself is unchanged.
+
+- **Two kinds of label.**
+  - **Automated labels** are the dataset's gold labels at h3. The sandbox simulator's exact
+    oracle assigns them.
+  - **Human labels** were assigned independently by two annotators. The annotators did not see
+    the automated labels, the dataset files, the code, or each other's sheets. They worked from
+    the shown task, state, action and tool list, using `ANNOTATION_INSTRUCTIONS.md`.
+
+  The human labels are stored only with the study (git-ignored, archived). They are **not**
+  part of the dataset.
+- **Sample.** **100 minimal pairs (200 examples)**, drawn uniformly at random without
+  replacement from the 439 strict minimal pairs, with seed 20261105. The A/B order within each
+  pair is random. **All 200 examples are from the sandbox** (none from ScienceWorld). The
+  automated labels in the sample are R 74, P 58, I 68.
+- **Results.** All figures are independent agreement; no adjudication was done. CIs are 95%
+  percentile bootstrap intervals over 1,000 resamples of pairs. No example was excluded,
+  because nobody used "cannot decide".
+
+  | Comparison | Cohen's κ (95% CI) | Raw agreement (95% CI) |
+  |---|---|---|
+  | Human vs human | **0.6206** [0.5059, 0.7288] | **73.5%** [64.5%, 81.5%] |
+  | Annotator 1 vs automated | **0.8169** [0.7432, 0.8798] | 88.0% [83.5%, 92.0%] |
+  | Annotator 2 vs automated | **0.7339** [0.6428, 0.8214] | 82.0% [75.5%, 88.0%] |
+
+- **Disagreements.** **53** of 200 examples: **51 R/P, 2 P/I, 0 R/I**. All are unresolved.
+  - All 51 R/P disagreements are file revision/backup cases (edit with a fresh or stale backup,
+    restore from a backup, delete with a backup present). In each, Annotator 1 said R and
+    Annotator 2 said P.
+  - The other mechanisms (recycle bin, payments, email, share links) account for only 2
+    disagreements in 146 examples.
+- **Known ambiguity.** The annotation instructions do not state:
+  - whether `revert_file` or `restore_backup` keep or advance a file's revision number;
+  - that a backup at the file's current revision gives an exact restore;
+  - whether restoring a backup creates a previous version;
+  - how to treat a refund fee equal to the payment amount.
+
+  These gaps fall exactly on the boundary between exact restoration within 3 actions and
+  partial restoration (docs/43 §4).
+- **How to read this.**
+  - Agreement with the automated labels shows that humans who follow the written instructions
+    largely reach the same labels. It **does not prove that the automated labels are
+    correct**: the humans also deviate from them in a consistent direction, and the
+    instructions are ambiguous where the deviations occur.
+  - Human–automated disagreement is not proof of an automated-label error either. No label was
+    changed.
+  - The sample is 100 pairs from the sandbox only. It says nothing about human agreement on
+    ScienceWorld records.
+- **Validation note.** Annotator 2's workbook writes `no` (instead of leaving the cell empty)
+  in all 200 `uncertain` cells, so strict validation fails (`strict_ok: false`, kept in
+  `summary.json`). The analysis uses the approved opt-in `--accept-uncertain-no`, which reads
+  only the exact trimmed, case-folded value `no` as "not uncertain" and never reads or changes
+  a label. Strict validation remains the default.
 
 ## Split
 
@@ -132,3 +189,7 @@ test).
    - the variant cap of 6.
 8. **Secondary split not produced.** ADR-0008 pre-registered a secondary family-disjoint split
    (B4); it is still not produced as a file.
+9. **Human agreement is moderate on file recovery.** Human–human κ = 0.6206, with almost all
+   disagreement at the R/P boundary for file revision/backup cases. The instructions were
+   ambiguous there (see *Human agreement*). Labels in those families carry more definitional
+   uncertainty than the oracle's determinism suggests.
