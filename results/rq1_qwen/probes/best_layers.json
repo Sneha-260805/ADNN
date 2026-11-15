@@ -1,0 +1,20 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "three_class": {
+    "selected_layer": 20,
+    "selected_C": 0.1,
+    "inner_cv_balanced_accuracy": 0.8928,
+    "selection_method": "inner_group_kfold"
+  },
+  "binary": {
+    "selected_layer": 18,
+    "selected_C": 0.01,
+    "inner_cv_balanced_accuracy": 0.9211,
+    "inner_cv_sd": 0.0361,
+    "selection_method": "inner_group_kfold_cv"
+  },
+  "representation": {
+    "primary": "last_action_token",
+    "ablation": "mean_action_tokens"
+  }
+}

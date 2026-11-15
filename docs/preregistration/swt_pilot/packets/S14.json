@@ -1,0 +1,235 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S14",
+ "task_description": "Task description:\nYour task is to measure the temperature of unknown substance B, which is located around the living room. First, focus on the thermometer. Next, focus on the unknown substance B. If the unknown substance B temperature is above 100.0 degrees celsius, place it in the red box. If the unknown substance B temperature is below 100.0 degrees celsius, place it in the green box. The boxes are located around the bathroom.",
+ "actions_already_taken": [
+  "open cupboard",
+  "move metal pot to sink",
+  "activate sink",
+  "deactivate sink",
+  "pick up metal pot",
+  "pick up lighter",
+  "teleport to living room",
+  "put down metal pot"
+ ],
+ "target_action": "use lighter on desk",
+ "target_objects": [
+  {
+   "role": "lighter",
+   "name": "lighter",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": false,
+   "propMaterial.temperatureC": 10.089999932799524,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "metal",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "inventory",
+    "name": "inventory",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  },
+  {
+   "role": "desk",
+   "name": "desk",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 23.603841351930285,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in desk",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 14.91026708318304,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ],
+   "container": {
+    "role": "living room",
+    "name": "living room",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "unknown substance B",
+   "name": "unknown substance B",
+   "propMaterial.temperatureC": 32.546448223049616,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "metal",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "metal pot",
+   "name": "metal pot",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 14.278090803407768,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "water in metal pot",
+     "name": "water",
+     "propMaterial.temperatureC": 10.219035985151532,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "water",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "air in living room",
+   "name": "air",
+   "propMaterial.temperatureC": 25.109186084906042,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "couch",
+   "name": "couch",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 16.876782675990352,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "cloth",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "pillow in couch",
+     "name": "pillow",
+     "propMaterial.temperatureC": 10.454747622314754,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "cloth",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "chair in living room",
+   "name": "chair",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 26.050042962653134,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "desk",
+   "name": "desk",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 23.603841351930285,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "wood",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "drawer in desk",
+     "name": "drawer",
+     "propContainer.isOpen": false,
+     "propMaterial.temperatureC": 14.91026708318304,
+     "propMaterial.stateOfMatter": "solid",
+     "propMaterial.substanceName": "wood",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "painting in living room",
+   "name": "painting",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 25.681309085556457,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "paper",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "lighter",
+       "name": "lighter",
+       "propContainer.isOpen": false,
+       "propDevice.isActivated": false,
+       "propDevice.isActivable": false,
+       "propMaterial.temperatureC": 10.089999932799524,
+       "propMaterial.stateOfMatter": "solid",
+       "propMaterial.substanceName": "metal",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      },
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "5c9c850e57b346eabc7e5fc9a79a527b10a08d00818adea7e26db15caffb236d"
+}

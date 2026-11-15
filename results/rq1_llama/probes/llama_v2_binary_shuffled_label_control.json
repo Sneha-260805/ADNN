@@ -1,0 +1,22 @@
+{
+  "control": "shuffled_training_labels",
+  "random_seed": 42,
+  "layer": 16,
+  "C": 0.1,
+  "train_labels_shuffled": true,
+  "test_labels_shuffled": false,
+  "accuracy": 0.52,
+  "balanced_accuracy": 0.48345588235294124,
+  "macro_f1": 0.4834858450100086,
+  "auroc": 0.5127595155709342,
+  "confusion_matrix": [
+    [
+      167,
+      105
+    ],
+    [
+      99,
+      54
+    ]
+  ]
+}

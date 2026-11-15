@@ -1,0 +1,170 @@
+{
+  "experiment": "qwen_v2_binary_horizon_ablations",
+  "representation": {
+    "type": "last_action_token",
+    "layer": 18
+  },
+  "classifier": {
+    "scaler": "StandardScaler",
+    "penalty": "l2",
+    "C": 0.01,
+    "class_weight": "balanced",
+    "solver": "saga",
+    "max_iter": 500,
+    "tol": 0.01,
+    "random_state": 42
+  },
+  "label_mapping": {
+    "0": "non_irreversible",
+    "1": "irreversible"
+  },
+  "h1": {
+    "horizon": 1,
+    "representation": {
+      "type": "last_action_token",
+      "layer": 18
+    },
+    "classifier": {
+      "scaler": "StandardScaler",
+      "penalty": "l2",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "solver": "saga",
+      "max_iter": 500,
+      "tol": 0.01,
+      "random_state": 42
+    },
+    "train_n": 1709,
+    "test_n": 425,
+    "train_class_counts": {
+      "0": 1267,
+      "1": 442
+    },
+    "test_class_counts": {
+      "0": 272,
+      "1": 153
+    },
+    "metrics": {
+      "accuracy": 0.8941176470588236,
+      "balanced_accuracy": 0.9172794117647058,
+      "macro_f1": 0.8908072555367145,
+      "auroc": 0.9883938869665513,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 1.0,
+          "recall": 0.8345588235294118,
+          "f1": 0.9098196392785571
+        },
+        "irreversible": {
+          "precision": 0.7727272727272727,
+          "recall": 1.0,
+          "f1": 0.8717948717948718
+        }
+      },
+      "confusion_matrix": [
+        [
+          227,
+          45
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    }
+  },
+  "h2": {
+    "horizon": 2,
+    "representation": {
+      "type": "last_action_token",
+      "layer": 18
+    },
+    "classifier": {
+      "scaler": "StandardScaler",
+      "penalty": "l2",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "solver": "saga",
+      "max_iter": 500,
+      "tol": 0.01,
+      "random_state": 42
+    },
+    "train_n": 1709,
+    "test_n": 425,
+    "train_class_counts": {
+      "0": 1285,
+      "1": 424
+    },
+    "test_class_counts": {
+      "0": 272,
+      "1": 153
+    },
+    "metrics": {
+      "accuracy": 0.8870588235294118,
+      "balanced_accuracy": 0.9117647058823529,
+      "macro_f1": 0.8838162930563149,
+      "auroc": 0.9864234909650134,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 1.0,
+          "recall": 0.8235294117647058,
+          "f1": 0.9032258064516129
+        },
+        "irreversible": {
+          "precision": 0.7611940298507462,
+          "recall": 1.0,
+          "f1": 0.864406779661017
+        }
+      },
+      "confusion_matrix": [
+        [
+          224,
+          48
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    }
+  },
+  "h3": {
+    "horizon": 3,
+    "representation": {
+      "type": "last_action_token",
+      "layer": 18
+    },
+    "metrics": {
+      "accuracy": 0.8871,
+      "balanced_accuracy": 0.9118,
+      "macro_f1": 0.8838,
+      "auroc": 0.9864,
+      "per_class": {
+        "non_irreversible": {
+          "precision": 1.0,
+          "recall": 0.8235,
+          "f1": 0.9032
+        },
+        "irreversible": {
+          "precision": 0.7612,
+          "recall": 1.0,
+          "f1": 0.8644
+        }
+      },
+      "confusion_matrix": [
+        [
+          224,
+          48
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    }
+  },
+  "comparison": {
+    "h1_minus_h3_balanced_accuracy": 0.005499999999999949,
+    "h2_minus_h3_balanced_accuracy": 0.0
+  }
+}

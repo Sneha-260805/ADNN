@@ -1,0 +1,50 @@
+{
+  "model": "Qwen",
+  "task": "binary",
+  "seed": 42,
+  "evaluation": "supplementary fixed-hyperparameter evaluation",
+  "layer": 18,
+  "C": 0.01,
+  "test_records": 511,
+  "accuracy": 0.8923679060665362,
+  "balanced_accuracy": 0.910184672206833,
+  "macro_f1": 0.8789730472265644,
+  "macro_auroc": 0.9623268698060942,
+  "confusion_matrix": [
+    [
+      313,
+      48
+    ],
+    [
+      7,
+      143
+    ]
+  ],
+  "classification_report": {
+    "non_irreversible": {
+      "precision": 0.978125,
+      "recall": 0.8670360110803325,
+      "f1-score": 0.9192364170337739,
+      "support": 361.0
+    },
+    "irreversible": {
+      "precision": 0.7486910994764397,
+      "recall": 0.9533333333333334,
+      "f1-score": 0.8387096774193549,
+      "support": 150.0
+    },
+    "accuracy": 0.8923679060665362,
+    "macro avg": {
+      "precision": 0.8634080497382199,
+      "recall": 0.910184672206833,
+      "f1-score": 0.8789730472265644,
+      "support": 511.0
+    },
+    "weighted avg": {
+      "precision": 0.9107764969108924,
+      "recall": 0.8923679060665362,
+      "f1-score": 0.8955984308455883,
+      "support": 511.0
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "sandbox": {
+    "n": 424,
+    "accuracy": 0.8867924528301887,
+    "balanced_accuracy": 0.9114391143911439,
+    "macro_f1": 0.8836203938790914,
+    "class_counts": {
+      "non_irreversible": 271,
+      "irreversible": 153
+    },
+    "auroc": 0.9863733931456962
+  },
+  "scienceworld": {
+    "n": 1,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "class_counts": {
+      "non_irreversible": 1,
+      "irreversible": 0
+    },
+    "auroc": null
+  }
+}

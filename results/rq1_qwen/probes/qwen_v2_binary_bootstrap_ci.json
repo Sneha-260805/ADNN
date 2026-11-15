@@ -1,0 +1,40 @@
+{
+  "experiment": "qwen_v2_final_binary_probe",
+  "bootstrap": {
+    "method": "scenario_level_bootstrap",
+    "n_resamples_requested": 1000,
+    "n_resamples_successful": 1000,
+    "n_resamples_skipped": 0,
+    "confidence_level": 0.95,
+    "interval_method": "percentile",
+    "seed": 42,
+    "resampling_unit": "scenario_id"
+  },
+  "test": {
+    "n_records": 425,
+    "n_scenarios": 25
+  },
+  "metrics": {
+    "balanced_accuracy": {
+      "estimate": 0.9117647058823529,
+      "ci_95": [
+        0.8110891089108911,
+        1.0
+      ]
+    },
+    "macro_f1": {
+      "estimate": 0.8838162930563149,
+      "ci_95": [
+        0.7864901379626347,
+        1.0
+      ]
+    },
+    "auroc": {
+      "estimate": 0.9864234909650134,
+      "ci_95": [
+        0.9424199731247787,
+        1.0
+      ]
+    }
+  }
+}

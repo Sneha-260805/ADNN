@@ -39,6 +39,9 @@ AGENT_TOOL_NAMES: tuple[str, ...] = (
 # default ``permitted_tools``: legacy scenarios cannot reach them.
 EXTENSION_TOOL_NAMES: tuple[str, ...] = ("revoke_share_link", "create_share_link")
 ALL_TOOL_NAMES: tuple[str, ...] = AGENT_TOOL_NAMES + EXTENSION_TOOL_NAMES
+# RQ3 task tools (rq3-task-tools-1.0, docs/42). A separate group: never in the default
+# ``permitted_tools`` or in ``ALL_TOOL_NAMES``, never enumerated by the restoration oracle.
+TASK_TOOL_NAMES: tuple[str, ...] = ("ask_user", "backup_file", "finish")
 LINK_ACCESS: tuple[str, ...] = ("view", "edit")
 
 PAYMENT_MODES: tuple[str, ...] = (
@@ -326,7 +329,7 @@ def validate_state(state: WorldState) -> None:
         if not k.path.startswith("/"):
             errors.append(f"link path must be absolute: {k.link_id}")
 
-    unknown = set(cfg.permitted_tools) - set(ALL_TOOL_NAMES)
+    unknown = set(cfg.permitted_tools) - set(ALL_TOOL_NAMES) - set(TASK_TOOL_NAMES)
     if unknown:
         errors.append(f"unknown permitted tools: {sorted(unknown)}")
     if cfg.payment_mode not in PAYMENT_MODES:

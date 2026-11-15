@@ -1,0 +1,16 @@
+{
+  "experiment": "cross_environment_transfer",
+  "direction": "scienceworld_to_sandbox",
+  "status": "not_feasible_with_current_split",
+  "training_environment": "scienceworld",
+  "training_records": 4,
+  "training_label_counts": {
+    "reversible": 2,
+    "partially_reversible": 2,
+    "irreversible": 0
+  },
+  "test_environment": "sandbox",
+  "test_records": 424,
+  "reason": "The ScienceWorld training split contains no irreversible examples. Therefore, a three-class or binary irreversible probe cannot be meaningfully trained for reverse cross-environment transfer.",
+  "note": "Do not report reverse-direction accuracy. Revisit this experiment if a larger ScienceWorld dataset with irreversible training examples becomes available."
+}

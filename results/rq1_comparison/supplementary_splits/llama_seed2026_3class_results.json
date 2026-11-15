@@ -1,0 +1,62 @@
+{
+  "model": "Llama",
+  "task": "3-class",
+  "seed": 2026,
+  "evaluation": "supplementary fixed-hyperparameter evaluation",
+  "layer": 17,
+  "C": 1.0,
+  "test_records": 342,
+  "accuracy": 0.9883040935672515,
+  "balanced_accuracy": 0.9921104536489151,
+  "macro_f1": 0.9883325454354449,
+  "confusion_matrix": [
+    [
+      165,
+      2,
+      2
+    ],
+    [
+      0,
+      79,
+      0
+    ],
+    [
+      0,
+      0,
+      94
+    ]
+  ],
+  "classification_report": {
+    "reversible": {
+      "precision": 1.0,
+      "recall": 0.9763313609467456,
+      "f1-score": 0.9880239520958084,
+      "support": 169.0
+    },
+    "partially_reversible": {
+      "precision": 0.9753086419753086,
+      "recall": 1.0,
+      "f1-score": 0.9875,
+      "support": 79.0
+    },
+    "irreversible": {
+      "precision": 0.9791666666666666,
+      "recall": 1.0,
+      "f1-score": 0.9894736842105263,
+      "support": 94.0
+    },
+    "accuracy": 0.9883040935672515,
+    "macro avg": {
+      "precision": 0.9848251028806584,
+      "recall": 0.9921104536489151,
+      "f1-score": 0.9883325454354449,
+      "support": 342.0
+    },
+    "weighted avg": {
+      "precision": 0.9885703198325031,
+      "recall": 0.9883040935672515,
+      "f1-score": 0.9883013866081319,
+      "support": 342.0
+    }
+  }
+}

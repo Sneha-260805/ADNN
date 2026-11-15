@@ -1,0 +1,23 @@
+{
+  "experiment": "cross_environment_transfer",
+  "direction": "sandbox_to_scienceworld",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "task": "three_class",
+  "layer": 17,
+  "C": 1.0,
+  "training_environment": "sandbox",
+  "training_records": 1705,
+  "test_environment": "scienceworld",
+  "test_records": 1,
+  "correct_predictions": 0,
+  "accuracy": 0.0,
+  "predictions": [
+    {
+      "record_id": "sw-h4-connect-battery-wire",
+      "actual": "reversible",
+      "predicted": "irreversible",
+      "correct": false
+    }
+  ],
+  "interpretation": "Exploratory only: the ScienceWorld test set contains one record. The result is insufficient for a generalisation claim."
+}

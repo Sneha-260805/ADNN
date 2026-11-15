@@ -1,0 +1,13 @@
+{
+    "experiment": "ADNN RQ1 Llama v2",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "dataset": "adnn-dataset-2.0",
+    "records": 2134,
+    "train_records": 1709,
+    "test_records": 425,
+    "hidden_size": 4096,
+    "transformer_layers": 32,
+    "primary_representation": "last_action_token",
+    "ablation_representation": "mean_action_tokens",
+    "status": "initial_setup"
+}

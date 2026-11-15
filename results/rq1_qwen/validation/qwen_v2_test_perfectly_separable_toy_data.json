@@ -1,0 +1,20 @@
+{
+  "test": "perfectly_separable_toy_data",
+  "classifier": "LogisticRegression",
+  "random_seed": 42,
+  "expected_accuracy": 1.0,
+  "observed_accuracy": 1.0,
+  "predictions": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "true_labels": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "pass": true
+}

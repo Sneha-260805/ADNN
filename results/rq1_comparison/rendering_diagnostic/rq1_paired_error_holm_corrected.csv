@@ -1,0 +1,10 @@
+Model,Comparison,Both correct,compact only correct,kv only correct,Both wrong,Discordant pairs,Exact McNemar p-value,prose only correct,Holm_adjusted_p,Significant_0.05
+Qwen 3-class,compact vs kv,124,2.0,12.0,3,14,0.012939453125,,0.07763671875,False
+Qwen 3-class,compact vs prose,124,2.0,,4,13,0.0224609375,11.0,0.1123046875,False
+Qwen 3-class,kv vs prose,132,,4.0,2,7,1.0,3.0,1.0,False
+Qwen binary,compact vs kv,120,0.0,10.0,11,10,0.001953125,,0.015625,True
+Qwen binary,compact vs prose,118,2.0,,13,10,0.109375,8.0,0.4375,False
+Qwen binary,kv vs prose,124,,6.0,9,8,0.2890625,2.0,0.8671875,False
+Llama binary,compact vs kv,115,1.0,15.0,10,16,0.000518798828125,,0.004669189453125,True
+Llama binary,compact vs prose,113,3.0,,9,19,0.004425048828125,16.0,0.030975341796875,True
+Llama binary,kv vs prose,127,,3.0,9,5,1.0,2.0,1.0,False

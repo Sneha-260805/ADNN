@@ -1,0 +1,28 @@
+{
+  "source": "qwen_v2_minimal_pair_24_results.json",
+  "render_style_results": {
+    "compact": {
+      "valid_pair_instances": 21,
+      "correct": 2,
+      "failed": 19,
+      "pair_accuracy": 0.09523809523809523
+    },
+    "kv": {
+      "valid_pair_instances": 21,
+      "correct": 11,
+      "failed": 10,
+      "pair_accuracy": 0.5238095238095238
+    },
+    "prose": {
+      "valid_pair_instances": 21,
+      "correct": 7,
+      "failed": 14,
+      "pair_accuracy": 0.3333333333333333
+    }
+  },
+  "differences": {
+    "kv_minus_compact": 0.4285714285714286,
+    "prose_minus_compact": 0.23809523809523808,
+    "kv_minus_prose": 0.19047619047619052
+  }
+}

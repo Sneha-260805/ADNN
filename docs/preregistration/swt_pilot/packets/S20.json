@@ -1,0 +1,147 @@
+{
+ "version": "sw-declaration-packet-1",
+ "packet_id": "S20",
+ "task_description": "Task description:\nYour task is to boil water. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+ "actions_already_taken": [
+  "open cupboard",
+  "move metal pot to sink",
+  "activate sink",
+  "deactivate sink",
+  "pick up metal pot",
+  "pick up lighter",
+  "teleport to hallway",
+  "put down metal pot"
+ ],
+ "target_action": "use lighter on picture",
+ "target_objects": [
+  {
+   "role": "lighter",
+   "name": "lighter",
+   "propContainer.isOpen": false,
+   "propDevice.isActivated": false,
+   "propDevice.isActivable": false,
+   "propMaterial.temperatureC": 10.089999932799524,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "metal",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "inventory",
+    "name": "inventory",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  },
+  {
+   "role": "picture",
+   "name": "picture",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.15825126052458,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "paper",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "container": {
+    "role": "hallway",
+    "name": "hallway",
+    "propContainer.isOpen": true,
+    "propMoveable.isMovable": false
+   }
+  }
+ ],
+ "scene": [
+  {
+   "role": "metal pot",
+   "name": "metal pot",
+   "propContainer.isOpen": true,
+   "propMaterial.temperatureC": 10.04920329253131,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "steel",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true,
+   "contains": [
+    {
+     "role": "water in metal pot",
+     "name": "water",
+     "propMaterial.temperatureC": 10.007591609607708,
+     "propMaterial.stateOfMatter": "liquid",
+     "propMaterial.substanceName": "water",
+     "propMaterial.hasCombusted": false,
+     "propMaterial.isCombusting": false,
+     "propMaterial.combustionTicks": 100,
+     "propMoveable.isMovable": true
+    }
+   ]
+  },
+  {
+   "role": "air in hallway",
+   "name": "air",
+   "propMaterial.temperatureC": 24.821992763531206,
+   "propMaterial.stateOfMatter": "gas",
+   "propMaterial.substanceName": "air",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "picture",
+   "name": "picture",
+   "propContainer.isOpen": false,
+   "propMaterial.temperatureC": 10.15825126052458,
+   "propMaterial.stateOfMatter": "solid",
+   "propMaterial.substanceName": "paper",
+   "propMaterial.hasCombusted": false,
+   "propMaterial.isCombusting": false,
+   "propMaterial.combustionTicks": 100,
+   "propMoveable.isMovable": true
+  },
+  {
+   "role": "agent",
+   "name": "agent",
+   "propMoveable.isMovable": false,
+   "contains": [
+    {
+     "role": "inventory",
+     "name": "inventory",
+     "propContainer.isOpen": true,
+     "propMoveable.isMovable": false,
+     "contains": [
+      {
+       "role": "lighter",
+       "name": "lighter",
+       "propContainer.isOpen": false,
+       "propDevice.isActivated": false,
+       "propDevice.isActivable": false,
+       "propMaterial.temperatureC": 10.089999932799524,
+       "propMaterial.stateOfMatter": "solid",
+       "propMaterial.substanceName": "metal",
+       "propMaterial.hasCombusted": false,
+       "propMaterial.isCombusting": false,
+       "propMaterial.combustionTicks": 100,
+       "propMoveable.isMovable": true
+      },
+      {
+       "role": "orange in inventory",
+       "name": "orange",
+       "propMoveable.isMovable": true,
+       "propEdibility.isEdible": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rubric_version": "sw-declaration-rubric-1",
+ "form": {
+  "properties": [],
+  "notes": ""
+ },
+ "sha256": "71140e4256d6b8bf87d01da6ed7bb395456ae4de166de7559c87538fe6a10713"
+}

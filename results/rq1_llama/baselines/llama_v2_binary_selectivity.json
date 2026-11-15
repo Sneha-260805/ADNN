@@ -1,0 +1,13 @@
+{
+  "experiment": "llama_v2_binary_random_action_verb_selectivity",
+  "representation": "last_action_token",
+  "layer": 18,
+  "C": 0.01,
+  "train_records": 1709,
+  "test_records": 425,
+  "real_task_balanced_accuracy": 0.8952205882352942,
+  "random_verb_control_balanced_accuracy": 1.0,
+  "selectivity": -0.10477941176470584,
+  "calculation": "real_task_BA - random_verb_control_BA",
+  "matched_settings": true
+}

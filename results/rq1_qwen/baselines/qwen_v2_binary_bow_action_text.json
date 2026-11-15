@@ -1,0 +1,75 @@
+{
+  "experiment": "qwen_v2_binary_bow_action_text",
+  "task": {
+    "type": "binary",
+    "label_mapping": {
+      "0": "non_irreversible",
+      "1": "irreversible"
+    }
+  },
+  "features": {
+    "source": "action_text",
+    "vectorizer": "TfidfVectorizer",
+    "lowercase": true,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 2,
+    "sublinear_tf": true
+  },
+  "selection": {
+    "method": "GroupKFold",
+    "n_splits": 5,
+    "group": "scenario_id",
+    "C_grid": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "selected_C": 10.0,
+    "inner_cv_balanced_accuracy": 0.6639182377989292,
+    "inner_cv_sd": 0.046402217754449075
+  },
+  "classifier": {
+    "penalty": "l2",
+    "C": 10.0,
+    "class_weight": "balanced",
+    "solver": "liblinear",
+    "max_iter": 1000,
+    "random_state": 42
+  },
+  "test": {
+    "n": 425
+  },
+  "metrics": {
+    "accuracy": 0.76,
+    "balanced_accuracy": 0.7438725490196079,
+    "macro_f1": 0.7417429225050043,
+    "auroc": 0.8710351787773933,
+    "per_class": {
+      "non_irreversible": {
+        "precision": 0.8195488721804511,
+        "recall": 0.8014705882352942,
+        "f1": 0.8104089219330854
+      },
+      "irreversible": {
+        "precision": 0.660377358490566,
+        "recall": 0.6862745098039216,
+        "f1": 0.6730769230769231
+      }
+    },
+    "confusion_matrix": [
+      [
+        218,
+        54
+      ],
+      [
+        48,
+        105
+      ]
+    ]
+  }
+}

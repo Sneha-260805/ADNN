@@ -27,6 +27,8 @@ probes = ["numpy", "scikit-learn", "scipy", "matplotlib"]
 models = ["torch", "transformers", "accelerate"]
 # Second testbed. Requires Java >= 1.8 (per the project specification).
 scienceworld = ["scienceworld"]
+# Human annotation workbooks (REQ-LBL-05): writing and reading the .xlsx sheets.
+annotation = ["openpyxl"]
 dev = ["pytest", "ruff"]
 
 [tool.setuptools.packages.find]
