@@ -35,9 +35,18 @@ jobs:
           ruff check --extend-exclude "$EXCLUDE" .
           ruff format --check --extend-exclude "$EXCLUDE,*.md" .
 
-      - name: Ruff (full repository, report only)
-        continue-on-error: true
-        run: ruff check --extend-exclude notebooks,results --statistics .
+      # Informational only: --exit-zero reports findings without failing the step, so no
+      # misleading error annotation; pipefail still surfaces a real Ruff crash (exit 2).
+      - name: Ruff (full repository, informational report)
+        run: |
+          set -o pipefail
+          {
+            echo "### Ruff full-repository report (informational, non-blocking)"
+            echo "Findings are in frozen Member 2/3 experiment code kept byte-identical (INTEGRATION_REPORT F4)."
+            echo '```'
+            ruff check --exit-zero --extend-exclude notebooks,results --statistics .
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
 
       # The three deselected tests read git-ignored data/pilot/ (finding F7).
       # ScienceWorld integration tests skip automatically without the pinned runtime.
